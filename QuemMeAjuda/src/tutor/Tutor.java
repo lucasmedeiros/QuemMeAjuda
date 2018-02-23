@@ -40,8 +40,8 @@ public class Tutor extends Funcao {
 	 * @since Parte 1
 	 */
 	public Tutor(String disciplina, int proficiencia) {
-		super(disciplina);
-		ehLegal(proficiencia);
+		ehLegal(disciplina, proficiencia);
+		this.disciplina = disciplina;
 		this.locais = new HashSet<String>();
 		this.horario = new HashMap<String, String>();
 		this.proficiencia = proficiencia;
@@ -52,14 +52,24 @@ public class Tutor extends Funcao {
 	/**
 	 * Metodo de validacao de proficiencia
 	 * 
+	 * @param disciplina
+	 *            a disciplina a ser validada.
 	 * @param proficiencia
-	 *            o campo a ser validado.
+	 *            a proficiencia a ser validada.
 	 *
 	 * @exception IllegalArgumentException
-	 *                se o valor nao estiver entre 1 e 5.
+	 *                se proficiencia nao estiver entre 1 e 5; e se disciplina for
+	 *                String vazia.
+	 * @exception NullPointerException
+	 *                se disciplina for null.
 	 * @since Parte 1
 	 */
-	private void ehLegal(int proficiencia) {
+	private void ehLegal(String disciplina, int proficiencia) {
+		if (disciplina == null)
+			throw new NullPointerException("Erro na definicao de papel: disciplina nao pode ser vazia ou em branco");
+		if (disciplina.trim().equals(""))
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: disciplina nao pode ser vazia ou em branco");
 		if (proficiencia < 1 || proficiencia > 5)
 			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
 	}
