@@ -5,7 +5,10 @@ package aluno;
 
 /**
  * 
- * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES IMPORTANTES]
+ * Classe Aluno que representa um aluno real, que possui informacoes como nome,
+ * matri cula, email, telefone (opcional), ID do cuso, nota e se o mesmo eh
+ * tutor, tambem possui algumas funcionalidades, como gerar os detalhes do
+ * aluno, tornar o aluno tutor, alem de varios gets para a maioria dos atributos
  * 
  * @authors 
  * <ol> 
