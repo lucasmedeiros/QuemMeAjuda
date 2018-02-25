@@ -10,14 +10,14 @@ import aluno.Aluno;
 
 public class AlunoTest {
 	Aluno al1,al2,al3;
-	
+
 	@Before
 	public void setUp() throws Exception{
 		al1 = new Aluno("joao", "117110637", "joao@silva", 270, "");
 		al2 = new Aluno("mikael", "117110640", "mikael@amaral", 271, "99872450");
 		al3 = new Aluno("matias", "117110637", "matias@mineiro", 270, "");
 	}
-	
+
 	@Test
 	public void testHashCode() {
 		assertTrue(al1.hashCode() == al3.hashCode());

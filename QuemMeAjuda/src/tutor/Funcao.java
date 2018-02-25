@@ -1,11 +1,11 @@
 package tutor;
 
 /**
- * 
+ *
  * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES IMPORTANTES]
- * 
- * @authors 
- * <ol> 
+ *
+ * @authors
+ * <ol>
  *  <i> Diego Gama </i>
  *  <i> Jessé Souza </i>
  *  <i> Lucas Medeiros </i>
@@ -14,5 +14,10 @@ package tutor;
  * @since Parte 1
  */
 public abstract class Funcao {
+
+  public Funcao(String disciplina, int proficiencia) {
+        // NAO FEITO AINDA, SÓ COLOQUEI O CONSTRUTOR PARA NÃO DAR ERRO NA HORA DE TESTAR
+        // by Lucas
+    }
 
 }

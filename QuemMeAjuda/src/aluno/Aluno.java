@@ -1,18 +1,16 @@
-/**
- * 
- */
 package aluno;
 
 import tutor.Funcao;
+import tutor.Tutor;
 
 /**
  * Classe Aluno que representa um aluno real, que possui informacoes como nome,
  * matri cula, email, telefone (opcional), ID do cuso, nota e se o mesmo eh
  * tutor, tambem possui algumas funcionalidades, como gerar os detalhes do
  * aluno, tornar o aluno tutor, alem de varios gets para a maioria dos atributos
- * 
- * @authors 
- * <ol> 
+ *
+ * @authors
+ * <ol>
  *  <i> Diego Gama </i>
  *  <i> Jessé Souza </i>
  *  <i> Lucas Medeiros </i>
@@ -55,7 +53,7 @@ public class Aluno implements Alunado {
 
 	/**
 	 * Construtor da classe Aluno
-	 * 
+	 *
 	 * @param nome
 	 *            Nome do aluno
 	 * @param matricula
@@ -81,6 +79,7 @@ public class Aluno implements Alunado {
 	 * LA - NOME - CURSOID - TELEFONE - EMAIL",ou caso o telefone nao foi cadastrado
 	 * "MATRICULA - NOME - CURSOID - EMAIL"
 	 */
+        @Override
 	public String gerarDetalhes() {
 		if (telefone.trim().isEmpty()) {
 			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.email;
@@ -94,7 +93,7 @@ public class Aluno implements Alunado {
 	/**
 	 * Metodo que recebe parametros para tornar o aluno em um tutor de uma
 	 * disciplina especifica
-	 * 
+	 *
 	 * @param disciplina
 	 *            Disciplina que serah lecionada pelo aluno como tutor
 	 * @param proficiencia
@@ -102,13 +101,13 @@ public class Aluno implements Alunado {
 	 *            conhecimento na disciplina
 	 */
 	public void tornarTutor(String disciplina, int proficiencia) {
-		Funcao novaFuncao = new Funcao(disciplina, proficiencia);
+		Funcao novaFuncao = new Tutor(disciplina, proficiencia);
 		this.tipo = novaFuncao;
 	}
 
 	/**
 	 * Metodo que retorna a String matricula
-	 * 
+	 *
 	 * @return retorna a matricula do aluno
 	 */
 	public String getMatricula() {
@@ -117,7 +116,7 @@ public class Aluno implements Alunado {
 
 	/**
 	 * Metodo que retorna a String email
-	 * 
+	 *
 	 * @return retorna o email do aluno
 	 */
 	public String getEmail() {
@@ -126,7 +125,7 @@ public class Aluno implements Alunado {
 
 	/**
 	 * Metodo que retorna a String telefone
-	 * 
+	 *
 	 * @return retorna o telefone do aluno
 	 */
 	public String getTelefone() {
@@ -135,7 +134,7 @@ public class Aluno implements Alunado {
 
 	/**
 	 * Metodo que retorna a String nome
-	 * 
+	 *
 	 * @return retorna o nome do aluno
 	 */
 	public String getNome() {
@@ -144,7 +143,7 @@ public class Aluno implements Alunado {
 
 	/**
 	 * Metodo que retorna a nota
-	 * 
+	 *
 	 * @return retorna a nota do aluno
 	 */
 	public int getNota() {
@@ -153,7 +152,7 @@ public class Aluno implements Alunado {
 
 	/**
 	 * Metodo que retorna o id do curso
-	 * 
+	 *
 	 * @return retorna o id do curso do aluno
 	 */
 	public int getCursoId() {
@@ -161,7 +160,20 @@ public class Aluno implements Alunado {
 	}
 
 	/**
+	 * Método que gera uma representaçao em string.
+	 *
+	 * @return representacao em string do aluno.
+	 */
+	@Override
+	public String toString() {
+	    return matricula + " - " + nome + " - " + cursoId + " - " +
+	            telefone + " - " + email;
+	}
+
+	/**
 	 * Metodo que gera um numero a partir da matricula do aluno
+	 *
+	 * @return numero gerado a partir da matricula.
 	 */
 	@Override
 	public int hashCode() {
@@ -172,8 +184,10 @@ public class Aluno implements Alunado {
 	}
 
 	/**
-	 * Metodo que compara dois Alunos a partir da matricula
-	 */
+   * Metodo que compara dois alunos a partir dos seus nomes.
+   * @param obj objeto a ser comparado.
+   * @return <tr>true</tr> se o objeto é igual a this.
+   */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -198,5 +212,4 @@ public class Aluno implements Alunado {
 	public int compareTo(Aluno o) {
 		return this.nome.compareTo(o.getNome());
 	}
-
 }
