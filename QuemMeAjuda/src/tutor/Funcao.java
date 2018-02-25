@@ -1,23 +1,30 @@
 package tutor;
 
 /**
- *
- * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES IMPORTANTES]
- *
+ * 
+ * A classe abstrata Funcao representa o pai de diferentes papeis que um Aluno
+ * pode desempenhar. Esta Funcao deve ser desempenhada em uma determinada
+ * disciplina.
+ * 
  * @authors
- * <ol>
- *  <i> Diego Gama </i>
- *  <i> Jessé Souza </i>
- *  <i> Lucas Medeiros </i>
- *  <i> Mikael Amaral </i>
- * </ol>
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
  * @since Parte 1
  */
 public abstract class Funcao {
 
-  public Funcao(String disciplina, int proficiencia) {
-        // NAO FEITO AINDA, SÓ COLOQUEI O CONSTRUTOR PARA NÃO DAR ERRO NA HORA DE TESTAR
-        // by Lucas
-    }
+	protected String disciplina;
+
+	/**
+	 * Retorna a disciplina desempenhada nesta Funcao.
+	 * 
+	 * @return a disciplina desempenhada nesta Funcao.
+	 * @since Parte 1
+	 */
+	public String getDisciplina() {
+		return this.disciplina;
+	}
 
 }
