@@ -198,7 +198,7 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Metodo para comparar.
+	 * Metodo para comparar dois alunos a partir do nome.
 	 */
 	@Override
 	public int compareTo(Aluno o) {

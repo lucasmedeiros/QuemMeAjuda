@@ -37,6 +37,7 @@ public class TutorController {
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<String, Aluno>();
+		this.val = new Validator();
 	}
 
 	/**

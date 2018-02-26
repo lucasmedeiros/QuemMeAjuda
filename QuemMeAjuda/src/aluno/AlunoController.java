@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import general.Validator;
+import tutor.TutorController;
 
 /**
  * Representação da classe que controla a entidade Aluno.
@@ -21,6 +22,7 @@ public class AlunoController {
 
     private List<Aluno> alunos;
     private Validator val;
+    private TutorController tutorController;
 
     /**
      * Construtor do Controller de Aluno.
@@ -28,6 +30,7 @@ public class AlunoController {
     public AlunoController() {
         alunos = new ArrayList<>();
         val = new Validator();
+        this.tutorController = new TutorController();
     }
 
     /**
@@ -68,8 +71,12 @@ public class AlunoController {
     }
     
     public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-    	Aluno a = alunoExiste(matricula, "erro");
-    	a.tornarTutor(disciplina, proficiencia);
+    	val.validaString(disciplina, "Erro ao atribuir tarefa: disciplina nao pode estar vazia ou em branco");
+    	val.validaProficiencia(proficiencia, "Erro ao atribuir tarefa: proficiencia invalida");
+    	Aluno a = alunoExiste(matricula, "Erro ao atribuir tarefa:");
+    	
+    	this.tutorController.tornaTutor(a, disciplina, proficiencia);
+    	// pensar numa soluçao melhor que nao tenha tanta ligacao entre as classes
     }
 
     /**
@@ -90,26 +97,28 @@ public class AlunoController {
     }
 
     public String getInfoAluno(String matricula, String atributo) {
-    	val.validaString(atributo, "Erro aosd fgeuicvns");
-    	Aluno a = alunoExiste(matricula, "erroeofseofsd");
+    	val.validaString(atributo, "Erro ao consultar por atributo: "
+    			+ "atributo nao pode ser vazio ou nulo");
+    	Aluno a = alunoExiste(matricula, "Erro ao consultar por atributo");
     	
         return a.getInfo(atributo);
     }
 
     /**
      * Método para verificar se um aluno esta cadastrado no sistema.
+     * 
      * @param matricula matricula do aluno.
      * @param msg mensagem de erro.
      * @return representaçao em string do aluno, se ele existir no sistema.
      */
     private Aluno alunoExiste(String matricula, String msg) {
-        val.validaString(matricula, msg);
+        val.validaString(matricula, msg + ": matricula nao pode ser vazia ou em branco");
 
         for (Aluno a: alunos) {
             if (a.getMatricula().equals(matricula))
                 return a;
         }
 
-        throw new IllegalArgumentException(msg + ": Aluno nao cadastrado.");
+        throw new IllegalArgumentException(msg + ": aluno nao cadastrado.");
     }
 }
