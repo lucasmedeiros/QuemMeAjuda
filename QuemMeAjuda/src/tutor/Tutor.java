@@ -29,7 +29,6 @@ public class Tutor {
 	private int proficiencia;
 	private int dinheiro;
 	private int notaTutor;
-	
 	private Set<String> locais;
 	private Map<String, String> horario;
 	private Map<String, Integer> disciplinas;
