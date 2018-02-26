@@ -81,5 +81,68 @@ public class TutorController {
 		return lista;
 	}
 	
-	 
+	/*
+	 * Método responsável por cadastrar um horário disponível do tutor.
+	 * 
+	 * @param email
+	 * 		O email do tutor
+	 * @param local
+	 * 		O local de encontro com o tutor.
+	 * @param dia
+	 * 		O dia disponível do tutor.
+	 * 
+	 */
+	public void cadastraHorario(String email, String local, String dia) {
+		
+	}
+	
+	/*
+	 * Método responsável por cadastrar um local disponível do tutor.
+	 * 
+	 * @param email
+	 * 		O email do tutor
+	 * @param local
+	 * 		O local de encontro com o tutor.
+	 * 
+	 */
+	public void cadastraLocal(String email, String local) {
+		
+	}
+	
+	/*
+	 * Método responsável por consultar um horário disponível do tutor.
+	 * 
+	 * @param email
+	 * 		O email do tutor
+	 * @param local
+	 * 		O local de encontro com o tutor.
+	 * @param dia
+	 * 		O dia disponível do tutor.
+	 * 
+	 * @return boolean
+	 * 		Retorna se o local está ou não disponível para o tutor.
+	 */
+	public boolean consultaHorario(String email, String horario, String dia) {
+		
+	}
+
+	/*
+	 * Método responsável por consultar um local disponível do tutor.
+	 * 
+	 * @param email
+	 * 		O email do tutor
+	 * @param local
+	 * 		O local de encontro com o tutor.
+	 * @return boolean
+	 * 		Retorna se o horário está ou não disponível para o tutor.
+	 * 
+	 * 
+	 */
+	public boolean consultaLocal(String email, String local) {
+			
+	}
+	
+	
 }
+
+

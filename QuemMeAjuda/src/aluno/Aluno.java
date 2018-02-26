@@ -89,6 +89,10 @@ public class Aluno implements Alunado {
 
 		}
 	}
+        
+    public Funcao getTipo() {
+		return tipo;
+	}
 
 	/**
 	 * Metodo que recebe parametros para tornar o aluno em um tutor de uma
