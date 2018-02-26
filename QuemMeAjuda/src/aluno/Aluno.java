@@ -1,6 +1,6 @@
 package aluno;
 
-import tutor.Funcao;
+import general.Validator;
 import tutor.Tutor;
 
 /**
@@ -19,53 +19,36 @@ import tutor.Tutor;
  * @since Parte 1
  */
 
-public class Aluno implements Alunado {
+public class Aluno implements Comparable<Aluno> {
 
-	/**
-	 * Atributo String que representa o nome do aluno
-	 */
 	private String nome;
-	/**
-	 * Atributo String que representa a matricula(identificador) do aluno
-	 */
 	private String matricula;
-	/**
-	 * Atributo String que representao o email do aluno
-	 */
 	private String email;
-	/**
-	 * Atributo String que representao o telefone(opcional) do aluno
-	 */
 	private String telefone;
-	/**
-	 * Atributo Inteiro que representa o id do curso do aluno
-	 */
 	private int cursoId;
-	/**
-	 * Atributo Inteiro que representa a nota avaliativa do aluno, setada
-	 * inicialmente no valor 5
-	 */
 	private int nota;
-	/**
-	 * Atributo tipo que representa uma possivel funcao do aluno(Tutor, por exemplo)
-	 */
-	private Funcao tipo;
+	private Tutor tutor;
+	
+	private Validator val;
 
 	/**
 	 * Construtor da classe Aluno
 	 *
 	 * @param nome
-	 *            Nome do aluno
+	 *            Nome do aluno.
 	 * @param matricula
-	 *            Matricula do aluno
+	 *            Matricula do aluno.
 	 * @param email
-	 *            email do aluno
+	 *            email do aluno.
 	 * @param cursoId
-	 *            id do curso do aluno
+	 *            id do curso do aluno.
 	 * @param telefone
-	 *            telefone do aluno
+	 *            telefone do aluno.
 	 */
 	public Aluno(String nome, String matricula, String email, int cursoId, String telefone) {
+		this.val = new Validator();
+		ehLegal(nome, matricula, email, telefone, cursoId);
+		
 		this.matricula = matricula;
 		this.email = email;
 		this.cursoId = cursoId;
@@ -73,25 +56,27 @@ public class Aluno implements Alunado {
 		this.nome = nome;
 		this.nota = 5;
 	}
-
+	
 	/**
-	 * Metodo que retorna uma representacao em String do aluno, no formato "MATRICU
-	 * LA - NOME - CURSOID - TELEFONE - EMAIL",ou caso o telefone nao foi cadastrado
-	 * "MATRICULA - NOME - CURSOID - EMAIL"
+	 * Validaçao das strings que serao utilizadas.
+	 * 
+	 * @param nome
+	 * @param matricula
+	 * @param email
+	 * @param idCurso
 	 */
-        @Override
-	public String gerarDetalhes() {
-		if (telefone.trim().isEmpty()) {
-			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.email;
-		} else {
-			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.telefone + " - "
-					+ this.email;
-
-		}
-	}
+	private void ehLegal(String nome, String matricula, String email, String telefone, int idCurso) {
+		val.validaString(nome, "Erro no cadastro de aluno");
+        val.validaString(matricula, "Erro no cadastro de aluno");
+        val.validaString(email, "Erro no cadastro de aluno");
+        val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno");
         
-    public Funcao getTipo() {
-		return tipo;
+        if (telefone == null)
+        	throw new NullPointerException("Erro no cadastro de Aluno");
+	}
+	
+    public Tutor getTipo() {
+		return tutor;
 	}
 
 	/**
@@ -105,8 +90,8 @@ public class Aluno implements Alunado {
 	 *            conhecimento na disciplina
 	 */
 	public void tornarTutor(String disciplina, int proficiencia) {
-		Funcao novaFuncao = new Tutor(disciplina, proficiencia);
-		this.tipo = novaFuncao;
+		Tutor novaFuncao = new Tutor(disciplina, proficiencia);
+		this.tutor = novaFuncao;
 	}
 
 	/**
@@ -170,8 +155,12 @@ public class Aluno implements Alunado {
 	 */
 	@Override
 	public String toString() {
-	    return matricula + " - " + nome + " - " + cursoId + " - " +
-	            telefone + " - " + email;
+		if (telefone.trim().isEmpty()) {
+			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.email;
+		} else {
+			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.telefone + " - "
+					+ this.email;
+		}
 	}
 
 	/**
@@ -210,10 +199,31 @@ public class Aluno implements Alunado {
 	}
 
 	/**
-	 * Metodo que compara dois alunos a partir dos seus nomes
+	 * Metodo para comparar.
 	 */
 	@Override
 	public int compareTo(Aluno o) {
-		return this.nome.compareTo(o.getNome());
+		return this.nome.compareTo(o.nome);
+	}
+
+	public String getInfo(String atributo) {
+		switch (atributo) {
+			case "nome":
+				return this.nome;
+			case "matricula":
+				return this.matricula;
+			case "email":
+				return this.email;
+			case "telefone":
+				if (telefone.trim().isEmpty())
+					return "telefone nao cadastrado";
+				return this.telefone;
+			case "nota":
+				return "" + nota;
+			case "cursoId":
+				return "" + cursoId;
+			default:
+				throw new IllegalArgumentException("Erro ao consultar........");
+		}
 	}
 }

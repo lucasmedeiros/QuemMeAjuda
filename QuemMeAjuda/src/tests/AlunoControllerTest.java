@@ -21,7 +21,7 @@ public class AlunoControllerTest {
         controller.cadastrarAluno("     ", "1010", "lucas@gmail.com", 1, "9999-9999");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testCadastrarAlunoNomeInvalido3() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno(null, "1010", "lucas@gmail.com", 1, "9999-9999");
@@ -39,7 +39,7 @@ public class AlunoControllerTest {
         controller.cadastrarAluno("Lucas", "    ", "lucas@gmail.com", 1, "9999-9999");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testCadastrarAlunoMatriculaInvalida3() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", null, "lucas@gmail.com", 1, "9999-9999");
@@ -57,7 +57,7 @@ public class AlunoControllerTest {
         controller.cadastrarAluno("Lucas", "1010", "     ", 1, "9999-9999");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testCadastrarAlunoEmailInvalido3() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", null, 1, "9999-9999");
@@ -75,7 +75,7 @@ public class AlunoControllerTest {
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "     ");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testCadastrarAlunoTelefoneInvalido3() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, null);

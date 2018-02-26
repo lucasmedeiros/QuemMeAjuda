@@ -1,5 +1,8 @@
 package general;
 
+import aluno.AlunoController;
+import tutor.TutorController;
+
 /**
  * 
  * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES IMPORTANTES]
@@ -14,5 +17,19 @@ package general;
  * @since Parte 1
  */
 public class SistemaFacade {
-
+	
+	AlunoController alunoController;
+	TutorController tutorController;
+	
+	public SistemaFacade() {
+		alunoController = new AlunoController();
+		tutorController = new TutorController();
+	}
+	
+	public void cadastrarAluno(String nome, String matricula, String email, int idCurso, String telefone) {
+		alunoController.cadastrarAluno(nome, matricula, email, idCurso, telefone);
+	}
+	
+	
+	
 }

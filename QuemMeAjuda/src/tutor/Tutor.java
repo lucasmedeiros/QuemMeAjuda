@@ -3,6 +3,9 @@ package tutor;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
+import general.Validator;
+
 import java.util.Map;
 
 /**
@@ -21,13 +24,17 @@ import java.util.Map;
  *          </ol>
  * @since Parte 1
  */
-public class Tutor extends Funcao {
+public class Tutor {
 
 	private int proficiencia;
-	private Set<String> locais;
-	private Map<String, String> horario;
 	private int dinheiro;
 	private int notaTutor;
+	
+	private Set<String> locais;
+	private Map<String, String> horario;
+	private Map<String, Integer> disciplinas;
+	
+	private Validator val;
 
 	/**
 	 * Constroi um objeto Tutor.
@@ -40,17 +47,21 @@ public class Tutor extends Funcao {
 	 * @since Parte 1
 	 */
 	public Tutor(String disciplina, int proficiencia) {
+		this.val = new Validator();
 		ehLegal(disciplina, proficiencia);
-		this.disciplina = disciplina;
+		
 		this.locais = new HashSet<String>();
 		this.horario = new HashMap<String, String>();
 		this.proficiencia = proficiencia;
 		this.dinheiro = 0;
 		this.notaTutor = 4;
+		
+		this.disciplinas = new HashMap<>();
+		this.disciplinas.put(disciplina, proficiencia);
 	}
 
 	/**
-	 * Metodo de validacao de proficiencia
+	 * Metodo de validacao de proficiencia e disciplina
 	 * 
 	 * @param disciplina
 	 *            a disciplina a ser validada.
@@ -60,18 +71,11 @@ public class Tutor extends Funcao {
 	 * @exception IllegalArgumentException
 	 *                se proficiencia nao estiver entre 1 e 5; e se disciplina for
 	 *                String vazia.
-	 * @exception NullPointerException
-	 *                se disciplina for null.
 	 * @since Parte 1
 	 */
 	private void ehLegal(String disciplina, int proficiencia) {
-		if (disciplina == null)
-			throw new NullPointerException("Erro na definicao de papel: disciplina nao pode ser vazia ou em branco");
-		if (disciplina.trim().equals(""))
-			throw new IllegalArgumentException(
-					"Erro na definicao de papel: disciplina nao pode ser vazia ou em branco");
-		if (proficiencia < 1 || proficiencia > 5)
-			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
+		val.validaString(disciplina, "Erro na definicao de papel: disciplina nao pode ser vazia ou em branco");
+		val.validaProficiencia(proficiencia, "Erro na definicao de papel: Proficiencia invalida");
 	}
 
 	/**
@@ -128,12 +132,7 @@ public class Tutor extends Funcao {
 	 * @since Parte 1
 	 */
 	public void adicionarLocal(String local) {
-		if (local == null)
-			throw new NullPointerException(
-					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
-		if (local.trim().equals(""))
-			throw new IllegalArgumentException(
-					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		val.validaString(local, "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
 		this.locais.add(local);
 	}
 
@@ -152,15 +151,21 @@ public class Tutor extends Funcao {
 	 * @since Parte 1
 	 */
 	public void adicionarHorario(String dia, String horario) {
-		if (dia == null)
-			throw new NullPointerException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
-		if (dia.trim().equals(""))
-			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
-		if (horario == null)
-			throw new NullPointerException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
-		if (horario.trim().equals(""))
-			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		val.validaString(dia, "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+		val.validaString(horario, "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		
 		this.horario.put(dia, horario);
+	}
+	
+	/**
+	 * Metodo para adicionar mais uma disciplina para o tutor.
+	 * 
+	 * @param disciplina disciplina para ser adicionada.
+	 * @param proficiencia proficiencia na disciplina que vai ser adicionada.
+	 */
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		ehLegal(disciplina, proficiencia);
+		this.disciplinas.put(disciplina, proficiencia);
 	}
 
 	/**
@@ -172,6 +177,7 @@ public class Tutor extends Funcao {
 	 * @since Parte 1
 	 */
 	public boolean consultarLocal(String local) {
+		val.validaString(local, "Erro na consulta de local: local nao pode ser vazio ou em branco");
 		return this.locais.contains(local);
 	}
 
@@ -187,6 +193,8 @@ public class Tutor extends Funcao {
 	 * @since Parte 1
 	 */
 	public boolean consultarHorario(String dia, String horario) {
+		val.validaString(dia, "Erro na consulta de horario: dia nao pode ser vazio ou em branco");
+		val.validaString(horario, "Erro na consulta de horario: horario nao pode ser vazio ou em branco");
 		return (this.horario.containsKey(dia) && this.horario.containsValue(horario));
 	}
 }

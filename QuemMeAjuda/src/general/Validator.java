@@ -21,7 +21,10 @@ public class Validator {
      * @param msg mensagem a ser exibida caso não passe na validação.
      */
     public void validaString(String str, String msg) {
-        if (str == null || str.trim().isEmpty())
+    	if (str == null)
+    		throw new NullPointerException(msg);
+    	
+        if (str.trim().isEmpty())
             throw new IllegalArgumentException(msg);
     }
 
@@ -29,7 +32,7 @@ public class Validator {
      * Método que valida um número menor ou igual a zero.
      *
      * @param num número a ser validado.
-     * @param msg mensagem a ser exibida caso não passe na validação.
+     * @param msg mensagem a ser exibida caso nao passe na validação.
      */
     public void validaNumeroMenorIgualZero(int num, String msg) {
         if (num <= 0)
@@ -37,13 +40,24 @@ public class Validator {
     }
 
     /**
-     * Método para validar um objeto, se ele é nulo ou não.
+     * Metodo para validar um objeto, se ele eh nulo ou nao.
      *
      * @param o objeto a ser validado.
-     * @param msg mensagem a ser exibida caso não passe na validação.
+     * @param msg mensagem a ser exibida caso nao passe na validacao.
      */
     public void validaObjetoNulo(Object o, String msg) {
         if (o == null)
             throw new NullPointerException(msg);
+    }
+    
+    /**
+     * Método para validar proficiencia.
+     * 
+     * @param proficiencia valor da proficiencia.
+     * @param msg mensagem de erro.
+     */
+    public void validaProficiencia(int proficiencia, String msg) {
+    	if (proficiencia < 1 || proficiencia > 5)
+    		throw new IllegalArgumentException(msg);
     }
 }

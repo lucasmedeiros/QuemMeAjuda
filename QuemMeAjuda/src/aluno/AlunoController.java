@@ -1,6 +1,7 @@
 package aluno;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import general.Validator;
 
@@ -18,7 +19,7 @@ import general.Validator;
  */
 public class AlunoController {
 
-    private List<Alunado> alunos;
+    private List<Aluno> alunos;
     private Validator val;
 
     /**
@@ -30,7 +31,7 @@ public class AlunoController {
     }
 
     /**
-     * Método para cadastrar um novo aluno no sistema.
+     * Método para cadastrar um novo aluno no sistema com telefone.
      *
      * @param nome nome do aluno.
      * @param matricula matricula do aluno.
@@ -40,13 +41,20 @@ public class AlunoController {
      */
     public void cadastrarAluno(String nome, String matricula, String email,
             int idCurso, String telefone) {
-        val.validaString(nome, "Erro no cadastro de aluno");
-        val.validaString(matricula, "Erro no cadastro de aluno");
-        val.validaString(email, "Erro no cadastro de aluno");
-        val.validaString(telefone, "Erro no cadastro de aluno");
-        val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno");
-
         alunos.add(new Aluno(nome, matricula, email, idCurso, telefone));
+    }
+    
+    /**
+     * Método para cadastrar um novo aluno no sistema sem telefone
+     *
+     * @param nome nome do aluno.
+     * @param matricula matricula do aluno.
+     * @param email email do aluno.
+     * @param idCurso id do curso no qual o aluno esta matriculado.
+     */
+    public void cadastrarAluno(String nome, String matricula, String email,
+            int idCurso) {
+        cadastrarAluno(nome, matricula, email, idCurso, "");
     }
 
     /**
@@ -56,7 +64,7 @@ public class AlunoController {
      * @return representaçao em string do aluno procurado.
      */
     public String recuperarAluno(String matricula) {
-        return alunoExiste(matricula, "Erro na consulta de aluno");
+        return alunoExiste(matricula, "Erro na consulta de aluno").toString();
     }
 
     /**
@@ -66,8 +74,10 @@ public class AlunoController {
      */
     public String listarAlunos() {
         String alns = "";
+        
+        Collections.sort(alunos);
 
-        for (Alunado a: alunos) {
+        for (Aluno a: alunos) {
             alns += a.toString() + System.lineSeparator();
         }
 
@@ -75,8 +85,10 @@ public class AlunoController {
     }
 
     public String getInfoAluno(String matricula, String atributo) {
-        return null;
-        // fazer dps
+    	val.validaString(atributo, "Erro aosd fgeuicvns");
+    	Aluno a = alunoExiste(matricula, "erroeofseofsd");
+    	
+        return a.getInfo(atributo);
     }
 
     /**
@@ -85,12 +97,12 @@ public class AlunoController {
      * @param msg mensagem de erro.
      * @return representaçao em string do aluno, se ele existir no sistema.
      */
-    private String alunoExiste(String matricula, String msg) {
+    private Aluno alunoExiste(String matricula, String msg) {
         val.validaString(matricula, msg);
 
-        for (Alunado a: alunos) {
+        for (Aluno a: alunos) {
             if (a.getMatricula().equals(matricula))
-                return a.toString();
+                return a;
         }
 
         throw new IllegalArgumentException(msg + ": Aluno nao cadastrado.");
