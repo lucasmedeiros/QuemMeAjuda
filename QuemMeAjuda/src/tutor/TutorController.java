@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
+import general.Validator;
 
 import java.util.HashMap;
 
@@ -19,6 +20,12 @@ import java.util.HashMap;
  * @since Parte 1
  */
 public class TutorController {
+	
+	
+	/**
+	 * Representa o validador do programa.
+	 */
+	private Validator val;
 
 	/**
 	 * Representa uma lista de tutores.
@@ -47,6 +54,12 @@ public class TutorController {
 	public void tornaTutor(Aluno aluno, String disciplina, int proficiencia) {
 		tutores.put(aluno.getEmail(), aluno);
 		aluno.tornarTutor(disciplina, proficiencia);
+	}
+	
+	private void verificaEmail(String email) {
+		if(!this.tutores.containsKey(email)) {
+			throw nem IllegalArgumentException("Email não cadastrado.");
+		}
 	}
 
 	/**
