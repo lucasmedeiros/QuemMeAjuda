@@ -48,7 +48,6 @@ public class Aluno implements Comparable<Aluno> {
 	public Aluno(String nome, String matricula, String email, int cursoId, String telefone) {
 		this.val = new Validator();
 		ehLegal(nome, matricula, email, telefone, cursoId);
-		
 		this.matricula = matricula;
 		this.email = email;
 		this.cursoId = cursoId;

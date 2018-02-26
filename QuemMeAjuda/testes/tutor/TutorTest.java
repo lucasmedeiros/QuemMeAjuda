@@ -1,4 +1,4 @@
-package tests;
+package tutor;
 
 import static org.junit.Assert.*;
 
@@ -53,12 +53,6 @@ public class TutorTest {
 	public void notaCorreta() {
 		String mensagem = "Esperando que a nota padrao esteja correta";
 		assertEquals(mensagem, 4, this.tutor.getNotaTutor());
-	}
-
-	@Test
-	public void disciplinaCorreta() {
-		String mensagem = "Esperando que disciplina cadastrada esteja correta";
-		assertEquals(mensagem, "Programacao 2", this.tutor.getDisciplina());
 	}
 
 	@Test

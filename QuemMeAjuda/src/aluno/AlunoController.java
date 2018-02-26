@@ -66,6 +66,11 @@ public class AlunoController {
     public String recuperarAluno(String matricula) {
         return alunoExiste(matricula, "Erro na consulta de aluno").toString();
     }
+    
+    public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+    	Aluno a = alunoExiste(matricula, "erro");
+    	a.tornarTutor(disciplina, proficiencia);
+    }
 
     /**
      * Método para listar todos os alunos cadastrados.

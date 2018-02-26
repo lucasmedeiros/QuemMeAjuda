@@ -1,4 +1,4 @@
-package tests;
+package tutor;
 
 import static org.junit.Assert.*;
 
@@ -27,8 +27,5 @@ public class TutorControllerTest {
 	public void listaAlunoTest() {
 		assertEquals(this.tutores.listarTutores(), "");
 	}
-	
-	@Test
-	public void 
 
 }

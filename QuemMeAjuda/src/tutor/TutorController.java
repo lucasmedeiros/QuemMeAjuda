@@ -58,7 +58,7 @@ public class TutorController {
 	
 	private void verificaEmail(String email) {
 		if(!this.tutores.containsKey(email)) {
-			throw nem IllegalArgumentException("Email não cadastrado.");
+			throw new IllegalArgumentException("Email não cadastrado.");
 		}
 	}
 

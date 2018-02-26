@@ -1,4 +1,4 @@
-package tests;
+package aluno;
 
 import static org.junit.Assert.*;
 
@@ -28,8 +28,8 @@ public class AlunoTest {
 	public void testGerarDetalhes() {
 		String teste = "117110637 - matias - 270 - matias@mineiro";
 		String teste2 = "117110640 - mikael - 271 - 99872450 - mikael@amaral";
-		assertEquals(al3.gerarDetalhes(),teste);
-		assertEquals(al2.gerarDetalhes(),teste2);
+		assertEquals(al3.toString(),teste);
+		assertEquals(al2.toString(),teste2);
 	}
 
 	@Test
