@@ -60,4 +60,18 @@ public class Validator {
     	if (proficiencia < 1 || proficiencia > 5)
     		throw new IllegalArgumentException(msg);
     }
+    
+    /**
+     * Metodo responsavel por validar o email do aluno.
+     * 
+     * @param email
+     * 		O email do aluno em questao.
+     * @param msg
+     * 		A mensagem que vai ser lançada se um erro for detectado.
+     */
+    public void validaEmail(String email, String msg) {
+    	if(email.indexOf("@") == -1) {
+    		throw new IllegalArgumentException(msg);
+    	}
+    }
 }
