@@ -217,7 +217,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * @return Retorna um atributo especifico do aluno
 	 */
 	public String getInfo(String atributo) {
-		switch (atributo) {
+		switch (atributo.toLowerCase()) {
 			case "nome":
 				return this.nome;
 			case "matricula":

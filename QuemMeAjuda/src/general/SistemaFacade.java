@@ -1,7 +1,6 @@
 package general;
 
 import aluno.AlunoController;
-import easyaccept.EasyAccept;
 import tutor.TutorController;
 
 /**
@@ -29,11 +28,11 @@ public class SistemaFacade {
 		this.tutorController = new TutorController();
 	}
 	
-	public void cadastrarAluno(String nome, String matricula, String email, int idCurso, String telefone) {
+	public void cadastrarAluno(String nome, String matricula, int idCurso, String telefone, String email) {
 		this.alunoController.cadastrarAluno(nome, matricula, email, idCurso, telefone);
 	}
 	
-	public String recuperarAluno(String matricula) {
+	public String recuperaAluno(String matricula) {
 		return this.alunoController.recuperarAluno(matricula);
 	}
 	
