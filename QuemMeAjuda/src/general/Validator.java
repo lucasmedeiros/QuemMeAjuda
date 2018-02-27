@@ -67,11 +67,10 @@ public class Validator {
      * @param email
      * 		O email do aluno em questao.
      * @param msg
-     * 		A mensagem que vai ser lançada se um erro for detectado.
+     * 		A mensagem que vai ser lanï¿½ada se um erro for detectado.
      */
     public void validaEmail(String email, String msg) {
-    	if(email.indexOf("@") == -1) {
+    	if(email.indexOf("@") == -1 || email.charAt(0) == '@' || email.charAt(email.length() - 1) == '@')
     		throw new IllegalArgumentException(msg);
-    	}
     }
 }

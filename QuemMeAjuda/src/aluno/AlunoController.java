@@ -49,12 +49,13 @@ public class AlunoController {
 
 		val.validaString(matricula, "Erro no cadastro de aluno: matricula nao pode ser vazia ou em branco");
 
-		Aluno a = alunoExiste(matricula);
+		Aluno a = new Aluno(nome, matricula, email, idCurso, telefone);
 		
-		if (a == null)
-			alunos.add(new Aluno(nome, matricula, email, idCurso, telefone));
+		if (alunoExiste(matricula) == null)
+			alunos.add(a);
 		else
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
+		
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class AlunoController {
 		
 		Aluno a = alunoExiste(matricula);
 		
-		val.validaObjetoNulo(a, "Erro na consulta de aluno: Aluno nao existe");
+		val.validaObjetoNulo(a, "Erro na busca por aluno: Aluno nao encontrado");
 		
 		return a.toString();
 	}
@@ -125,10 +126,9 @@ public class AlunoController {
 	public String getInfoAluno(String matricula, String atributo) {
 		val.validaString(atributo, "Erro ao consultar por atributo: atributo nao pode ser vazio ou em branco");
 		val.validaString(matricula, "Erro ao consultar por atributo: matricula nao pode ser vazia ou em branco");
-		Aluno a = alunoExiste(matricula);
 		
-		if (a == null)
-			throw new IllegalArgumentException("Erro ao consultar por atributo: aluno nao cadastrado.");
+		Aluno a = alunoExiste(matricula);
+		val.validaObjetoNulo(a, "Erro na obtencao de informacao de aluno: Aluno nao encontrado");
 
 		return a.getInfo(atributo);
 	}

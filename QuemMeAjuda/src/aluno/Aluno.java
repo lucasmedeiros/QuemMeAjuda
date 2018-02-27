@@ -65,11 +65,11 @@ public class Aluno implements Comparable<Aluno> {
 	 * @param idCurso
 	 */
 	private void ehLegal(String nome, String matricula, String email, String telefone, int idCurso) {
-		val.validaString(nome, "Erro no cadastro de aluno");
-        val.validaString(matricula, "Erro no cadastro de aluno");
-        val.validaString(email, "Erro no cadastro de aluno");
-        val.validaEmail(email, "Erro no cadastro de aluno");
-        val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno");
+		val.validaString(nome, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+        val.validaString(matricula, "Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+        val.validaString(email, "Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
+        val.validaEmail(email, "Erro no cadastro de aluno: Email invalido");
+        val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
         
         if (telefone == null)
         	throw new NullPointerException("Erro no cadastro de Aluno");
