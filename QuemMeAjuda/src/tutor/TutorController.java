@@ -10,13 +10,15 @@ import java.util.HashMap;
 
 /**
  * 
- * Classe TutorControle que controla metodos e informacoes referentes ao controle da classe Tutor, como tornar um 
- * aluno tutor, listar todos os tutores, alem de cadastrar e retornar horarios e locais de atendimento dos mesmos
+ * Classe TutorControle que controla metodos e informacoes referentes ao
+ * controle da classe Tutor, como tornar um aluno tutor, listar todos os
+ * tutores, alem de cadastrar e retornar horarios e locais de atendimento dos
+ * mesmos
  * 
  * @authors
  *          <ol>
- *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i>
- *          <i> Mikael Amaral </i>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
  *          </ol>
  * @since Parte 1
  */
@@ -41,9 +43,12 @@ public class TutorController {
 	}
 
 	/**
-	 * Metodo privado que verifica, a partiri do email, se o tutor esta cadastrado 
-	 * @param email Email do Tutor
-	 * @param msg Mensagem a ser retornada caso o tutor nao esteja cadastrado
+	 * Metodo privado que verifica, a partiri do email, se o tutor esta cadastrado
+	 * 
+	 * @param email
+	 *            Email do Tutor
+	 * @param msg
+	 *            Mensagem a ser retornada caso o tutor nao esteja cadastrado
 	 */
 	private void verificaTutor(String email, String msg) {
 		if (!this.tutores.containsKey(email)) {
@@ -63,20 +68,29 @@ public class TutorController {
 	 */
 	public String recuperaTutor(String matricula) {
 		val.validaString(matricula, "Matricula nao pode ser vazia ou nula.");
-		getTutor(matricula);
 		return this.getTutor(matricula).toString();
 	}
 
 	/**
 	 * Metodo que torna um aluno especifico em tutor
-	 * @param aluno Aluno que sera o novo tutor
-	 * @param disciplina Disciplina que o aluno irah titular
-	 * @param proficiencia Proficiencia que o aluno tem na disciplian, segundo o mesmo
+	 * 
+	 * @param aluno
+	 *            Aluno que sera o novo tutor
+	 * @param disciplina
+	 *            Disciplina que o aluno irah titular
+	 * @param proficiencia
+	 *            Proficiencia que o aluno tem na disciplian, segundo o mesmo
 	 */
-	public void tornaTutor(Aluno aluno,String disciplina,int proficiencia) {
-		aluno.tornarTutor(disciplina, proficiencia);
-		this.tutores.put(aluno.getEmail(),aluno);
+	public void tornaTutor(Aluno aluno, String disciplina, int proficiencia) {
+		if (aluno.getTipo() == null) {
+			aluno.tornarTutor(disciplina, proficiencia);
+			this.tutores.put(aluno.getEmail(), aluno);
+		} else {
+			aluno.getTipo().adicionaDisciplina(disciplina, proficiencia);
+		}
+		System.out.println(this.tutores.values());
 	}
+
 	/**
 	 * 
 	 * @param matricula
@@ -84,10 +98,13 @@ public class TutorController {
 	 * @return retorna o aluno relacionado a matricula
 	 */
 	private Aluno getTutor(String matricula) {
-		for (Aluno aluno : tutores.values()) {
+
+		System.out.println(">>>>>>>" + this.tutores.values());
+		
+		for (Aluno aluno : this.tutores.values()) {
+			System.out.println(aluno.toString());
 			if (aluno.getMatricula().equals(matricula)) {
 				return aluno;
-
 			}
 		}
 
@@ -102,10 +119,11 @@ public class TutorController {
 	public String listarTutores() {
 		String lista = "";
 
-		for (Aluno aluno : tutores.values()) {
-			lista += aluno.toString() + "\n";
+		for (Aluno aluno : this.tutores.values()) {
+			System.out.println();
+			lista += aluno.toString() + ", ";
 		}
-
+		System.out.println(lista);
 		return lista;
 	}
 
@@ -160,7 +178,7 @@ public class TutorController {
 	 * @return boolean Retorna se o local esta ou nao disponivel para o tutor.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		
+
 		this.verificaTutor(email, "Erro no consultar horario de atendimento: tutor nao cadastrado");
 		val.validaString(email, "Erro ao consultar horario de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Erro ao consultar horario de atendimento: email precisa ter arroba.");

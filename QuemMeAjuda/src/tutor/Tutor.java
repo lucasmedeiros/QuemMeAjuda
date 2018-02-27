@@ -55,7 +55,7 @@ public class Tutor {
 		this.dinheiro = 0;
 		this.notaTutor = 4;
 		
-		this.disciplinas = new HashMap<>();
+		this.disciplinas = new HashMap<String, Integer>();
 		this.disciplinas.put(disciplina, proficiencia);
 	}
 

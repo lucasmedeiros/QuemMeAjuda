@@ -26,7 +26,7 @@ public class AlunoController {
 	 * Construtor do Controller de Aluno.
 	 */
 	public AlunoController() {
-		alunos = new ArrayList<>();
+		alunos = new ArrayList<Aluno>();
 		val = new Validator();
 		this.tutorController = new TutorController();
 	}
@@ -59,24 +59,8 @@ public class AlunoController {
 	}
 
 	/**
-	 * Método para cadastrar um novo aluno no sistema sem telefone
-	 *
-	 * @param nome
-	 *            nome do aluno.
-	 * @param matricula
-	 *            matricula do aluno.
-	 * @param email
-	 *            email do aluno.
-	 * @param idCurso
-	 *            id do curso no qual o aluno esta matriculado.
-	 */
-	public void cadastrarAluno(String nome, String matricula, String email, int idCurso) {
-		cadastrarAluno(nome, matricula, email, idCurso, "");
-	}
-
-	/**
 	 * Método para recuperar os dados de um aluno.
-	 *
+	 *getTutor
 	 * @param matricula
 	 *            matricula do aluno.
 	 * @return representaçao em string do aluno procurado.
@@ -97,7 +81,6 @@ public class AlunoController {
 		val.validaProficiencia(proficiencia, "Erro ao atribuir tarefa: proficiencia invalida");
 		
 		Aluno a = alunoExiste(matricula);
-		
 		val.validaObjetoNulo(a, "Erro ao atribuir tarefa: Aluno nao existe");
 
 		this.tutorController.tornaTutor(a, disciplina, proficiencia);
@@ -144,9 +127,10 @@ public class AlunoController {
 	 */
 	private Aluno alunoExiste(String matricula) {
 		for (Aluno a : alunos) {
-			if (a.getMatricula().equals(matricula))
+			if (a.getMatricula().equals(matricula)) 
 				return a;
 		}
 		return null;
 	}
+	
 }

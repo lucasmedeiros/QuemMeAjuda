@@ -54,6 +54,7 @@ public class Aluno implements Comparable<Aluno> {
 		this.telefone = telefone;
 		this.nome = nome;
 		this.nota = 5;
+		this.tutor = null;
 	}
 	
 	/**
@@ -80,7 +81,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * @return Retorna o tipo da classe Tutor
 	 */
     public Tutor getTipo() {
-		return tutor;
+		return this.tutor;
 	}
 
 	/**
@@ -94,9 +95,8 @@ public class Aluno implements Comparable<Aluno> {
 	 *            conhecimento na disciplina
 	 */
 	public void tornarTutor(String disciplina, int proficiencia) {
-		Tutor novaFuncao = new Tutor(disciplina, proficiencia);
-		this.tutor = novaFuncao;
-	}
+		this.tutor = new Tutor(disciplina, proficiencia);
+		}
 
 	/**
 	 * Metodo que retorna a String matricula
@@ -159,7 +159,7 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	@Override
 	public String toString() {
-		if (telefone.trim().isEmpty()) {
+		if (this.telefone.trim().isEmpty()) {
 			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.email;
 		} else {
 			return this.matricula + " - " + this.nome + " - " + this.cursoId + " - " + this.telefone + " - "
