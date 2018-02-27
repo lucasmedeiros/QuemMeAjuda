@@ -10,8 +10,8 @@ import java.util.HashMap;
 
 /**
  * 
- * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES
- * IMPORTANTES]
+ * Classe TutorControle que controla metodos e informacoes referentes ao controle da classe Tutor, como tornar um 
+ * aluno tutor, listar todos os tutores, alem de cadastrar e retornar horarios e locais de atendimento dos mesmos
  * 
  * @authors
  *          <ol>
@@ -40,6 +40,11 @@ public class TutorController {
 		this.val = new Validator();
 	}
 
+	/**
+	 * Metodo privado que verifica, a partiri do email, se o tutor esta cadastrado 
+	 * @param email Email do Tutor
+	 * @param msg Mensagem a ser retornada caso o tutor nao esteja cadastrado
+	 */
 	private void verificaTutor(String email, String msg) {
 		if (!this.tutores.containsKey(email)) {
 			throw new IllegalArgumentException(msg);
@@ -58,9 +63,20 @@ public class TutorController {
 	 */
 	public String recuperaTutor(String matricula) {
 		val.validaString(matricula, "Matricula nao pode ser vazia ou nula.");
+		getTutor(matricula);
 		return this.getTutor(matricula).toString();
 	}
 
+	/**
+	 * Metodo que torna um aluno especifico em tutor
+	 * @param aluno Aluno que sera o novo tutor
+	 * @param disciplina Disciplina que o aluno irah titular
+	 * @param proficiencia Proficiencia que o aluno tem na disciplian, segundo o mesmo
+	 */
+	public void tornaTutor(Aluno aluno,String disciplina,int proficiencia) {
+		aluno.tornarTutor(disciplina, proficiencia);
+		this.tutores.put(aluno.getEmail(),aluno);
+	}
 	/**
 	 * 
 	 * @param matricula
@@ -109,6 +125,7 @@ public class TutorController {
 		val.validaString(email, "Erro no cadastrar horario: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Erro no cadastrar horario: email precisa ter arroba.");
 		val.validaString(horario, "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		val.validaString(dia, "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
 		this.tutores.get(email).getTipo().adicionarHorario(dia, horario);
 	}
 

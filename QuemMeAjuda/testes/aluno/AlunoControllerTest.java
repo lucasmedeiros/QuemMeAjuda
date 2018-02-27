@@ -63,18 +63,6 @@ public class AlunoControllerTest {
         controller.cadastrarAluno("Lucas", "1010", null, 1, "9999-9999");
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testCadastrarAlunoTelefoneInvalido1() {
-        AlunoController controller = new AlunoController();
-        controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCadastrarAlunoTelefoneInvalido2() {
-        AlunoController controller = new AlunoController();
-        controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "     ");
-    }
-
     @Test(expected = NullPointerException.class)
     public void testCadastrarAlunoTelefoneInvalido3() {
         AlunoController controller = new AlunoController();
@@ -111,13 +99,13 @@ public class AlunoControllerTest {
     public void testRecuperarAluno2() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
-        String result = controller.recuperarAluno("1011");
+        controller.recuperarAluno("1011");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecuperarAluno3() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
-        String result = controller.recuperarAluno("1009");
+        controller.recuperarAluno("1009");
     }
 }

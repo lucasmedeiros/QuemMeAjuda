@@ -1,11 +1,14 @@
 package general;
 
 import aluno.AlunoController;
+import easyaccept.EasyAccept;
 import tutor.TutorController;
 
 /**
  * 
- * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES IMPORTANTES]
+ * Classe SistemaFacade que representa a classe mais proxima ao usuario, a porta de entrada do sistema, possuindo meto
+ * dos para cadastrar aluno, recuperar aluno, listar alunos, tornar um aluno tutor, listar alunos que sao tutores, cadas
+ * trar horarios e locais de atendimento dos tutores, alem de poder consultar posteriormente tais horarios e locais
  * 
  * @authors 
  * <ol> 

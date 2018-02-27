@@ -68,12 +68,17 @@ public class Aluno implements Comparable<Aluno> {
 		val.validaString(nome, "Erro no cadastro de aluno");
         val.validaString(matricula, "Erro no cadastro de aluno");
         val.validaString(email, "Erro no cadastro de aluno");
+        val.validaEmail(email, "Erro no cadastro de aluno");
         val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno");
         
         if (telefone == null)
         	throw new NullPointerException("Erro no cadastro de Aluno");
 	}
 	
+	/**
+	 * Metodo que retorna o tipo do atributo tutor
+	 * @return Retorna o tipo da classe Tutor
+	 */
     public Tutor getTipo() {
 		return tutor;
 	}
@@ -205,6 +210,12 @@ public class Aluno implements Comparable<Aluno> {
 		return this.nome.compareTo(o.nome);
 	}
 
+	/**
+	 * Metodo que retorna uma informacao especifica do aluno a partir dos para
+	 * metros fornecidos
+	 * @param atributo Nome do atributo a ser retornado do aluno
+	 * @return Retorna um atributo especifico do aluno
+	 */
 	public String getInfo(String atributo) {
 		switch (atributo) {
 			case "nome":
