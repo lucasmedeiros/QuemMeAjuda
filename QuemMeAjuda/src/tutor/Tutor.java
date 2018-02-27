@@ -18,10 +18,12 @@ import java.util.Map;
  * horario constituinte de dia e hora para seu atendimento.
  * 
  * @authors
- *          <ol>
- *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
- *          Mikael Amaral </i>
- *          </ol>
+ * <ol>
+ * <i> Diego Gama </i>
+ * <i> Jessé Souza </i>
+ * <i> Lucas Medeiros </i> 
+ * <i> Mikael Amaral </i>
+ * </ol>
  * @since Parte 1
  */
 public class Tutor {

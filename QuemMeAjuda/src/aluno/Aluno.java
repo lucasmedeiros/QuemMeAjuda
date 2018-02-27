@@ -10,10 +10,12 @@ import tutor.Tutor;
  * aluno, tornar o aluno tutor, alem de varios gets para a maioria dos atributos
  *
  * @authors
- *          <ol>
- *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
- *          Mikael Amaral </i>
- *          </ol>
+ * <ol>
+ * <i> Diego Gama </i> 
+ * <i> Jessé Souza </i> 
+ * <i> Lucas Medeiros </i> 
+ * <i> Mikael Amaral </i>
+ * </ol>
  * @since Parte 1
  */
 

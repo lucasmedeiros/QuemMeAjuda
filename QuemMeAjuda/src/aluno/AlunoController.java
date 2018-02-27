@@ -10,10 +10,12 @@ import tutor.TutorController;
  * Representação da classe que controla a entidade Aluno.
  *
  * @authors
- *          <ol>
- *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
- *          Mikael Amaral </i>
- *          </ol>
+ * <ol>
+ * <i> Diego Gama </i> 
+ * <i> Jessé Souza </i> 
+ * <i> Lucas Medeiros </i> 
+ * <i> Mikael Amaral </i>
+ * </ol>
  * @since Parte 1
  */
 public class AlunoController {
@@ -114,6 +116,12 @@ public class AlunoController {
 		return alns;
 	}
 
+	/**
+	 * Metodo que retorna uma informacao especifica do aluno
+	 * @param matricula Representa a matricula do aluno
+	 * @param atributo Representa o nome do atributo a ser retornado
+	 * @return Retorna o atributo especifico
+	 */
 	public String getInfoAluno(String matricula, String atributo) {
 		val.validaString(atributo, "Erro ao consultar por atributo: atributo nao pode ser vazio ou em branco");
 		val.validaString(matricula, "Erro ao consultar por atributo: matricula nao pode ser vazia ou em branco");
