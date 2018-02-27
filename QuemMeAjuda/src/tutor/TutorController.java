@@ -6,7 +6,10 @@ import java.util.NoSuchElementException;
 import aluno.Aluno;
 import general.Validator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 
@@ -38,7 +41,7 @@ public class TutorController {
 	 * Representa o construtor do Controller de Tutor.
 	 */
 	public TutorController() {
-		this.tutores = new HashMap<String, Aluno>();
+		this.tutores = new HashMap<>();
 		this.val = new Validator();
 	}
 
@@ -82,13 +85,15 @@ public class TutorController {
 	 *            Proficiencia que o aluno tem na disciplian, segundo o mesmo
 	 */
 	public void tornaTutor(Aluno aluno, String disciplina, int proficiencia) {
+		val.validaString(disciplina, "Erro ao atribuir tarefa: disciplina nao pode estar vazia ou em branco");
+		val.validaProficiencia(proficiencia, "Erro na definicao de papel: Proficiencia invalida");
+
 		if (aluno.getTipo() == null) {
 			aluno.tornarTutor(disciplina, proficiencia);
 			this.tutores.put(aluno.getEmail(), aluno);
 		} else {
 			aluno.getTipo().adicionaDisciplina(disciplina, proficiencia);
 		}
-		System.out.println(this.tutores.values());
 	}
 
 	/**
@@ -98,11 +103,7 @@ public class TutorController {
 	 * @return retorna o aluno relacionado a matricula
 	 */
 	private Aluno getTutor(String matricula) {
-
-		System.out.println(">>>>>>>" + this.tutores.values());
-		
 		for (Aluno aluno : this.tutores.values()) {
-			System.out.println(aluno.toString());
 			if (aluno.getMatricula().equals(matricula)) {
 				return aluno;
 			}
@@ -117,14 +118,20 @@ public class TutorController {
 	 * @return tutores Uma lista com todos os Tutores registrados.
 	 */
 	public String listarTutores() {
-		String lista = "";
+		String listaTutores = "";
 
-		for (Aluno aluno : this.tutores.values()) {
-			System.out.println();
-			lista += aluno.toString() + ", ";
+		List<Aluno> tutoresOrdenados = new ArrayList<>(tutores.values());
+
+		Collections.sort(tutoresOrdenados);
+
+		for (int i = 0; i < tutoresOrdenados.size() - 1; i++) {
+			listaTutores += tutoresOrdenados.get(i).toString() + ", ";
+
 		}
-		System.out.println(lista);
-		return lista;
+
+		listaTutores += tutoresOrdenados.get(tutoresOrdenados.size() - 1).toString();
+
+		return listaTutores;
 	}
 
 	/**

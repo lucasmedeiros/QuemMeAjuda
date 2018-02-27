@@ -20,7 +20,6 @@ public class AlunoController {
 
 	private List<Aluno> alunos;
 	private Validator val;
-	private TutorController tutorController;
 
 	/**
 	 * Construtor do Controller de Aluno.
@@ -28,7 +27,6 @@ public class AlunoController {
 	public AlunoController() {
 		alunos = new ArrayList<Aluno>();
 		val = new Validator();
-		this.tutorController = new TutorController();
 	}
 
 	/**
@@ -50,40 +48,50 @@ public class AlunoController {
 		val.validaString(matricula, "Erro no cadastro de aluno: matricula nao pode ser vazia ou em branco");
 
 		Aluno a = new Aluno(nome, matricula, email, idCurso, telefone);
-		
+
 		if (alunoExiste(matricula) == null)
 			alunos.add(a);
 		else
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
-		
+
 	}
 
 	/**
-	 * Método para recuperar os dados de um aluno.
-	 *getTutor
+	 * Metodo para recuperar os dados de um aluno. getTutor
+	 * 
 	 * @param matricula
 	 *            matricula do aluno.
 	 * @return representaçao em string do aluno procurado.
 	 */
 	public String recuperarAluno(String matricula) {
 		val.validaString(matricula, "Erro na consulta de aluno: matricula nao pode estar vazia ou em branco");
-		
 		Aluno a = alunoExiste(matricula);
-		
+
 		val.validaObjetoNulo(a, "Erro na busca por aluno: Aluno nao encontrado");
-		
+
 		return a.toString();
 	}
 
-	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		val.validaString(disciplina, "Erro ao atribuir tarefa: disciplina nao pode estar vazia ou em branco");
-		val.validaString(matricula, "Erro ao atribuir tarefa: matricula nao pode estar vazia ou em branco");
-		val.validaProficiencia(proficiencia, "Erro ao atribuir tarefa: proficiencia invalida");
-		
-		Aluno a = alunoExiste(matricula);
-		val.validaObjetoNulo(a, "Erro ao atribuir tarefa: Aluno nao existe");
+	/**
+	 * Metodo para tornar um aluno tutor.
+	 * 
+	 * @param matricula
+	 *            matricula do aluno.
+	 * @param disciplina
+	 *            disciplina que sera ministrada na tutoria.
+	 * @param proficiencia
+	 *            valor de conhecimento que o proprio tutor atribui a ele mesmo na
+	 *            disciplina.
+	 * @param tutorController
+	 *            controller de Tutor, que eh obtido da Facade.
+	 */
+	public void tornarTutor(String matricula, String disciplina, int proficiencia, TutorController tutorController) {
+		val.validaString(matricula, "Erro na definicao de papel: matricula nao pode estar vazia ou em branco");
 
-		this.tutorController.tornaTutor(a, disciplina, proficiencia);
+		Aluno a = alunoExiste(matricula);
+		val.validaObjetoNulo(a, "Erro na definicao de papel: Tutor nao encontrado");
+
+		tutorController.tornaTutor(a, disciplina, proficiencia);
 	}
 
 	/**
@@ -109,7 +117,7 @@ public class AlunoController {
 	public String getInfoAluno(String matricula, String atributo) {
 		val.validaString(atributo, "Erro ao consultar por atributo: atributo nao pode ser vazio ou em branco");
 		val.validaString(matricula, "Erro ao consultar por atributo: matricula nao pode ser vazia ou em branco");
-		
+
 		Aluno a = alunoExiste(matricula);
 		val.validaObjetoNulo(a, "Erro na obtencao de informacao de aluno: Aluno nao encontrado");
 
@@ -127,10 +135,10 @@ public class AlunoController {
 	 */
 	private Aluno alunoExiste(String matricula) {
 		for (Aluno a : alunos) {
-			if (a.getMatricula().equals(matricula)) 
+			if (a.getMatricula().equals(matricula))
 				return a;
 		}
 		return null;
 	}
-	
+
 }

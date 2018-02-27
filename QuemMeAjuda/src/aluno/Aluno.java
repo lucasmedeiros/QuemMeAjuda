@@ -10,12 +10,10 @@ import tutor.Tutor;
  * aluno, tornar o aluno tutor, alem de varios gets para a maioria dos atributos
  *
  * @authors
- * <ol>
- *  <i> Diego Gama </i>
- *  <i> Jessé Souza </i>
- *  <i> Lucas Medeiros </i>
- *  <i> Mikael Amaral </i>
- * </ol>
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
  * @since Parte 1
  */
 
@@ -28,7 +26,7 @@ public class Aluno implements Comparable<Aluno> {
 	private int cursoId;
 	private int nota;
 	private Tutor tutor;
-	
+
 	private Validator val;
 
 	/**
@@ -56,7 +54,7 @@ public class Aluno implements Comparable<Aluno> {
 		this.nota = 5;
 		this.tutor = null;
 	}
-	
+
 	/**
 	 * Validaçao das strings que serao utilizadas.
 	 * 
@@ -67,20 +65,21 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	private void ehLegal(String nome, String matricula, String email, String telefone, int idCurso) {
 		val.validaString(nome, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
-        val.validaString(matricula, "Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
-        val.validaString(email, "Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
-        val.validaEmail(email, "Erro no cadastro de aluno: Email invalido");
-        val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
-        
-        if (telefone == null)
-        	throw new NullPointerException("Erro no cadastro de Aluno");
+		val.validaString(matricula, "Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+		val.validaString(email, "Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
+		val.validaEmail(email, "Erro no cadastro de aluno: Email invalido");
+		val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+
+		if (telefone == null)
+			throw new NullPointerException("Erro no cadastro de Aluno");
 	}
-	
+
 	/**
 	 * Metodo que retorna o tipo do atributo tutor
+	 * 
 	 * @return Retorna o tipo da classe Tutor
 	 */
-    public Tutor getTipo() {
+	public Tutor getTipo() {
 		return this.tutor;
 	}
 
@@ -96,7 +95,7 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	public void tornarTutor(String disciplina, int proficiencia) {
 		this.tutor = new Tutor(disciplina, proficiencia);
-		}
+	}
 
 	/**
 	 * Metodo que retorna a String matricula
@@ -181,10 +180,16 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-   * Metodo que compara dois alunos a partir dos seus nomes.
-   * @param obj objeto a ser comparado.
-   * @return <tr>true</tr> se o objeto é igual a this.
-   */
+	 * Metodo que compara dois alunos a partir dos seus nomes.
+	 * 
+	 * @param obj
+	 *            objeto a ser comparado.
+	 * @return
+	 *         <tr>
+	 *         true
+	 *         </tr>
+	 *         se o objeto é igual a this.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -213,27 +218,29 @@ public class Aluno implements Comparable<Aluno> {
 	/**
 	 * Metodo que retorna uma informacao especifica do aluno a partir dos para
 	 * metros fornecidos
-	 * @param atributo Nome do atributo a ser retornado do aluno
+	 * 
+	 * @param atributo
+	 *            Nome do atributo a ser retornado do aluno
 	 * @return Retorna um atributo especifico do aluno
 	 */
 	public String getInfo(String atributo) {
 		switch (atributo.toLowerCase()) {
-			case "nome":
-				return this.nome;
-			case "matricula":
-				return this.matricula;
-			case "email":
-				return this.email;
-			case "telefone":
-				if (telefone.trim().isEmpty())
-					return "telefone nao cadastrado";
-				return this.telefone;
-			case "nota":
-				return "" + nota;
-			case "cursoId":
-				return "" + cursoId;
-			default:
-				throw new IllegalArgumentException("Erro ao consultar........");
+		case "nome":
+			return this.nome;
+		case "matricula":
+			return this.matricula;
+		case "email":
+			return this.email;
+		case "telefone":
+			if (telefone.trim().isEmpty())
+				return "telefone nao cadastrado";
+			return this.telefone;
+		case "nota":
+			return "" + nota;
+		case "cursoId":
+			return "" + cursoId;
+		default:
+			throw new IllegalArgumentException("Erro ao consultar........");
 		}
 	}
 }

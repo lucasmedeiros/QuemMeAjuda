@@ -32,7 +32,7 @@ public class Tutor {
 	private Set<String> locais;
 	private Map<String, String> horario;
 	private Map<String, Integer> disciplinas;
-	
+
 	private Validator val;
 
 	/**
@@ -48,13 +48,13 @@ public class Tutor {
 	public Tutor(String disciplina, int proficiencia) {
 		this.val = new Validator();
 		ehLegal(disciplina, proficiencia);
-		
+
 		this.locais = new HashSet<String>();
 		this.horario = new HashMap<String, String>();
 		this.proficiencia = proficiencia;
 		this.dinheiro = 0;
 		this.notaTutor = 4;
-		
+
 		this.disciplinas = new HashMap<String, Integer>();
 		this.disciplinas.put(disciplina, proficiencia);
 	}
@@ -152,18 +152,24 @@ public class Tutor {
 	public void adicionarHorario(String dia, String horario) {
 		val.validaString(dia, "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
 		val.validaString(horario, "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
-		
+
 		this.horario.put(dia, horario);
 	}
-	
+
 	/**
 	 * Metodo para adicionar mais uma disciplina para o tutor.
 	 * 
-	 * @param disciplina disciplina para ser adicionada.
-	 * @param proficiencia proficiencia na disciplina que vai ser adicionada.
+	 * @param disciplina
+	 *            disciplina para ser adicionada.
+	 * @param proficiencia
+	 *            proficiencia na disciplina que vai ser adicionada.
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
 		ehLegal(disciplina, proficiencia);
+
+		if (this.disciplinas.containsKey(disciplina))
+			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
+
 		this.disciplinas.put(disciplina, proficiencia);
 	}
 
@@ -196,10 +202,5 @@ public class Tutor {
 		val.validaString(horario, "Erro na consulta de horario: horario nao pode ser vazio ou em branco");
 		return (this.horario.containsKey(dia) && this.horario.containsValue(horario));
 	}
-	
-	
-	
-	
-	
-	
+
 }
