@@ -200,7 +200,7 @@ public class Tutor {
 	public boolean consultarHorario(String dia, String horario) {
 		val.validaString(dia, "Erro na consulta de horario: dia nao pode ser vazio ou em branco");
 		val.validaString(horario, "Erro na consulta de horario: horario nao pode ser vazio ou em branco");
-		return (this.horario.containsKey(dia) && this.horario.containsValue(horario));
+		return (this.horario.containsKey(dia) && this.horario.get(dia).equals(horario));
 	}
 
 }

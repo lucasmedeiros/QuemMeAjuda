@@ -146,11 +146,11 @@ public class TutorController {
 	 * 
 	 */
 	public void cadastraHorario(String email, String horario, String dia) {
-		this.verificaTutor(email, "Erro no cadastrar horario: tutor nao cadastrado");
 		val.validaString(email, "Erro no cadastrar horario: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Erro no cadastrar horario: email precisa ter arroba.");
 		val.validaString(horario, "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
 		val.validaString(dia, "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+		this.verificaTutor(email, "Erro no cadastrar horario: tutor nao cadastrado");
 		this.tutores.get(email).getTipo().adicionarHorario(dia, horario);
 	}
 
@@ -165,10 +165,10 @@ public class TutorController {
 	 * 
 	 */
 	public void cadastraLocal(String email, String local) {
-		this.verificaTutor(email, "Erro no cadastrar local de atendimento: tutor nao cadastrado");
 		val.validaString(email, "Erro no cadastrar local de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Necessario que o email tenha arroba.");
 		val.validaString(local, "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		this.verificaTutor(email, "Erro no cadastrar local de atendimento: tutor nao cadastrado");
 		this.tutores.get(email).getTipo().adicionarLocal(local);
 	}
 
@@ -186,7 +186,8 @@ public class TutorController {
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 
-		this.verificaTutor(email, "Erro no consultar horario de atendimento: tutor nao cadastrado");
+		if(!this.tutores.containsKey(email)) 
+			return false;
 		val.validaString(email, "Erro ao consultar horario de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Erro ao consultar horario de atendimento: email precisa ter arroba.");
 		val.validaString(horario, "Erro ao consultar horario de atendimento: horario nao pode ser vazio ou em branco");
@@ -206,7 +207,8 @@ public class TutorController {
 	 * 
 	 */
 	public boolean consultaLocal(String email, String local) {
-		this.verificaTutor(email, "Erro no consultar local de atendimento: tutor nao cadastrado");
+		if(!this.tutores.containsKey(email))
+			return false;
 		val.validaString(email, "Erro no consultar local de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Necessario que o email tenha arroba.");
 		val.validaString(local, "Erro no consultar local de atendimento: local nao pode ser vazio ou em branco");
