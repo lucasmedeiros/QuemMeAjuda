@@ -19,6 +19,7 @@ public class Validator {
      *
      * @param str string a ser validada.
      * @param msg mensagem a ser exibida caso não passe na validação.
+     * @since Parte 1
      */
     public void validaString(String str, String msg) {
     	if (str == null)
@@ -33,6 +34,7 @@ public class Validator {
      *
      * @param num número a ser validado.
      * @param msg mensagem a ser exibida caso nao passe na validação.
+     * @since Parte 1
      */
     public void validaNumeroMenorIgualZero(int num, String msg) {
         if (num <= 0)
@@ -44,6 +46,7 @@ public class Validator {
      *
      * @param o objeto a ser validado.
      * @param msg mensagem a ser exibida caso nao passe na validacao.
+     * @since Parte 1
      */
     public void validaObjetoNulo(Object o, String msg) {
         if (o == null)
@@ -55,6 +58,7 @@ public class Validator {
      * 
      * @param proficiencia valor da proficiencia.
      * @param msg mensagem de erro.
+     * @since Parte 1
      */
     public void validaProficiencia(int proficiencia, String msg) {
     	if (proficiencia < 1 || proficiencia > 5)
@@ -68,6 +72,7 @@ public class Validator {
      * 		O email do aluno em questao.
      * @param msg
      * 		A mensagem que vai ser lan�ada se um erro for detectado.
+     * @since Parte 1
      */
     public void validaEmail(String email, String msg) {
     	if(email.indexOf("@") == -1 || email.charAt(0) == '@' || email.charAt(email.length() - 1) == '@')

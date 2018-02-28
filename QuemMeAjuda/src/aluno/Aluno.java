@@ -44,6 +44,7 @@ public class Aluno implements Comparable<Aluno> {
 	 *            id do curso do aluno.
 	 * @param telefone
 	 *            telefone do aluno.
+	 * @since Parte 1
 	 */
 	public Aluno(String nome, String matricula, String email, int cursoId, String telefone) {
 		this.val = new Validator();
@@ -64,6 +65,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * @param matricula
 	 * @param email
 	 * @param idCurso
+	 * @since Parte 1
 	 */
 	private void ehLegal(String nome, String matricula, String email, String telefone, int idCurso) {
 		val.validaString(nome, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
@@ -80,6 +82,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna o tipo do atributo tutor
 	 * 
 	 * @return Retorna o tipo da classe Tutor
+	 * @since Parte 1
 	 */
 	public Tutor getTipo() {
 		return this.tutor;
@@ -94,6 +97,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * @param proficiencia
 	 *            Proficiencia fornecida pelo proprio aluno em relacao a seu
 	 *            conhecimento na disciplina
+	 * @since Parte 1
 	 */
 	public void tornarTutor(String disciplina, int proficiencia) {
 		this.tutor = new Tutor(disciplina, proficiencia);
@@ -103,6 +107,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna a String matricula
 	 *
 	 * @return retorna a matricula do aluno
+	 * @since Parte 1
 	 */
 	public String getMatricula() {
 		return this.matricula;
@@ -112,6 +117,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna a String email
 	 *
 	 * @return retorna o email do aluno
+	 * @since Parte 1
 	 */
 	public String getEmail() {
 		return this.email;
@@ -121,6 +127,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna a String telefone
 	 *
 	 * @return retorna o telefone do aluno
+	 * @since Parte 1
 	 */
 	public String getTelefone() {
 		return this.telefone;
@@ -130,6 +137,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna a String nome
 	 *
 	 * @return retorna o nome do aluno
+	 * @since Parte 1
 	 */
 	public String getNome() {
 		return this.nome;
@@ -139,6 +147,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna a nota
 	 *
 	 * @return retorna a nota do aluno
+	 * @since Parte 1
 	 */
 	public int getNota() {
 		return this.nota;
@@ -148,6 +157,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que retorna o id do curso
 	 *
 	 * @return retorna o id do curso do aluno
+	 * @since Parte 1
 	 */
 	public int getCursoId() {
 		return this.cursoId;
@@ -157,6 +167,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Método que gera uma representaçao em string.
 	 *
 	 * @return representacao em string do aluno.
+	 * @since Parte 1
 	 */
 	@Override
 	public String toString() {
@@ -172,6 +183,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Metodo que gera um numero a partir da matricula do aluno
 	 *
 	 * @return numero gerado a partir da matricula.
+	 * @since Parte 1
 	 */
 	@Override
 	public int hashCode() {
@@ -191,6 +203,7 @@ public class Aluno implements Comparable<Aluno> {
 	 *         true
 	 *         </tr>
 	 *         se o objeto é igual a this.
+	 * @since Parte 1
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -211,6 +224,7 @@ public class Aluno implements Comparable<Aluno> {
 
 	/**
 	 * Metodo para comparar dois alunos a partir do nome.
+	 * @since Parte 1
 	 */
 	@Override
 	public int compareTo(Aluno o) {
@@ -224,6 +238,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * @param atributo
 	 *            Nome do atributo a ser retornado do aluno
 	 * @return Retorna um atributo especifico do aluno
+	 * @since Parte 1
 	 */
 	public String getInfo(String atributo) {
 		switch (atributo.toLowerCase()) {

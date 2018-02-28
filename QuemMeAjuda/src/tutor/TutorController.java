@@ -19,12 +19,10 @@ import java.util.List;
  * mesmos
  * 
  * @authors
- * <ol>
- * <i> Diego Gama </i> 
- * <i> Jessé Souza </i> 
- * <i> Lucas Medeiros </i> 
- * <i> Mikael Amaral </i>
- * </ol>
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
  * @since Parte 1
  */
 public class TutorController {
@@ -41,6 +39,8 @@ public class TutorController {
 
 	/**
 	 * Representa o construtor do Controller de Tutor.
+	 * 
+	 * @since Parte 1
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<>();
@@ -54,6 +54,7 @@ public class TutorController {
 	 *            Email do Tutor
 	 * @param msg
 	 *            Mensagem a ser retornada caso o tutor nao esteja cadastrado
+	 * @since Parte 1
 	 */
 	private void verificaTutor(String email, String msg) {
 		if (!this.tutores.containsKey(email)) {
@@ -70,6 +71,7 @@ public class TutorController {
 	 *            Matricula do tutor em questao.
 	 * 
 	 * @return String A descricao textual do tutor.
+	 * @since Parte 1
 	 */
 	public String recuperaTutor(String matricula) {
 		val.validaString(matricula, "Matricula nao pode ser vazia ou nula.");
@@ -85,6 +87,7 @@ public class TutorController {
 	 *            Disciplina que o aluno irah titular
 	 * @param proficiencia
 	 *            Proficiencia que o aluno tem na disciplian, segundo o mesmo
+	 * @since Parte 1
 	 */
 	public void tornaTutor(Aluno aluno, String disciplina, int proficiencia) {
 		val.validaString(disciplina, "Erro ao atribuir tarefa: disciplina nao pode estar vazia ou em branco");
@@ -103,6 +106,7 @@ public class TutorController {
 	 * @param matricula
 	 *            A matricula do tutor em questao.
 	 * @return retorna o aluno relacionado a matricula
+	 * @since Parte 1
 	 */
 	private Aluno getTutor(String matricula) {
 		for (Aluno aluno : this.tutores.values()) {
@@ -118,6 +122,7 @@ public class TutorController {
 	 * Metodo responsavel por retornar uma lista de todos os tutores.
 	 * 
 	 * @return tutores Uma lista com todos os Tutores registrados.
+	 * @since Parte 1
 	 */
 	public String listarTutores() {
 		String listaTutores = "";
@@ -145,6 +150,7 @@ public class TutorController {
 	 *            O local de encontro com o tutor.
 	 * @param dia
 	 *            O dia disponivel do tutor.
+	 * @since Parte 1
 	 * 
 	 */
 	public void cadastraHorario(String email, String horario, String dia) {
@@ -164,6 +170,7 @@ public class TutorController {
 	 *            O email do tutor
 	 * @param local
 	 *            O local de encontro com o tutor.
+	 * @since Parte 1
 	 * 
 	 */
 	public void cadastraLocal(String email, String local) {
@@ -185,10 +192,11 @@ public class TutorController {
 	 *            O dia disponivel do tutor.
 	 * 
 	 * @return boolean Retorna se o local esta ou nao disponivel para o tutor.
+	 * @since Parte 1
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 
-		if(!this.tutores.containsKey(email)) 
+		if (!this.tutores.containsKey(email))
 			return false;
 		val.validaString(email, "Erro ao consultar horario de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Erro ao consultar horario de atendimento: email precisa ter arroba.");
@@ -206,10 +214,10 @@ public class TutorController {
 	 *            O local de encontro com o tutor.
 	 * @return boolean Retorna se o horario esta ou nao disponivel para o tutor.
 	 * 
-	 * 
+	 * @since Parte 1
 	 */
 	public boolean consultaLocal(String email, String local) {
-		if(!this.tutores.containsKey(email))
+		if (!this.tutores.containsKey(email))
 			return false;
 		val.validaString(email, "Erro no consultar local de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Necessario que o email tenha arroba.");

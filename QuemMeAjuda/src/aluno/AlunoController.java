@@ -25,6 +25,7 @@ public class AlunoController {
 
 	/**
 	 * Construtor do Controller de Aluno.
+	 * @since Parte 1
 	 */
 	public AlunoController() {
 		alunos = new ArrayList<Aluno>();
@@ -44,6 +45,7 @@ public class AlunoController {
 	 *            id do curso no qual o aluno esta matriculado.
 	 * @param telefone
 	 *            telefone do aluno.
+	 * @since Parte 1
 	 */
 	public void cadastrarAluno(String nome, String matricula, String email, int idCurso, String telefone) {
 
@@ -64,6 +66,7 @@ public class AlunoController {
 	 * @param matricula
 	 *            matricula do aluno.
 	 * @return representaçao em string do aluno procurado.
+	 * @since Parte 1
 	 */
 	public String recuperarAluno(String matricula) {
 		val.validaString(matricula, "Erro na consulta de aluno: matricula nao pode estar vazia ou em branco");
@@ -86,6 +89,7 @@ public class AlunoController {
 	 *            disciplina.
 	 * @param tutorController
 	 *            controller de Tutor, que eh obtido da Facade.
+	 * @since Parte 1
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia, TutorController tutorController) {
 		val.validaString(matricula, "Erro na definicao de papel: matricula nao pode estar vazia ou em branco");
@@ -100,6 +104,7 @@ public class AlunoController {
 	 * Método para listar todos os alunos cadastrados.
 	 *
 	 * @return representaçao em string dos alunos cadastrados no sistema.
+	 * @since Parte 1
 	 */
 	public String listarAlunos() {
 		String alns = "";
@@ -121,6 +126,7 @@ public class AlunoController {
 	 * @param matricula Representa a matricula do aluno
 	 * @param atributo Representa o nome do atributo a ser retornado
 	 * @return Retorna o atributo especifico
+	 * @since Parte 1
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
 		val.validaString(atributo, "Erro ao consultar por atributo: atributo nao pode ser vazio ou em branco");
@@ -140,6 +146,7 @@ public class AlunoController {
 	 * @param msg
 	 *            mensagem de erro.
 	 * @return representaçao em string do aluno, se ele existir no sistema.
+	 * @since Parte 1
 	 */
 	private Aluno alunoExiste(String matricula) {
 		for (Aluno a : alunos) {

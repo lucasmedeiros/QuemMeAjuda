@@ -2,7 +2,7 @@ import easyaccept.EasyAccept;
 
 /**
  * 
- * [DESCRIÇÃO DO QUE A CLASSE É, REPRESENTA E OUTRAS INFORMAÇÕES IMPORTANTES]
+ * Classe responsável pelos testes de aceitação através da ferramenta EasyAccept.
  * 
  * @authors
  * <ol>

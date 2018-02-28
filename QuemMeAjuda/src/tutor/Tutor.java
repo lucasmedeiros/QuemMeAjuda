@@ -165,6 +165,7 @@ public class Tutor {
 	 *            disciplina para ser adicionada.
 	 * @param proficiencia
 	 *            proficiencia na disciplina que vai ser adicionada.
+	 * @since Parte 1
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
 		ehLegal(disciplina, proficiencia);
