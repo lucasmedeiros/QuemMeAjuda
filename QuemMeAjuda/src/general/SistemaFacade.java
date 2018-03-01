@@ -1,8 +1,5 @@
 package general;
 
-import aluno.AlunoController;
-import tutor.TutorController;
-
 /**
  * 
  * Classe SistemaFacade que representa a classe mais proxima ao usuario, a porta
@@ -20,58 +17,55 @@ import tutor.TutorController;
  * </ol>
  * @since Parte 1
  */
-public class SistemaFacade {
-
-	AlunoController alunoController;
-	TutorController tutorController;
+public class SistemaFacade {	
+	private GeneralController generalController;
 
 	public SistemaFacade() {
-		this.alunoController = new AlunoController();
-		this.tutorController = new TutorController();
+		this.generalController = new GeneralController();
 	}
 
 	public void cadastrarAluno(String nome, String matricula, int idCurso, String telefone, String email) {
-		this.alunoController.cadastrarAluno(nome, matricula, email, idCurso, telefone);
+		this.generalController.cadastrarAluno(nome, matricula, idCurso, telefone, email);
 	}
 
 	public String recuperaAluno(String matricula) {
-		return this.alunoController.recuperarAluno(matricula);
+		return this.generalController.recuperarAluno(matricula);
 	}
 
 	public String listarAlunos() {
-		return this.alunoController.listarAlunos();
+		return this.generalController.listarAlunos();
 	}
 
 	public String getInfoAluno(String matricula, String atributo) {
-		return this.alunoController.getInfoAluno(matricula, atributo);
+		return this.generalController.getInfoAluno(matricula, atributo);
 	}
 
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		this.alunoController.tornarTutor(matricula, disciplina, proficiencia, this.tutorController);
+		this.generalController.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	public String recuperaTutor(String matricula) {
-		return this.tutorController.recuperaTutor(matricula);
+		return this.generalController.recuperaTutor(matricula);
 	}
 
 	public String listarTutores() {
-		return this.tutorController.listarTutores();
+		return this.generalController.listarTutores();
 	}
 
 	public void cadastrarHorario(String email, String horario, String dia) {
-		this.tutorController.cadastraHorario(email, horario, dia);
+		this.generalController.cadastrarHorario(email, horario, dia);
 	}
 
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		this.tutorController.cadastraLocal(email, local);
+		this.generalController.cadastrarLocalDeAtendimento(email, local);
 	}
 
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return this.tutorController.consultaHorario(email, horario, dia);
+		return this.generalController.consultaHorario(email, horario, dia);
 	}
 
 	public boolean consultaLocal(String email, String local) {
-		return this.tutorController.consultaLocal(email, local);
+		return this.generalController.consultaLocal(email, local);
 	}
 
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import general.Validator;
-import tutor.TutorController;
 
 /**
  * Representação da classe que controla a entidade Aluno.
@@ -91,13 +90,13 @@ public class AlunoController {
 	 *            controller de Tutor, que eh obtido da Facade.
 	 * @since Parte 1
 	 */
-	public void tornarTutor(String matricula, String disciplina, int proficiencia, TutorController tutorController) {
+	public Aluno disponivelParaTutor(String matricula) {
 		val.validaString(matricula, "Erro na definicao de papel: matricula nao pode estar vazia ou em branco");
 
 		Aluno a = alunoExiste(matricula);
 		val.validaObjetoNulo(a, "Erro na definicao de papel: Tutor nao encontrado");
 
-		tutorController.tornaTutor(a, disciplina, proficiencia);
+		return a;
 	}
 
 	/**
