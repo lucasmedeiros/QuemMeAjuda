@@ -108,7 +108,7 @@ public class TutorController {
 	 * @return retorna o aluno relacionado a matricula
 	 * @since Parte 1
 	 */
-	private Aluno getTutor(String matricula) {
+	public Aluno getTutor(String matricula) {
 		for (Aluno aluno : this.tutores.values()) {
 			if (aluno.getMatricula().equals(matricula)) {
 				return aluno;

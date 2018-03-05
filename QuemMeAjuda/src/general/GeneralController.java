@@ -9,11 +9,12 @@ public class GeneralController {
 	private AlunoController alunoController;
 	private TutorController tutorController;
 	
-	//private double caixa;
+	private Caixa caixa;
 	
 	public GeneralController() {
 		this.alunoController = new AlunoController();
 		this.tutorController = new TutorController();
+		this.caixa = new Caixa();
 	}
 	
 	public void cadastrarAluno(String nome, String matricula, int idCurso, String telefone, String email) {
@@ -59,5 +60,13 @@ public class GeneralController {
 
 	public boolean consultaLocal(String email, String local) {
 		return this.tutorController.consultaLocal(email, local);
+	}
+	
+	public void doar(int doacao, String matriculaTutor) {
+		 caixa.doar(doacao,tutorController.getTutor(matriculaTutor).getNota());
+	}
+	
+	public int totalDinheiroSistema() {
+		return caixa.TotalDinheiroSistema();
 	}
 }
