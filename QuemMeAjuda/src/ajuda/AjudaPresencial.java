@@ -34,7 +34,7 @@ public class AjudaPresencial extends Ajuda {
 			return this.dia;
 		case "horario":
 			return this.horario;
-		case "localInteresse":
+		case "localinteresse":
 			return this.local;
 		default:
 			throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao encontrado");

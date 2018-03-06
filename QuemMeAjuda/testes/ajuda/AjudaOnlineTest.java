@@ -11,7 +11,7 @@ public class AjudaOnlineTest {
 	
 	@Before
 	public void setUp() {
-		this.ajuda = new AjudaOnline(1, "11111", "Progamacao 2");
+		this.ajuda = new AjudaOnline(1, "11111", "Programacao 2");
 	}
 
 	// Testes de Construtor

@@ -93,7 +93,7 @@ public class AjudaPresencialTest {
 	@Test
 	public void localCorreto() {
 		String mensagem = "Esperando que os locais sejam iguais";
-		assertEquals(mensagem, "CAA", this.ajuda.getInfo("localInteresse"));
+		assertEquals(mensagem, "CAA", this.ajuda.getInfo("localinteresse"));
 	}
 	
 	@Test(expected = NullPointerException.class)

@@ -66,22 +66,22 @@ public class TutorControllerTest {
 		assertTrue(tutorController.consultaHorario("joao@silva", "08:00", "seg"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void cadastraHorarioTestEmailInvalido() {
 		tutorController.cadastraHorario("joao@silva", "08:00", "seg");
-		assertTrue(tutorController.consultaHorario("joaosilva", "08:00", "seg"));
+		assertFalse(tutorController.consultaHorario("joaosilva", "08:00", "seg"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void cadastraHorarioTestEmailVazio() {
 		tutorController.cadastraHorario("joao@silva", "08:00", "seg");
-		assertTrue(tutorController.consultaHorario(" ", "08:00", "seg"));
+		assertFalse(tutorController.consultaHorario(" ", "08:00", "seg"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void cadastraHorarioTestEmailNulo() {
 		tutorController.cadastraHorario("joao@silva", "08:00", "seg");
-		assertTrue(tutorController.consultaHorario(null, "08:00", "seg"));
+		assertFalse(tutorController.consultaHorario(null, "08:00", "seg"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -126,7 +126,7 @@ public class TutorControllerTest {
 		tutorController.cadastraLocal("  ", "UFCG");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void cadastraLocalTestEmailNulo() {
 		tutorController.cadastraLocal(null, "UFCG");
 	}
@@ -155,22 +155,22 @@ public class TutorControllerTest {
 		tutorController.consultaHorario("joao@silva", "12:00", "seg");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaHorarioTestEmailInvalido() {
 		tutorController.cadastraHorario("mikael@amaral", "10:00", "seg");
-		tutorController.consultaHorario("mikael#amaral", "10:00", "seg");
+		assertFalse(tutorController.consultaHorario("mikael#amaral", "10:00", "seg"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaHorarioTestEmailVazio() {
 		tutorController.cadastraHorario("joao@silva", "10:00", "seg");
 		tutorController.consultaHorario(" ", "10:00", "seg");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaHorarioTestEmailNulo() {
 		tutorController.cadastraHorario("joao@silva", "10:00", "seg");
-		tutorController.consultaHorario(null, "10:00", "seg");
+		assertFalse(tutorController.consultaHorario(null, "10:00", "seg"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -217,28 +217,28 @@ public class TutorControllerTest {
 		assertTrue(tutorController.consultaLocal("joao@silva", "UEPB") == false);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaLocalTestTutorNaoCadastrado() {
 		tutorController.cadastraLocal("joao@silva", "UFCG");
-		tutorController.consultaLocal("jose@silva", "UFCG");
+		assertFalse(tutorController.consultaLocal("jose@silva", "UFCG"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaLocalTestEmailInvalido() {
 		tutorController.cadastraLocal("joao@silva", "UFCG");
-		tutorController.consultaLocal("jose2silva", "UFCG");
+		assertFalse(tutorController.consultaLocal("jose2silva", "UFCG"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaLocalTestEmailVazio() {
 		tutorController.cadastraLocal("joao@silva", "UFCG");
-		assertTrue(tutorController.consultaLocal("    ", "UFCG"));
+		assertFalse(tutorController.consultaLocal("    ", "UFCG"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void consultaLocalTestEmailNulo() {
 		tutorController.cadastraLocal("joao@silva", "UFCG");
-		assertTrue(tutorController.consultaLocal(null, "UFCG"));
+		assertFalse(tutorController.consultaLocal(null, "UFCG"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

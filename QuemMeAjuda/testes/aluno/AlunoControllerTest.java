@@ -95,14 +95,14 @@ public class AlunoControllerTest {
         assertEquals("1010 - Lucas - 1 - 9999-9999 - lucas@gmail.com", result);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testRecuperarAluno2() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
         controller.recuperarAluno("1011");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testRecuperarAluno3() {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
