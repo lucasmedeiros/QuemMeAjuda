@@ -119,7 +119,26 @@ public class TutorController {
 
 		throw new NoSuchElementException("Erro na busca por tutor: Tutor nao encontrado");
 	}
+	
+	/**
+	 * 
+	 * @param matricula
+	 *            A matricula do tutor em questao.
+	 * @return retorna o aluno relacionado a matricula
+	 * @since Parte 2
+	 */
+	public Aluno getTutorDoacao(String matricula) {
+		for (Aluno aluno : this.tutores.values()) {
+			if (aluno.getMatricula().equals(matricula)) {
+				return aluno;
+			}
+		}
 
+		throw new NoSuchElementException("Erro na doacao para tutor: Tutor nao encontrado");
+	}
+	
+	
+	
 	/**
 	 * Metodo responsavel por retornar uma lista de todos os tutores.
 	 * 
@@ -349,6 +368,12 @@ public class TutorController {
 
 		val.validaObjetoNulo(aluno, "ERRO");
 		return aluno.getMatricula();
+	}
+	
+	public int getDinheiro(String email) {
+		val.validaString(email, "Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");
+		this.verificaTutor(email, "Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
+	 	return this.tutores.get(email).getTipo().getDinheiro();
 	}
 
 }

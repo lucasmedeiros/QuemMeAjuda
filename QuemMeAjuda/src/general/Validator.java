@@ -98,4 +98,19 @@ public class Validator {
 		if (email.indexOf("@") == -1 || email.charAt(0) == '@' || email.charAt(email.length() - 1) == '@')
 			throw new IllegalArgumentException(msg);
 	}
+	
+	/**
+	 * Metodo responsavel por validar um numero nao nulo.
+	 * 
+	 * @param numero
+	 *            O numero que sera analisado.
+	 * @param msg
+	 *            A mensagem que vai ser lancada se um erro for detectado.
+	 * @since Parte 2
+	 */
+	public void validaNumeroNaoNulo(int numero, String msg) {
+		if(numero < 0) {
+			throw new IllegalArgumentException(msg);
+		}
+	}
 }

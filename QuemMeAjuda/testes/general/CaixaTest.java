@@ -30,5 +30,11 @@ public class CaixaTest {
 		c1.doar(1000, 2.4);
 		assertTrue(c1.TotalDinheiroSistema() == 660);
 	}
+	
+	@Test
+	public void DoarEasyTest() {
+		c1.doar(500, 4.52);
+		System.out.println(c1.TotalDinheiroSistema());
+	}
 
 }

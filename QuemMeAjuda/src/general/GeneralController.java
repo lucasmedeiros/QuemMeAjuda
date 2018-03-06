@@ -81,7 +81,8 @@ public class GeneralController {
 	}
 
 	public void doar(int doacao, String matriculaTutor) {
-		int valor = this.caixa.doar(doacao, tutorController.getTutor(matriculaTutor).getNota());
+		val.validaNumeroMenorIgualZero(doacao, "Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
+		int valor = this.caixa.doar(doacao, tutorController.getTutorDoacao(matriculaTutor).getNota());
 		this.tutorController.getTutor(matriculaTutor).getTipo().adicionarDinheiro(valor);
 	}
 
@@ -120,7 +121,7 @@ public class GeneralController {
 
 	public void avaliarTutor(int idAjuda, int nota) {
 		val.validaNumeroMaiorQueCinco(nota,"Erro na avaliacao de tutor: nota nao pode ser maior que 5");
-		val.validaNumeroMenorIgualZero(nota, "Erro na avaliacao de tutor: nota nao pode ser menor que 0");
+		val.validaNumeroNaoNulo(nota, "Erro na avaliacao de tutor: nota nao pode ser menor que 0");
 		String matriculaTutor = this.ajudaController.pegarTutor(idAjuda);
 		this.tutorController.avaliar(matriculaTutor, nota);
 	}
@@ -135,5 +136,9 @@ public class GeneralController {
 	
 	public String pegarNota(String matTutor) {
 		return this.tutorController.pegarNota(matTutor);
+	}
+	
+	public int totalDinheiroTutor(String email) {
+		return this.tutorController.getDinheiro(email);
 	}
 }

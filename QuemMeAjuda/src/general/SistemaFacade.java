@@ -103,4 +103,8 @@ public class SistemaFacade {
 	public String pegarNota(String matriculaTutor) {
 		return this.generalController.pegarNota(matriculaTutor);
 	}
+	
+	public int totalDinheiroTutor(String email) {
+		return this.generalController.totalDinheiroTutor(email);
+	}
 }
