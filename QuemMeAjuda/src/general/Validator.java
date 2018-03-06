@@ -42,6 +42,20 @@ public class Validator {
 		if (num <= 0)
 			throw new IllegalArgumentException(msg);
 	}
+	
+	/**
+	 * Método que valida um numero maior que cinco.
+	 *
+	 * @param num
+	 *            número a ser validado.
+	 * @param msg
+	 *            mensagem a ser exibida caso nao passe na validação.
+	 * @since Parte 2
+	 */
+	public void validaNumeroMaiorQueCinco(int num, String msg) {
+		if (num > 5)
+			throw new IllegalArgumentException(msg);
+	}
 
 	/**
 	 * Metodo para validar um objeto, se ele eh nulo ou nao.

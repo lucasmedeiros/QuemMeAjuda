@@ -109,10 +109,6 @@ public class GeneralController {
 	public String getInfoAjuda(String atributo, int idAjuda) {
 		return this.ajudaController.getInfoAjuda(atributo, idAjuda);
 	}
-
-	public String pegarTutor(int idAjuda) {
-		return this.ajudaController.pegarTutor(idAjuda);
-	}
 	
 	private String tutorParaAjuda(String disciplina) {
 		return this.tutorController.tutorParaAjuda(disciplina);
@@ -120,5 +116,22 @@ public class GeneralController {
 	
 	private String tutorParaAjuda(String disciplina, String horario, String dia, String local) {
 		return this.tutorController.tutorParaAjuda(disciplina, horario, dia, local);
+	}
+
+	public void avaliarTutor(int idAjuda, int nota) {
+		String matriculaTutor = this.ajudaController.pegarTutor(idAjuda);
+		this.tutorController.avaliar(matriculaTutor, nota);
+	}
+	
+	public String pegarTutor(int idAjuda) {
+		return this.ajudaController.pegarTutor(idAjuda);
+	}
+	
+	public String pegarNivel(String matTutor) {
+		return this.tutorController.pegarNivelTutor(matTutor);
+	}
+	
+	public String pegarNota(String matTutor) {
+		return this.tutorController.pegarNota(matTutor);
 	}
 }

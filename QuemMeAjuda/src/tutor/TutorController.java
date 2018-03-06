@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import aluno.Aluno;
 import general.Validator;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -254,6 +255,45 @@ public class TutorController {
 
 		val.validaObjetoNulo(aluno, "ERRO");
 		return aluno.getMatricula();
+	}
+	
+	/**
+	 * Metodo que recupera o nivel atual do tutor de matricula desejada.
+	 * 
+	 * @param matricula
+	 *            matricula do tutor desejado.
+	 *            
+	 * @return matricula do tutor selecionado para a ajuda.
+	 * @since Parte 2
+	 */
+	public String pegarNivelTutor(String matricula) {
+		return this.getTutor(matricula).getTipo().getNivel();
+	}
+	
+	/**
+	 * Metodo que recupera a nota atual do tutor desejado.
+	 * 
+	 * @param matricula
+	 *            matricula do tutor desejado.
+	 *            
+	 * @return matricula do tutor selecionado para a ajuda.
+	 * @since Parte 2
+	 */
+	public String pegarNota(String matricula) {
+		return "" + this.getTutor(matricula).getTipo().getNotaTutor();
+	}
+	
+	/**
+	 * Metodo que atribui ao tutor de matricula especificada, a nota determinada.
+	 * 
+	 * @param matricula
+	 *            matricula do tutor desejado.
+	 * @param nota
+	 *            nota atribuida ao tutor.
+	 * @since Parte 2
+	 */
+	public void avaliar(String matricula, int nota) {
+		this.getTutor(matricula).getTipo().calcularNota(nota);
 	}
 	
 	/**

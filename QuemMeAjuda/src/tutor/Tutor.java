@@ -106,6 +106,35 @@ public class Tutor {
 	public int getDinheiro() {
 		return this.dinheiro;
 	}
+	
+	/**
+	 * Retorna o nivel do Tutor baseado em sua nota.
+	 * 
+	 * @return o nivel do Tutor.
+	 * @since Parte 2
+	 */
+	public String getNivel() {
+		if (this.notaTutor > 4.5) {
+			return "TOP";
+		} else if (this.notaTutor > 3.0) {
+			return "Tutor";
+		} else {
+			return "Aprendiz";
+		}
+	}
+	
+	/**
+	 * Calcula nova nota do tutor baseado em uma nova avaliacao.
+	 * 
+	 * @param nota
+	 * 		      nova nota recebida atraves de um aluno.
+	 * @since Parte 2
+	 */
+	public void calcularNota(int nota) {
+		this.val.validaNumeroMenorIgualZero(nota, "Erro na avaliacao de tutor: nota nao pode ser menor que 0");
+		this.val.validaNumeroMaiorQueCinco(nota, "Erro na avaliacao de tutor: nota nao pode ser maior que 5");
+		this.notaTutor = (this.notaTutor * 5 + nota) / 6;
+	}
 
 	/**
 	 * Adiciona a quantia especificada ao dinheiro total do Tutor.

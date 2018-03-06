@@ -88,7 +88,19 @@ public class SistemaFacade {
 		return this.generalController.getInfoAjuda(atributo, idAjuda);
 	}
 	
+	public void avaliarTutor(int idAjuda, int nota) {
+		this.generalController.avaliarTutor(idAjuda, nota);
+	}
+	
 	public String pegarTutor(int idAjuda) {
 		return this.generalController.pegarTutor(idAjuda);
+	}
+	
+	public String pegarNivel(String matriculaTutor) {
+		return this.generalController.pegarNivel(matriculaTutor);
+	}
+	
+	public String pegarNota(String matriculaTutor) {
+		return this.generalController.pegarNota(matriculaTutor);
 	}
 }
