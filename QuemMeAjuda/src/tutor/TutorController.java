@@ -48,7 +48,8 @@ public class TutorController {
 	}
 
 	/**
-	 * Metodo privado que verifica, a partiri do email, se o tutor esta cadastrado
+	 * Metodo privado que verifica, a partiri do email, se o tutor esta
+	 * cadastrado
 	 * 
 	 * @param email
 	 *            Email do Tutor
@@ -224,26 +225,35 @@ public class TutorController {
 		val.validaString(local, "Erro no consultar local de atendimento: local nao pode ser vazio ou em branco");
 		return this.tutores.get(email).getTipo().consultarLocal(local);
 	}
-	
+
 	/**
-	 * Metodo que verifica qual tutor esta disponivel para ajuda em determinada disciplina.
+	 * Metodo que verifica qual tutor esta disponivel para ajuda em determinada
+	 * disciplina.
 	 * 
-	 * @param disciplina nome da disciplina.
-	 * @param msg mensagem de erro.
+	 * @param disciplina
+	 *            nome da disciplina.
+	 * @param msg
+	 *            mensagem de erro.
 	 * @return matricula do tutor selecionado para a ajuda.
 	 */
 	public String tutorParaAjuda(String disciplina, String msg) {
 		val.validaString(disciplina, msg + ": DISCIPLINA INVALIDA");
 		int maiorNota = Integer.MIN_VALUE;
-		
-		for (Aluno a: tutores.values()) {
-			if (a.getTipo().temDisciplina(disciplina)) {
-				if (a.getTipo().getNotaTutor() > maiorNota)
-					return a.getMatricula();
+		Aluno aluno = null;
+
+		for (Aluno a : tutores.values()) {
+			Tutor tutor = a.getTipo();
+			if (tutor.temDisciplina(disciplina)) {
+				int nota = tutor.getNotaTutor();
+				if (nota > maiorNota) {
+					aluno = a;
+					maiorNota = nota;
+				}
 			}
 		}
-		
-		return null;
+
+		val.validaObjetoNulo(aluno, "ERRO");
+		return aluno.toString();
 	}
 
 }
