@@ -13,7 +13,7 @@ import general.Validator;
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
  *          Mikael Amaral </i>
  *          </ol>
- * @since Parte 1
+ * @since Parte 2
  */
 
 public class AjudaController {
@@ -23,6 +23,7 @@ public class AjudaController {
 
 	/**
 	 * Construtor de AjudaController.
+	 * @since Parte 2
 	 */
 	public AjudaController() {
 		ajudas = new ArrayList<>();
@@ -33,6 +34,7 @@ public class AjudaController {
 	 * Metodo para gerar um ID para uma ajuda.
 	 * 
 	 * @return id gerado para uma ajuda.
+	 * @since Parte 2
 	 */
 	private int idAjuda() {
 		return ajudas.size() + 1;
@@ -45,6 +47,7 @@ public class AjudaController {
 	 *            matricula do tutor.
 	 * @param disciplina
 	 *            disciplina que a ajuda foi requisitada.
+	 * @since Parte 2
 	 */
 	public int pedirAjudaOnline(String matTutor, String disciplina) {
 		val.validaString(disciplina, "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
@@ -67,6 +70,7 @@ public class AjudaController {
 	 *            dia da ajuda presencial.
 	 * @param local
 	 *            local da ajuda presencial.
+	 * @since Parte 2
 	 */
 	public int pedirAjudaPresencial(String matTutor, String disciplina, String horario, String dia,
 			String localInteresse) {
@@ -84,13 +88,11 @@ public class AjudaController {
 	 * @param idAjuda
 	 *            id da ajuda.
 	 * @return informaçao sobre ajuda.
+	 * @since Parte 2
 	 */
 	public String getInfoAjuda(String atributo, int idAjuda) {
-		Ajudavel a = ajudaCadastrada(idAjuda, "Erro ao GETINFO");
-		val.validaObjetoNulo(a, "Erro ao GETINFO - ajuda nao existe");
-
-		val.validaString(atributo, "Erro ao GETINFO - atributo");
-
+		Ajudavel a = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar info da ajuda ");
+		val.validaObjetoNulo(a, "Erro ao tentar recuperar info da ajuda : id nao encontrado ");
 		return a.getInfo(atributo);
 	}
 
@@ -100,10 +102,11 @@ public class AjudaController {
 	 * @param idAjuda
 	 *            id da ajuda.
 	 * @return matricula do tutor requisitado.
+	 * @since Parte 2
 	 */
 	public String pegarTutor(int idAjuda) {
-		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao GETTUTOR");
-		val.validaObjetoNulo(ajuda, "ERRO AO GETTUTOR - ajuda nao existe");
+		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
+		val.validaObjetoNulo(ajuda, "Erro ao tentar recuperar tutor : id nao encontrado ");
 
 		return ajuda.getTutor();
 	}
@@ -116,9 +119,10 @@ public class AjudaController {
 	 * @param msg
 	 *            mensagem de erro.
 	 * @return caso exista, retorna um objeto Ajudavel, senao, retorna null
+	 * @since Parte 2
 	 */
 	private Ajudavel ajudaCadastrada(int idAjuda, String msg) {
-		val.validaNumeroMenorIgualZero(idAjuda, msg + ": Ajuda invalida");
+		val.validaNumeroMenorIgualZero(idAjuda, msg + ": id nao pode menor que zero ");
 
 		for (Ajudavel a : ajudas) {
 			if (a.getId() == idAjuda)

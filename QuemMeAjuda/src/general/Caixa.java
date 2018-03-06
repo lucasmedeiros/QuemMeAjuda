@@ -4,17 +4,22 @@ package general;
  * Classe que representa o caixa do sistema, possuindo metodos para retornar o
  * total presente no caixa no momento, calcular o quanto deve ser adicionado ao
  * caixa nas doacoes e retornar o valor a ser destinado ao tutor relacionado as
- * doacoes
- * 
- * @author jesse
+ * doacoes.
  *
+ * @authors
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
+ * @since Parte 2
  */
 
 public class Caixa {
 	private int caixa;
 
 	/**
-	 * Construtor da classe Caixa
+	 * Construtor da classe Caixa.
+	 * @since Parte 2
 	 */
 	public Caixa() {
 		this.caixa = 0;
@@ -23,7 +28,8 @@ public class Caixa {
 	/**
 	 * Metodo que retorna o dinheiro do caixa
 	 * 
-	 * @return Retorna o valor guardado no caixa
+	 * @return retorna o valor guardado no caixa
+	 * @since Parte 2
 	 */
 	public int TotalDinheiroSistema() {
 		return this.caixa;
@@ -32,7 +38,14 @@ public class Caixa {
 	/**
 	 * Metodo que recebe a doacao e o valor da pontuacao do tutor e com essas
 	 * informacoes, adiciona a devida quantia da doacao no caixa do sistema e
-	 * retorna o valor a ser adicionado a classe Tutor
+	 * retorna o valor a ser adicionado a classe Tutor.
+	 * 
+	 * @param doacao
+	 * 		      valor bruto em centavos a ser doado a um tutor.
+	 * @param pontuacao
+	 *            criterio para calculo do valor liquido.
+	 * 
+	 * @since Parte 2
 	 */
 	public int doar(int doacao, double pontuacao) {
 		this.caixa += (int) Math.floor((1 - calcularPorcentagemTutor(pontuacao)) * doacao);
@@ -44,9 +57,10 @@ public class Caixa {
 	 * na nota que o mesmo possui no momento da doacao
 	 * 
 	 * @param pontuacao
-	 *            Representao a nota qualitativa do tutor
-	 * @return Retorna um double que representa a porcentagem do tutor em relacao a
-	 *         doacao ao mesmo
+	 *            representao a nota qualitativa do tutor.
+	 * @return retorna um double que representa a porcentagem do tutor em relacao a
+	 *         doacao ao mesmo.
+	 * @since Parte 2
 	 */
 	private double calcularPorcentagemTutor(double pontuacao) {
 		if (pontuacao >= 4.5) {

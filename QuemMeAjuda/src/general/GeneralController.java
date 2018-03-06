@@ -5,6 +5,19 @@ import aluno.Aluno;
 import aluno.AlunoController;
 import tutor.TutorController;
 
+/**
+ * Classe mediadora entre os controladores do sistema.
+ *
+ * @authors
+ * <ol>
+ * <i> Diego Gama </i> 
+ * <i> Jessé Souza </i> 
+ * <i> Lucas Medeiros </i> 
+ * <i> Mikael Amaral </i>
+ * </ol>
+ * @since Parte 1
+ */
+
 public class GeneralController {
 
 	private AlunoController alunoController;
@@ -79,16 +92,17 @@ public class GeneralController {
 	public int pedirAjudaOnline(String matAluno, String disciplina) {
 		val.validaString(disciplina, "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
 		val.validaString(matAluno, "Erro no pedido de ajuda online: matricula de aluno nao pode ser vazio ou em branco");
-		val.validaObjetoNulo(this.alunoController.alunoExiste(matAluno), "ERRO ALUNO NAO EXISTE");
-		String matTutor = tutorParaAjuda(disciplina, "ERRO AO PEDIR AJUDA ONLINE");
+		String matTutor = tutorParaAjuda(disciplina);
 		return this.ajudaController.pedirAjudaOnline(matTutor, disciplina);
 	}
 
 	public int pedirAjudaPresencial(String matAluno, String disciplina, String horario, String dia, String local) {
 		val.validaString(disciplina, "Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
 		val.validaString(matAluno, "Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco");
-		val.validaObjetoNulo(this.alunoController.alunoExiste(matAluno), "ERRO ALUNO NAO EXISTE");
-		String matTutor = tutorParaAjuda(disciplina, "ERRO AO PEDIR AJUDA PRESENCIAL");
+		val.validaString(horario, "Erro no pedido de ajuda presencial: horario nao pode ser vazio ou em branco");
+		val.validaString(dia, "Erro no pedido de ajuda presencial: dia nao pode ser vazio ou em branco");
+		val.validaString(local, "Erro no pedido de ajuda presencial: local de interesse nao pode ser vazio ou em branco");
+		String matTutor = tutorParaAjuda(disciplina, horario, dia, local);
 		return this.ajudaController.pedirAjudaPresencial(matTutor, disciplina, horario, dia, local);
 	}
 
@@ -100,7 +114,11 @@ public class GeneralController {
 		return this.ajudaController.pegarTutor(idAjuda);
 	}
 	
-	private String tutorParaAjuda(String disciplina, String msg) {
-		return this.tutorController.tutorParaAjuda(disciplina, msg);
+	private String tutorParaAjuda(String disciplina) {
+		return this.tutorController.tutorParaAjuda(disciplina);
+	}
+	
+	private String tutorParaAjuda(String disciplina, String horario, String dia, String local) {
+		return this.tutorController.tutorParaAjuda(disciplina, horario, dia, local);
 	}
 }

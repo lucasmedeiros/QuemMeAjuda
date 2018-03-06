@@ -9,7 +9,7 @@ package ajuda;
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
  *          Mikael Amaral </i>
  *          </ol>
- * @since Parte 1
+ * @since Parte 2
  */
 
 public interface Ajudavel {
@@ -18,6 +18,7 @@ public interface Ajudavel {
 	 * Metodo para pegar o tutor requisitado na ajuda.
 	 * 
 	 * @return matricula do tutor requisitado.
+	 * @since Parte 2
 	 */
 	public String getTutor();
 
@@ -28,6 +29,7 @@ public interface Ajudavel {
 	 *            string que define que tipo de informaçao sobre ajuda deve ser
 	 *            retornada.
 	 * @return informaçao sobre ajuda.
+	 * @since Parte 2
 	 */
 	public String getInfo(String atributo);
 
@@ -35,6 +37,7 @@ public interface Ajudavel {
 	 * Metodo para pegar o id de uma ajuda.
 	 * 
 	 * @return id da ajuda.
+	 * @since Parte 2
 	 */
 	public int getId();
 

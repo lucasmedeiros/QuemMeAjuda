@@ -8,7 +8,7 @@ package ajuda;
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
  *          Mikael Amaral </i>
  *          </ol>
- * @since Parte 1
+ * @since Parte 2
  */
 
 public class AjudaPresencial extends Ajuda {
@@ -43,9 +43,12 @@ public class AjudaPresencial extends Ajuda {
 	 *            O dia da ajuda.
 	 * @param local
 	 *            O local da ajuda.
+	 * @since Parte 2
 	 */
 	public AjudaPresencial(int id, String matriculaTutor, String disciplina, String horario, String dia, String local) {
 		this.id = id;
+		val.validaString(matriculaTutor,
+				"Erro no pedido de ajuda presencial: matricula de tutor nao pode ser vazio ou em branco");
 		this.val.validaString(disciplina,
 				"Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
 		this.val.validaString(horario, "Erro no pedido de ajuda presencial: horario nao pode ser vazio ou em branco");
@@ -66,6 +69,7 @@ public class AjudaPresencial extends Ajuda {
 	 *            string que define que tipo de informaçao sobre ajuda deve ser
 	 *            retornada.
 	 * @return informaçao sobre ajuda.
+	 * @since Parte 2
 	 */
 	@Override
 	public String getInfo(String atributo) {

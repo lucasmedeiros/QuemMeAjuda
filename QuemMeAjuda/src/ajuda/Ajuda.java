@@ -10,7 +10,7 @@ import general.Validator;
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
  *          Mikael Amaral </i>
  *          </ol>
- * @since Parte 1
+ * @since Parte 2
  */
 
 public abstract class Ajuda implements Ajudavel {
@@ -32,6 +32,7 @@ public abstract class Ajuda implements Ajudavel {
 	
 	/**
 	 * Representa o validador utilizado.
+	 * @since Parte 2
 	 */
 	protected Validator val = new Validator();
 
@@ -39,6 +40,7 @@ public abstract class Ajuda implements Ajudavel {
 	 * Metodo para pegar o tutor requisitado na ajuda.
 	 * 
 	 * @return matricula do tutor requisitado.
+	 * @since Parte 2
 	 */
 	public String getTutor() {
 		return "Tutor - " + this.matriculaTutor + ", disciplina - " + this.disciplina;
@@ -48,6 +50,7 @@ public abstract class Ajuda implements Ajudavel {
 	 * Metodo para pegar o id da ajuda.
 	 * 
 	 * @return id da ajuda.
+	 * @since Parte 2
 	 */
 	@Override
 	public int getId() {

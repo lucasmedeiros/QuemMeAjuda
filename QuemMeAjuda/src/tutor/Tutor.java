@@ -28,7 +28,7 @@ public class Tutor {
 
 	private int proficiencia;
 	private int dinheiro;
-	private int notaTutor;
+	private double notaTutor;
 	private Set<String> locais;
 	private Map<String, String> horario;
 	private Map<String, Integer> disciplinas;
@@ -47,13 +47,13 @@ public class Tutor {
 	 */
 	public Tutor(String disciplina, int proficiencia) {
 		this.val = new Validator();
-		ehLegal(disciplina, proficiencia);
+		ehValido(disciplina, proficiencia);
 
 		this.locais = new HashSet<String>();
 		this.horario = new HashMap<String, String>();
 		this.proficiencia = proficiencia;
 		this.dinheiro = 0;
-		this.notaTutor = 4;
+		this.notaTutor = 4.0;
 
 		this.disciplinas = new HashMap<String, Integer>();
 		this.disciplinas.put(disciplina, proficiencia);
@@ -72,7 +72,7 @@ public class Tutor {
 	 *                String vazia.
 	 * @since Parte 1
 	 */
-	private void ehLegal(String disciplina, int proficiencia) {
+	private void ehValido(String disciplina, int proficiencia) {
 		val.validaString(disciplina, "Erro na definicao de papel: disciplina nao pode ser vazia ou em branco");
 		val.validaProficiencia(proficiencia, "Erro na definicao de papel: Proficiencia invalida");
 	}
@@ -93,7 +93,7 @@ public class Tutor {
 	 * @return a nota atual do Tutor.
 	 * @since Parte 1
 	 */
-	public int getNotaTutor() {
+	public double getNotaTutor() {
 		return this.notaTutor;
 	}
 
@@ -166,7 +166,7 @@ public class Tutor {
 	 * @since Parte 1
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
-		ehLegal(disciplina, proficiencia);
+		ehValido(disciplina, proficiencia);
 
 		if (this.disciplinas.containsKey(disciplina))
 			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
@@ -209,16 +209,36 @@ public class Tutor {
 	 * 
 	 * @param disciplina
 	 *            nome da disciplina.
-	 * @return
-	 *         <tr>
-	 * 		true
-	 *         </tr>
-	 *         se a disciplina existir dentro do conjunto de chaves do mapa.
+	 * @return true, se a disciplina estiver contida no conjunto de chaves do mapa,
+	 *         e false caso o contrario.
+	 * @since Parte 2
 	 */
 	public boolean temDisciplina(String disciplina) {
 		for (String s : this.disciplinas.keySet()) {
 			if (s.toLowerCase().equals(disciplina.toLowerCase()))
 				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Verifica se o tutor possui a disponibilidade desejada.
+	 * 
+	 * @param dia
+	 *            dia da semana especifico.
+	 * @param hroario
+	 *            horario para o dia especifico.
+	 * @param local
+	 *            local de interesse especifico.
+	 * @return true, se o tutor tiver esta disponibilidade, e false caso o
+	 *         contrario.
+	 * @since Parte 2
+	 */
+	public boolean temDisponibilidade(String dia, String horario, String local) {
+		if (this.horario.containsKey(dia) && (this.horario.get(dia) != null)) {
+			if (this.locais.contains(local)) {
+				return true;
+			}
 		}
 		return false;
 	}

@@ -8,7 +8,7 @@ package ajuda;
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
  *          Mikael Amaral </i>
  *          </ol>
- * @since Parte 1
+ * @since Parte 2
  */
 
 public class AjudaOnline extends Ajuda {
@@ -16,13 +16,16 @@ public class AjudaOnline extends Ajuda {
 	/**
 	 * Construtor de AjudaOnline.
 	 * 
-	 * @param matriculaTutor matricula do tutor responsavel pela ajuda.
-	 * @param disciplina disciplina que o aluno quer ajuda.
+	 * @param matriculaTutor
+	 *            matricula do tutor responsavel pela ajuda.
+	 * @param disciplina
+	 *            disciplina que o aluno quer ajuda.
+	 * @since Parte 2
 	 */
 	public AjudaOnline(int id, String matriculaTutor, String disciplina) {
-		
-		
 		this.id = id;
+		val.validaString(matriculaTutor,
+				"Erro no pedido de ajuda presencial: matricula de tutor nao pode ser vazio ou em branco");
 		this.val.validaString(disciplina, "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
 		this.matriculaTutor = matriculaTutor;
 		this.disciplina = disciplina;
@@ -35,10 +38,12 @@ public class AjudaOnline extends Ajuda {
 	 *            string que define que tipo de informaçao sobre ajuda deve ser
 	 *            retornada.
 	 * @return informaçao sobre ajuda.
+	 * @since Parte 2
 	 */
 	@Override
 	public String getInfo(String atributo) {
-		this.val.validaString(atributo, "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
+		this.val.validaString(atributo,
+				"Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
 		switch (atributo.toLowerCase()) {
 		case "disciplina":
 			return this.disciplina;

@@ -235,20 +235,54 @@ public class TutorController {
 	 * @param msg
 	 *            mensagem de erro.
 	 * @return matricula do tutor selecionado para a ajuda.
+	 * @since Parte 2
 	 */
-	public String tutorParaAjuda(String disciplina, String msg) {
-		val.validaString(disciplina, msg + ": DISCIPLINA INVALIDA");
-		int maiorNota = Integer.MIN_VALUE;
+	public String tutorParaAjuda(String disciplina) {
+		double maiorNota = Double.MIN_VALUE;
 		Aluno aluno = null;
 
 		for (Aluno a : tutores.values()) {
 			Tutor tutor = a.getTipo();
 			if (tutor.temDisciplina(disciplina)) {
-				int nota = tutor.getNotaTutor();
+				double nota = tutor.getNotaTutor();
 				if (nota > maiorNota) {
 					aluno = a;
 					maiorNota = nota;
 				}
+			}
+		}
+
+		val.validaObjetoNulo(aluno, "ERRO");
+		return aluno.getMatricula();
+	}
+	
+	/**
+	 * Metodo que verifica qual tutor esta disponivel para ajudar em determinada
+	 * disciplina, em um horario, dia e local especificado.
+	 * 
+	 * @param disciplina
+	 *            nome da disciplina.
+	 * @param horario
+	 *            horario requerido.
+	 * @param dia
+	 * 			  dia requisitado.
+	 * @param local
+	 * 			  local de interesse para a ajuda.
+	 * @return matricula do tutor selecionado para a ajuda.
+	 * @since Parte 2
+	 */
+	public String tutorParaAjuda(String disciplina, String horario, String dia, String local) {
+		double maiorNota = Double.MIN_VALUE;
+		Aluno aluno = null;
+
+		for (Aluno a : tutores.values()) {
+			Tutor tutor = a.getTipo();
+			if (tutor.temDisciplina(disciplina)) {
+				double nota = tutor.getNotaTutor();
+				if (nota > maiorNota && tutor.temDisponibilidade(dia, horario, local)) {
+					aluno = a;
+					maiorNota = nota;
+				}	
 			}
 		}
 
