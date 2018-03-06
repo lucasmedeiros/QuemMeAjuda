@@ -1,7 +1,7 @@
 package ajuda;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import general.Validator;
 
@@ -18,14 +18,14 @@ import general.Validator;
 
 public class AjudaController {
 
-	private Map<String, Ajudavel> ajudas;
+	private List<Ajudavel> ajudas;
 	private Validator val;
 
 	/**
 	 * Construtor de AjudaController.
 	 */
 	public AjudaController() {
-		ajudas = new HashMap<>();
+		ajudas = new ArrayList<>();
 		val = new Validator();
 	}
 
@@ -35,7 +35,7 @@ public class AjudaController {
 	 * @return id gerado para uma ajuda.
 	 */
 	private int idAjuda() {
-		return ajudas.values().size() + 1;
+		return ajudas.size() + 1;
 	}
 
 	/**
@@ -46,11 +46,12 @@ public class AjudaController {
 	 * @param disciplina
 	 *            disciplina que a ajuda foi requisitada.
 	 */
-	public void pedirAjudaOnline(String matAluno, String matTutor, String disciplina) {
-		val.validaString(matTutor, "Erro ao cadastrar ajuda: Matricula invalida");
-		val.validaString(disciplina, "Erro ao cadastrar ajuda: Disciplina invalida");
+	public int pedirAjudaOnline(String matTutor, String disciplina) {
+		val.validaString(disciplina, "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
 
-		ajudas.put(matAluno, new AjudaOnline(idAjuda(), matTutor, disciplina));
+		int id = idAjuda();
+		ajudas.add(new AjudaOnline(id, matTutor, disciplina));
+		return id;
 	}
 
 	/**
@@ -67,12 +68,11 @@ public class AjudaController {
 	 * @param local
 	 *            local da ajuda presencial.
 	 */
-	public void pedirAjudaPresencial(String matAluno, String matTutor, String disciplina, String horario, String dia,
-			String local) {
-		val.validaString(matTutor, "Erro ao cadastrar ajuda: Matricula invalida");
-		val.validaString(matTutor, "Ero ao cadastrar ajuda: Disciplina invalida");
-
-		ajudas.put(matAluno, new AjudaPresencial(idAjuda(), matTutor, disciplina, horario, dia, local));
+	public int pedirAjudaPresencial(String matTutor, String disciplina, String horario, String dia,
+			String localInteresse) {
+		int id = idAjuda();
+		ajudas.add(new AjudaPresencial(id, matTutor, disciplina, horario, dia, localInteresse));
+		return id;
 	}
 
 	/**
@@ -102,10 +102,10 @@ public class AjudaController {
 	 * @return matricula do tutor requisitado.
 	 */
 	public String pegarTutor(int idAjuda) {
-		Ajudavel a = ajudaCadastrada(idAjuda, "Erro ao GETTUTOR");
-		val.validaObjetoNulo(a, "ERRO AO GETTUTOR - ajuda nao existe");
+		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao GETTUTOR");
+		val.validaObjetoNulo(ajuda, "ERRO AO GETTUTOR - ajuda nao existe");
 
-		return a.getTutor();
+		return ajuda.getTutor();
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class AjudaController {
 	private Ajudavel ajudaCadastrada(int idAjuda, String msg) {
 		val.validaNumeroMenorIgualZero(idAjuda, msg + ": Ajuda invalida");
 
-		for (Ajudavel a : ajudas.values()) {
+		for (Ajudavel a : ajudas) {
 			if (a.getId() == idAjuda)
 				return a;
 		}

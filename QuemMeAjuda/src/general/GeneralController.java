@@ -76,16 +76,18 @@ public class GeneralController {
 		return caixa.TotalDinheiroSistema();
 	}
 
-	public void pedirAjudaOnline(String matAluno, String disciplina) {
-		val.validaObjetoNulo(this.alunoController.alunoExiste(matAluno), "ERRO AO PEDIR AJUDA ONLINE");
+	public int pedirAjudaOnline(String matAluno, String disciplina) {
+		val.validaObjetoNulo(this.alunoController.alunoExiste(matAluno), "Erro no pedido de ajuda online: matricula de aluno nao pode ser vazio ou em branco");
+		val.validaString(disciplina, "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
 		String matTutor = tutorParaAjuda(disciplina, "ERRO AO PEDIR AJUDA ONLINE");
-		this.ajudaController.pedirAjudaOnline(matAluno, matTutor, disciplina);
+		return this.ajudaController.pedirAjudaOnline(matTutor, disciplina);
 	}
 
-	public void pedirAjudaPresencial(String matAluno, String disciplina, String horario, String dia, String local) {
-		val.validaObjetoNulo(this.alunoController.alunoExiste(matAluno), "ERRO AO PEDIR AJUDA PRESENCIAL");
+	public int pedirAjudaPresencial(String matAluno, String disciplina, String horario, String dia, String local) {
+		val.validaObjetoNulo(this.alunoController.alunoExiste(matAluno), "Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco");
+		val.validaString(disciplina, "Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
 		String matTutor = tutorParaAjuda(disciplina, "ERRO AO PEDIR AJUDA PRESENCIAL");
-		this.ajudaController.pedirAjudaPresencial(matAluno, matTutor, disciplina, horario, dia, local);
+		return this.ajudaController.pedirAjudaPresencial(matTutor, disciplina, horario, dia, local);
 	}
 
 	public String getInfoAjuda(String atributo, int idAjuda) {

@@ -26,7 +26,7 @@ public abstract class Ajuda implements Ajudavel {
 	protected String matriculaTutor;
 	
 	/**
-	 * Representa a disclina que o tutor irá dar ajuda.
+	 * Representa a disclina que o tutor irï¿½ dar ajuda.
 	 */
 	protected String disciplina;
 	
@@ -41,7 +41,7 @@ public abstract class Ajuda implements Ajudavel {
 	 * @return matricula do tutor requisitado.
 	 */
 	public String getTutor() {
-		return this.matriculaTutor;
+		return "Tutor - " + this.matriculaTutor + ", disciplina - " + this.disciplina;
 	}
 	
 	/**

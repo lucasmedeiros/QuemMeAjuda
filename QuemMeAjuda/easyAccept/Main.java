@@ -15,8 +15,12 @@ import easyaccept.EasyAccept;
 public class Main {
 	public static void main(String[] args) {
 		args = new String[] { "general.SistemaFacade", "acceptance_tests/us1_test.txt", "acceptance_tests/us2_test.txt",
-				"acceptance_tests/us3_test.txt", "acceptance_tests/us4_test.txt", "acceptance_tests/us5_test.txt",
-				"acceptance_tests/us6_test.txt" };
+				"acceptance_tests/us3_test.txt", "acceptance_tests/us4_test.txt"};
+		
+		/*
+		 * , "acceptance_tests/us5_test.txt",
+				"acceptance_tests/us6_test.txt"
+		 */
 		EasyAccept.main(args);
 
 	}

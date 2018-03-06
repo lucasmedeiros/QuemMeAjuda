@@ -75,5 +75,20 @@ public class SistemaFacade {
 	public int totalDinheiroSistema() {
 		return this.generalController.totalDinheiroSistema();
 	}
-
+	
+	public int pedirAjudaOnline(String matAluno, String disciplina) {
+		return this.generalController.pedirAjudaOnline(matAluno, disciplina);
+	}
+	
+	public int pedirAjudaPresencial(String matAluno, String disciplina, String horario, String dia, String local) {
+		return this.generalController.pedirAjudaPresencial(matAluno, disciplina, horario, dia, local);
+	}
+	
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return this.generalController.getInfoAjuda(atributo, idAjuda);
+	}
+	
+	public String pegarTutor(int idAjuda) {
+		return this.generalController.pegarTutor(idAjuda);
+	}
 }

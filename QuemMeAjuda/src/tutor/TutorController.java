@@ -253,7 +253,7 @@ public class TutorController {
 		}
 
 		val.validaObjetoNulo(aluno, "ERRO");
-		return aluno.toString();
+		return aluno.getMatricula();
 	}
 
 }

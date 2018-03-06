@@ -1,7 +1,5 @@
 package ajuda;
 
-import general.Validator;
-
 /**
  * RepresentaÃ§ao de uma Ajuda Presencial.
  *
@@ -19,12 +17,12 @@ public class AjudaPresencial extends Ajuda {
 	 * Representa o horario da ajuda.
 	 */
 	private String horario;
-	
+
 	/**
 	 * Representa o dia da ajuda.
 	 */
 	private String dia;
-	
+
 	/**
 	 * Representa o local da ajuda.
 	 */
@@ -33,12 +31,18 @@ public class AjudaPresencial extends Ajuda {
 	/**
 	 * Construtor de Ajuda Presencial.
 	 * 
-	 * @param id O id da Ajuda.
-	 * @param matriculaTutor A matricula do respectivo aluno.
-	 * @param disciplina A disciplina que o aluno receberá ajuda.
-	 * @param horario O horário da ajuda.
-	 * @param dia O dia da ajuda.
-	 * @param local O local da ajuda.
+	 * @param id
+	 *            O id da Ajuda.
+	 * @param matriculaTutor
+	 *            A matricula do respectivo aluno.
+	 * @param disciplina
+	 *            A disciplina que o aluno receberï¿½ ajuda.
+	 * @param horario
+	 *            O horï¿½rio da ajuda.
+	 * @param dia
+	 *            O dia da ajuda.
+	 * @param local
+	 *            O local da ajuda.
 	 */
 	public AjudaPresencial(int id, String matriculaTutor, String disciplina, String horario, String dia, String local) {
 		this.id = id;
@@ -79,6 +83,12 @@ public class AjudaPresencial extends Ajuda {
 		default:
 			throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao encontrado");
 		}
+	}
+
+	@Override
+	public String getTutor() {
+		return "Tutor - " + this.matriculaTutor + ", horario - " + this.horario + ", dia - " + this.dia + ", local - "
+				+ this.local + ", disciplina - " + this.disciplina;
 	}
 
 }
