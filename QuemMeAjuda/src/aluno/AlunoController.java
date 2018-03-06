@@ -147,7 +147,7 @@ public class AlunoController {
 	 * @return representaçao em string do aluno, se ele existir no sistema.
 	 * @since Parte 1
 	 */
-	private Aluno alunoExiste(String matricula) {
+	public Aluno alunoExiste(String matricula) {
 		for (Aluno a : alunos) {
 			if (a.getMatricula().equals(matricula))
 				return a;

@@ -224,5 +224,26 @@ public class TutorController {
 		val.validaString(local, "Erro no consultar local de atendimento: local nao pode ser vazio ou em branco");
 		return this.tutores.get(email).getTipo().consultarLocal(local);
 	}
+	
+	/**
+	 * Metodo que verifica qual tutor esta disponivel para ajuda em determinada disciplina.
+	 * 
+	 * @param disciplina nome da disciplina.
+	 * @param msg mensagem de erro.
+	 * @return matricula do tutor selecionado para a ajuda.
+	 */
+	public String tutorParaAjuda(String disciplina, String msg) {
+		val.validaString(disciplina, msg + ": DISCIPLINA INVALIDA");
+		int maiorNota = Integer.MIN_VALUE;
+		
+		for (Aluno a: tutores.values()) {
+			if (a.getTipo().temDisciplina(disciplina)) {
+				if (a.getTipo().getNotaTutor() > maiorNota)
+					return a.getMatricula();
+			}
+		}
+		
+		return null;
+	}
 
 }

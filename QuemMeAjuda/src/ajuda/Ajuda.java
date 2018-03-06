@@ -2,15 +2,40 @@ package ajuda;
 
 import general.Validator;
 
-public abstract class Ajuda implements Ajudavel {
+/**
+ * Representação abstrata de uma ajuda.
+ *
+ * @authors
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
+ * @since Parte 1
+ */
 
+public abstract class Ajuda implements Ajudavel {
+	
+	protected int id;
 	protected String matriculaTutor;
 	protected String disciplina;
-	protected Validator val;
+	protected Validator val = new Validator();
 
-	public String pegarTutor() {
+	/**
+	 * Metodo para pegar o tutor requisitado na ajuda.
+	 * 
+	 * @return matricula do tutor requisitado.
+	 */
+	public String getTutor() {
 		return this.matriculaTutor;
 	}
-	public abstract String getInfoAjuda(String atributo);
-
+	
+	/**
+	 * Metodo para pegar o id da ajuda.
+	 * 
+	 * @return id da ajuda.
+	 */
+	@Override
+	public int getId() {
+		return this.id;
+	}
 }

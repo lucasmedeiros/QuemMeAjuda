@@ -1,12 +1,15 @@
 package ajuda;
 
+import general.Validator;
+
 public class AjudaPresencial extends Ajuda {
 
 	private String horario;
 	private String dia;
 	private String local;
 
-	public AjudaPresencial(String matriculaTutor, String disciplina, String horario, String dia, String local) {
+	public AjudaPresencial(int id, String matriculaTutor, String disciplina, String horario, String dia, String local) {
+		this.id = id;
 		this.val.validaString(disciplina,
 				"Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
 		this.val.validaString(horario, "Erro no pedido de ajuda presencial: horario nao pode ser vazio ou em branco");
@@ -21,10 +24,10 @@ public class AjudaPresencial extends Ajuda {
 	}
 
 	@Override
-	public String getInfoAjuda(String atributo) {
+	public String getInfo(String atributo) {
 		this.val.validaString(atributo,
 				"Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
-		switch (atributo) {
+		switch (atributo.toLowerCase()) {
 		case "disciplina":
 			return this.disciplina;
 		case "dia":

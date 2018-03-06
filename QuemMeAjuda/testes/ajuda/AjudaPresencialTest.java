@@ -11,7 +11,7 @@ public class AjudaPresencialTest {
 	
 	@Before
 	public void setUp(){
-		this.ajuda = new AjudaPresencial("123", "Laboratorio de Programacao 2", "14:00", "Segunda", "CAA");
+		this.ajuda = new AjudaPresencial(1, "123", "Laboratorio de Programacao 2", "14:00", "Segunda", "CAA");
 	}
 
 	// Testes de Construtor
@@ -19,49 +19,49 @@ public class AjudaPresencialTest {
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void disciplinaVazia() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", " ", "14:00", "Quarta", "BG");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", " ", "14:00", "Quarta", "BG");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = NullPointerException.class)
 	public void disciplinaNula() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", null, "14:00", "Quarta", "BG");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", null, "14:00", "Quarta", "BG");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void horarioVazio() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", "P2", "  ", "Quarta", "BG");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", "P2", "  ", "Quarta", "BG");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = NullPointerException.class)
 	public void horarioNulo() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", "P2", null, "Quarta", "BG");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", "P2", null, "Quarta", "BG");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void DiaVazio() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", "P2", "14:00", "  ", "BG");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", "P2", "14:00", "  ", "BG");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = NullPointerException.class)
 	public void DiaNulo() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", "P2", "14:00", null, "BG");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", "P2", "14:00", null, "BG");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void localVazio() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", "P2", "14:00", "Quarta", "   ");
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", "P2", "14:00", "Quarta", "   ");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = NullPointerException.class)
 	public void localNulo() {
-		AjudaPresencial ajuda = new AjudaPresencial("1", "P2", "14:00", "Quarta", null);
+		AjudaPresencial ajuda = new AjudaPresencial(1,"1", "P2", "14:00", "Quarta", null);
 	}
 	
 	// Testes de Consulta
@@ -69,46 +69,46 @@ public class AjudaPresencialTest {
 	@Test
 	public void matriculaCorreta() {
 		String mensagem = "Esperando que as matriculas sejam iguais";
-		assertEquals(mensagem, "123", this.ajuda.pegarTutor());
+		assertEquals(mensagem, "123", this.ajuda.getTutor());
 	}
 	
 	@Test
 	public void disciplinaCorreta() {
 		String mensagem = "Esperando que as disciplinas sejam iguais";
-		assertEquals(mensagem, "Laboratorio de Programacao 2", this.ajuda.getInfoAjuda("disciplina"));
+		assertEquals(mensagem, "Laboratorio de Programacao 2", this.ajuda.getInfo("disciplina"));
 	}
 	
 	@Test
 	public void diaCorreto() {
 		String mensagem = "Esperando que os dias sejam iguais";
-		assertEquals(mensagem, "Segunda", this.ajuda.getInfoAjuda("dia"));
+		assertEquals(mensagem, "Segunda", this.ajuda.getInfo("dia"));
 	}
 	
 	@Test
 	public void horarioCorreto() {
 		String mensagem = "Esperando que os horarios sejam iguais";
-		assertEquals(mensagem, "14:00", this.ajuda.getInfoAjuda("horario"));
+		assertEquals(mensagem, "14:00", this.ajuda.getInfo("horario"));
 	}
 	
 	@Test
 	public void localCorreto() {
 		String mensagem = "Esperando que os locais sejam iguais";
-		assertEquals(mensagem, "CAA", this.ajuda.getInfoAjuda("localInteresse"));
+		assertEquals(mensagem, "CAA", this.ajuda.getInfo("localInteresse"));
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void atributoNulo() {
-		this.ajuda.getInfoAjuda(null);
+		this.ajuda.getInfo(null);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void atributoVazio() {
-		this.ajuda.getInfoAjuda("   ");
+		this.ajuda.getInfo("   ");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void atributoNaoEncontrado() {
-		this.ajuda.getInfoAjuda("dinheiro");
+		this.ajuda.getInfo("dinheiro");
 	}
 
 }

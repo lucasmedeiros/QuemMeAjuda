@@ -18,12 +18,10 @@ import java.util.Map;
  * horario constituinte de dia e hora para seu atendimento.
  * 
  * @authors
- * <ol>
- * <i> Diego Gama </i>
- * <i> Jessé Souza </i>
- * <i> Lucas Medeiros </i> 
- * <i> Mikael Amaral </i>
- * </ol>
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
  * @since Parte 1
  */
 public class Tutor {
@@ -206,4 +204,22 @@ public class Tutor {
 		return (this.horario.containsKey(dia) && this.horario.get(dia).equals(horario));
 	}
 
+	/**
+	 * Verifica se eh tutor de uma determinada disciplina.
+	 * 
+	 * @param disciplina
+	 *            nome da disciplina.
+	 * @return
+	 *         <tr>
+	 * 		true
+	 *         </tr>
+	 *         se a disciplina existir dentro do conjunto de chaves do mapa.
+	 */
+	public boolean temDisciplina(String disciplina) {
+		for (String s : this.disciplinas.keySet()) {
+			if (s.toLowerCase().equals(disciplina.toLowerCase()))
+				return true;
+		}
+		return false;
+	}
 }

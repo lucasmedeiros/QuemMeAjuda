@@ -11,7 +11,7 @@ public class AjudaOnlineTest {
 	
 	@Before
 	public void setUp() {
-		this.ajuda = new AjudaOnline("11111", "Progamacao 2");
+		this.ajuda = new AjudaOnline(1, "11111", "Progamacao 2");
 	}
 
 	// Testes de Construtor
@@ -19,13 +19,13 @@ public class AjudaOnlineTest {
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void disciplinaVazia() {
-		AjudaOnline ajuda = new AjudaOnline("1112", "   ");
+		AjudaOnline ajuda = new AjudaOnline(1,"1112", "   ");
 	}
 	
 	@SuppressWarnings("unused")
 	@Test(expected = NullPointerException.class)
 	public void disciplinaNula() {
-		AjudaOnline ajuda = new AjudaOnline("1112", null);
+		AjudaOnline ajuda = new AjudaOnline(1,"1112", null);
 	}
 	
 	// Testes de Consulta
@@ -33,28 +33,28 @@ public class AjudaOnlineTest {
 	@Test
 	public void disciplinaCorreta() {
 		String mensagem = "Esperando que as disciplinas sejam iguais";
-		assertEquals(mensagem, "Programacao 2", this.ajuda.getInfoAjuda("disciplina"));
+		assertEquals(mensagem, "Programacao 2", this.ajuda.getInfo("disciplina"));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void atributoNaoEncontrado() {
-		this.ajuda.getInfoAjuda("dinheiro");
+		this.ajuda.getInfo("dinheiro");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void atributoVazio() {
-		this.ajuda.getInfoAjuda("   ");
+		this.ajuda.getInfo("   ");
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void atributoNulo() {
-		this.ajuda.getInfoAjuda(null);
+		this.ajuda.getInfo(null);
 	}
 	
 	@Test
 	public void matriculaCorreta() {
 		String mensagem = "Esperando que as matriculas sejam iguais";
-		assertEquals(mensagem, "11111", this.ajuda.pegarTutor());
+		assertEquals(mensagem, "11111", this.ajuda.getTutor());
 	}
 
 }
