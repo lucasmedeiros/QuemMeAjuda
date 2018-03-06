@@ -23,6 +23,7 @@ public class AjudaController {
 
 	/**
 	 * Construtor de AjudaController.
+	 * 
 	 * @since Parte 2
 	 */
 	public AjudaController() {
@@ -74,6 +75,8 @@ public class AjudaController {
 	 */
 	public int pedirAjudaPresencial(String matTutor, String disciplina, String horario, String dia,
 			String localInteresse) {
+		val.validaString(disciplina, "Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
+
 		int id = idAjuda();
 		ajudas.add(new AjudaPresencial(id, matTutor, disciplina, horario, dia, localInteresse));
 		return id;
@@ -91,6 +94,8 @@ public class AjudaController {
 	 * @since Parte 2
 	 */
 	public String getInfoAjuda(String atributo, int idAjuda) {
+		val.validaString(atributo, "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
+
 		Ajudavel a = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar info da ajuda ");
 		val.validaObjetoNulo(a, "Erro ao tentar recuperar info da ajuda : id nao encontrado ");
 		return a.getInfo(atributo);

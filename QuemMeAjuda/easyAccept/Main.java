@@ -22,6 +22,5 @@ public class Main {
 				"acceptance_tests/us6_test.txt"
 		 */
 		EasyAccept.main(args);
-
 	}
 }
