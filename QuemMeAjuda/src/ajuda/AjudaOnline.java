@@ -20,12 +20,22 @@ public class AjudaOnline extends Ajuda {
 	 * @param disciplina disciplina que o aluno quer ajuda.
 	 */
 	public AjudaOnline(int id, String matriculaTutor, String disciplina) {
+		
+		
 		this.id = id;
 		this.val.validaString(disciplina, "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
 		this.matriculaTutor = matriculaTutor;
 		this.disciplina = disciplina;
 	}
 
+	/**
+	 * Metodo para pegar informaçao da ajuda.
+	 * 
+	 * @param atributo
+	 *            string que define que tipo de informaçao sobre ajuda deve ser
+	 *            retornada.
+	 * @return informaçao sobre ajuda.
+	 */
 	@Override
 	public String getInfo(String atributo) {
 		this.val.validaString(atributo, "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");

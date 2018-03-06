@@ -15,9 +15,24 @@ import general.Validator;
 
 public abstract class Ajuda implements Ajudavel {
 	
+	/**
+	 * Representa id da ajuda.
+	 */
 	protected int id;
+	
+	/**
+	 * Representa a matricula do tutor.
+	 */
 	protected String matriculaTutor;
+	
+	/**
+	 * Representa a disclina que o tutor irá dar ajuda.
+	 */
 	protected String disciplina;
+	
+	/**
+	 * Representa o validador utilizado.
+	 */
 	protected Validator val = new Validator();
 
 	/**

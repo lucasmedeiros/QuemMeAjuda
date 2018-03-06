@@ -2,12 +2,44 @@ package ajuda;
 
 import general.Validator;
 
+/**
+ * Representaçao de uma Ajuda Presencial.
+ *
+ * @authors
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
+ * @since Parte 1
+ */
+
 public class AjudaPresencial extends Ajuda {
 
+	/**
+	 * Representa o horario da ajuda.
+	 */
 	private String horario;
+	
+	/**
+	 * Representa o dia da ajuda.
+	 */
 	private String dia;
+	
+	/**
+	 * Representa o local da ajuda.
+	 */
 	private String local;
 
+	/**
+	 * Construtor de Ajuda Presencial.
+	 * 
+	 * @param id O id da Ajuda.
+	 * @param matriculaTutor A matricula do respectivo aluno.
+	 * @param disciplina A disciplina que o aluno receber� ajuda.
+	 * @param horario O hor�rio da ajuda.
+	 * @param dia O dia da ajuda.
+	 * @param local O local da ajuda.
+	 */
 	public AjudaPresencial(int id, String matriculaTutor, String disciplina, String horario, String dia, String local) {
 		this.id = id;
 		this.val.validaString(disciplina,
@@ -23,6 +55,14 @@ public class AjudaPresencial extends Ajuda {
 		this.local = local;
 	}
 
+	/**
+	 * Metodo para pegar informaçao da ajuda.
+	 * 
+	 * @param atributo
+	 *            string que define que tipo de informaçao sobre ajuda deve ser
+	 *            retornada.
+	 * @return informaçao sobre ajuda.
+	 */
 	@Override
 	public String getInfo(String atributo) {
 		this.val.validaString(atributo,
