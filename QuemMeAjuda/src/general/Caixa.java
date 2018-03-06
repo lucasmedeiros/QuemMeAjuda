@@ -34,9 +34,9 @@ public class Caixa {
 	 * informacoes, adiciona a devida quantia da doacao no caixa do sistema e
 	 * retorna o valor a ser adicionado a classe Tutor
 	 */
-	public double doar(int doacao, double pontuacao) {
+	public int doar(int doacao, double pontuacao) {
 		this.caixa += (int) Math.floor((1 - calcularPorcentagemTutor(pontuacao)) * doacao);
-		return Math.floor(calcularPorcentagemTutor(pontuacao) * doacao);
+		return (int) Math.floor(calcularPorcentagemTutor(pontuacao) * doacao);
 	}
 
 	/**

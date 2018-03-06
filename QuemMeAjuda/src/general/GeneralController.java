@@ -68,7 +68,8 @@ public class GeneralController {
 	}
 
 	public void doar(int doacao, String matriculaTutor) {
-		caixa.doar(doacao, tutorController.getTutor(matriculaTutor).getNota());
+		int valor = this.caixa.doar(doacao, tutorController.getTutor(matriculaTutor).getNota());
+		this.tutorController.getTutor(matriculaTutor).getTipo().adicionarDinheiro(valor);
 	}
 
 	public int totalDinheiroSistema() {

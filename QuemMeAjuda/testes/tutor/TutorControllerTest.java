@@ -27,7 +27,7 @@ public class TutorControllerTest {
 
 	@Test
 	public void listaAlunoTest() {
-		String esperado = "117110637 - joao - 270 - 999491615 - joao@silva\n117110640 - mikael - 271 - 99872450 - mikael@amaral\n";
+		String esperado = "117110637 - joao - 270 - 999491615 - joao@silva, 117110640 - mikael - 271 - 99872450 - mikael@amaral";
 		assertEquals(this.tutorController.listarTutores(), esperado);
 	}
 

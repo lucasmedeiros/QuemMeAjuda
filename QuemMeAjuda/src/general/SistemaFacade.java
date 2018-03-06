@@ -67,5 +67,13 @@ public class SistemaFacade {
 	public boolean consultaLocal(String email, String local) {
 		return this.generalController.consultaLocal(email, local);
 	}
+	
+	public void doar(String matriculaTutor, int totalCentavos) {
+		this.generalController.doar(totalCentavos, matriculaTutor);
+	}
+	
+	public int totalDinheiroSistema() {
+		return this.generalController.totalDinheiroSistema();
+	}
 
 }
