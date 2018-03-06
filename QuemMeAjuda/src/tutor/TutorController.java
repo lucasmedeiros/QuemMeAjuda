@@ -280,7 +280,28 @@ public class TutorController {
 	 * @since Parte 2
 	 */
 	public String pegarNota(String matricula) {
-		return "" + this.getTutor(matricula).getTipo().getNotaTutor();
+		return converteNota(this.getTutor(matricula).getTipo().getNotaTutor());
+	}
+	
+	/**
+	 * Metodo que arredonda um double para baixo caso seja <=5 (o valor de desempate) e para cima, caso seja > 5
+	 * @param nota Representa a nota a ser arredondada
+	 * @return retorna uma String que representa a nota no novo formato
+	 */
+	private String converteNota(double nota) {
+		int valorInteiro = (int) (nota);
+		int valorDecimal = (int) ((nota - valorInteiro)*100);
+		int valorQuebrado = 0;
+		if ((nota - valorInteiro)*100 - valorDecimal <= 0.5) {
+			valorQuebrado = (int) Math.floor((nota - valorInteiro) * 100);
+		}else {
+			valorQuebrado = (int) Math.ceil((nota - valorInteiro) * 100);
+		}
+		if (valorQuebrado < 10) {
+			return (int) valorInteiro + ",0" + valorQuebrado;
+		} else {
+			return (int) valorInteiro + "," + valorQuebrado;
+		}
 	}
 	
 	/**

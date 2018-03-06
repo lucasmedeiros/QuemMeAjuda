@@ -41,4 +41,17 @@ public interface Ajudavel {
 	 */
 	public int getId();
 
+	/**
+	 * Metodo que retorna a matricula do tutor
+	 * 
+	 * @return String representante da matricula do tutor
+	 */
+	public String getMatriculaTutor();
+	
+	/**
+	 * Metodo que retorna o estado da ajuda relacionado a sua avaliacao
+	 * 
+	 * @return Boolean que representa o estado avaliativo da ajuda
+	 */
+	public boolean getFoiAvaliada();
 }

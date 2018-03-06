@@ -119,12 +119,14 @@ public class GeneralController {
 	}
 
 	public void avaliarTutor(int idAjuda, int nota) {
+		val.validaNumeroMaiorQueCinco(nota,"Erro na avaliacao de tutor: nota nao pode ser maior que 5");
+		val.validaNumeroMenorIgualZero(nota, "Erro na avaliacao de tutor: nota nao pode ser menor que 0");
 		String matriculaTutor = this.ajudaController.pegarTutor(idAjuda);
 		this.tutorController.avaliar(matriculaTutor, nota);
 	}
 	
 	public String pegarTutor(int idAjuda) {
-		return this.ajudaController.pegarTutor(idAjuda);
+		return this.ajudaController.pegarInfoTutor(idAjuda);
 	}
 	
 	public String pegarNivel(String matTutor) {

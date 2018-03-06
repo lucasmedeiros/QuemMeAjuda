@@ -186,20 +186,20 @@ public class AjudaControllerTest {
 	public void testPegarTutorApostaNaoCadastrada() {
 		this.controllerAjuda.pedirAjudaPresencial("1", "P2", "14:00", "Quarta", "LCC3");
 		this.controllerAjuda.pedirAjudaOnline("1", "p2");
-		this.controllerAjuda.pegarTutor(3);
+		this.controllerAjuda.pegarInfoTutor(3);
 	}
 	
 	@Test
 	public void testPegarTutorAjudaOnline() {
 		this.controllerAjuda.pedirAjudaPresencial("140", "P2", "14:00", "Quarta", "LCC3");
 		this.controllerAjuda.pedirAjudaOnline("35", "P2");
-		assertEquals("Tutor - 35, disciplina - P2", this.controllerAjuda.pegarTutor(2));
+		assertEquals("Tutor - 35, disciplina - P2", this.controllerAjuda.pegarInfoTutor(2));
 	}
 	
 	@Test
 	public void testPegarTutorAjudaPresencial() {
 		this.controllerAjuda.pedirAjudaPresencial("140", "P2", "14:00", "Quarta", "LCC3");
 		this.controllerAjuda.pedirAjudaOnline("35", "p2");
-		assertEquals("Tutor - 140, horario - 14:00, dia - Quarta, local - LCC3, disciplina - P2", this.controllerAjuda.pegarTutor(1));
+		assertEquals("Tutor - 140, horario - 14:00, dia - Quarta, local - LCC3, disciplina - P2", this.controllerAjuda.pegarInfoTutor(1));
 	}
 }

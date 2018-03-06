@@ -102,6 +102,21 @@ public class AjudaController {
 	}
 
 	/**
+	 * Metodo para pegar a representacao textual do tutor requisitado na ajuda.
+	 * 
+	 * @param idAjuda
+	 *            id da ajuda.
+	 * @return matricula do tutor requisitado.
+	 * @since Parte 2
+	 */
+	public String pegarInfoTutor(int idAjuda) {
+		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
+		val.validaObjetoNulo(ajuda, "Erro ao tentar recuperar tutor : id nao encontrado ");
+
+		return ajuda.getTutor();
+	}
+	
+	/**
 	 * Metodo para pegar o tutor requisitado na ajuda.
 	 * 
 	 * @param idAjuda
@@ -111,10 +126,13 @@ public class AjudaController {
 	 */
 	public String pegarTutor(int idAjuda) {
 		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
-		val.validaObjetoNulo(ajuda, "Erro ao tentar recuperar tutor : id nao encontrado ");
-
-		return ajuda.getTutor();
+		val.validaObjetoNulo(ajuda, "Erro na avaliacao de tutor: id nao encontrado ");
+		if (ajuda.getFoiAvaliada()) {
+			throw new IllegalArgumentException("Erro na avaliacao de tutor: Ajuda ja avaliada");
+		}
+		return ajuda.getMatriculaTutor();
 	}
+	
 
 	/**
 	 * Metodo que verifica se uma ajuda esta cadastrada.

@@ -35,6 +35,11 @@ public abstract class Ajuda implements Ajudavel {
 	 * @since Parte 2
 	 */
 	protected Validator val = new Validator();
+	
+	/**
+	 * Representa se a ajuda ja foi ou nao avaliada
+	 */
+	protected boolean foiAvalida;
 
 	/**
 	 * Metodo para pegar o tutor requisitado na ajuda.
@@ -44,6 +49,23 @@ public abstract class Ajuda implements Ajudavel {
 	 */
 	public String getTutor() {
 		return "Tutor - " + this.matriculaTutor + ", disciplina - " + this.disciplina;
+	}
+	
+	/**
+	 * Metodo que retorna a String do tutor referente a ajuda
+	 * @return String que representa a matricula do tutor responsavel
+	 */
+	public String getMatriculaTutor() {
+		this.foiAvalida = true;
+		return this.matriculaTutor;
+	}
+	
+	/**
+	 * Metodo que retorna se a ajuda ja foi avaliada (true) ou nao (false)
+	 * @return Boolean que representa o estado da ajuda em relacao a avaliacao
+	 */
+	public boolean getFoiAvaliada() {
+		return this.foiAvalida;
 	}
 	
 	/**
