@@ -80,8 +80,8 @@ public class GeneralController {
 
 	public void doar(int doacao, String matriculaTutor) {
 		val.validaNumeroMenorIgualZero(doacao, "Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
-		int valor = this.caixa.doar(doacao,
-				tutorController.getTutor(matriculaTutor, "Erro na doacao para tutor: Tutor nao encontrado").getNota());
+		int valor = this.caixa.doar(doacao, tutorController
+				.getTutor(matriculaTutor, "Erro na doacao para tutor: Tutor nao encontrado").getTipo().getNotaTutor());
 		this.tutorController.getTutor(matriculaTutor, "Erro na busca por tutor: Tutor nao encontrado").getTipo()
 				.adicionarDinheiro(valor);
 	}
