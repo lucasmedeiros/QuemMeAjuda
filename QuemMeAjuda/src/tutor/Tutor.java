@@ -133,7 +133,8 @@ public class Tutor {
 	public void calcularNota(int nota) {
 		this.val.validaNumeroNaoNulo(nota, "Erro na avaliacao de tutor: nota nao pode ser menor que 0");
 		this.val.validaNumeroMaiorQueCinco(nota, "Erro na avaliacao de tutor: nota nao pode ser maior que 5");
-		this.notaTutor = (this.notaTutor * 5 + nota) / 6;
+		double pontuacaoFinal = (this.notaTutor*5 + nota) / 6;
+		this.notaTutor = pontuacaoFinal;
 	}
 
 	/**

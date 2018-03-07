@@ -48,9 +48,11 @@ public class Caixa {
 	 * @since Parte 2
 	 */
 	public int doar(int doacao, double pontuacao) {
-		int taxaSistema = (int) Math.floor((1 - calcularPorcentagemTutor(pontuacao)) * doacao);
+		double porcentagemTutor = calcularPorcentagemTutor(pontuacao);
+		int taxaSistema = (int) Math.floor((1 - porcentagemTutor) * doacao);
 		this.caixa += taxaSistema;
-		return (int) Math.floor((calcularPorcentagemTutor(pontuacao) * doacao) - taxaSistema);
+		doacao -= taxaSistema;
+		return (int) Math.floor(doacao);
 	}
 
 	/**

@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import aluno.Aluno;
 import general.Validator;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -49,8 +48,7 @@ public class TutorController {
 	}
 
 	/**
-	 * Metodo privado que verifica, a partiri do email, se o tutor esta
-	 * cadastrado
+	 * Metodo privado que verifica, a partiri do email, se o tutor esta cadastrado
 	 * 
 	 * @param email
 	 *            Email do Tutor
@@ -77,7 +75,7 @@ public class TutorController {
 	 */
 	public String recuperaTutor(String matricula) {
 		val.validaString(matricula, "Matricula nao pode ser vazia ou nula.");
-		return this.getTutor(matricula).toString();
+		return this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").toString();
 	}
 
 	/**
@@ -110,35 +108,16 @@ public class TutorController {
 	 * @return retorna o aluno relacionado a matricula
 	 * @since Parte 1
 	 */
-	public Aluno getTutor(String matricula) {
+	public Aluno getTutor(String matricula, String msgErro) {
 		for (Aluno aluno : this.tutores.values()) {
 			if (aluno.getMatricula().equals(matricula)) {
 				return aluno;
 			}
 		}
 
-		throw new NoSuchElementException("Erro na busca por tutor: Tutor nao encontrado");
+		throw new NoSuchElementException(msgErro);
 	}
-	
-	/**
-	 * 
-	 * @param matricula
-	 *            A matricula do tutor em questao.
-	 * @return retorna o aluno relacionado a matricula
-	 * @since Parte 2
-	 */
-	public Aluno getTutorDoacao(String matricula) {
-		for (Aluno aluno : this.tutores.values()) {
-			if (aluno.getMatricula().equals(matricula)) {
-				return aluno;
-			}
-		}
 
-		throw new NoSuchElementException("Erro na doacao para tutor: Tutor nao encontrado");
-	}
-	
-	
-	
 	/**
 	 * Metodo responsavel por retornar uma lista de todos os tutores.
 	 * 
@@ -275,45 +254,49 @@ public class TutorController {
 		val.validaObjetoNulo(aluno, "ERRO");
 		return aluno.getMatricula();
 	}
-	
+
 	/**
 	 * Metodo que recupera o nivel atual do tutor de matricula desejada.
 	 * 
 	 * @param matricula
 	 *            matricula do tutor desejado.
-	 *            
+	 * 
 	 * @return matricula do tutor selecionado para a ajuda.
 	 * @since Parte 2
 	 */
 	public String pegarNivelTutor(String matricula) {
-		return this.getTutor(matricula).getTipo().getNivel();
+		return this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").getTipo().getNivel();
 	}
-	
+
 	/**
 	 * Metodo que recupera a nota atual do tutor desejado.
 	 * 
 	 * @param matricula
 	 *            matricula do tutor desejado.
-	 *            
+	 * 
 	 * @return matricula do tutor selecionado para a ajuda.
 	 * @since Parte 2
 	 */
 	public String pegarNota(String matricula) {
-		return converteNota(this.getTutor(matricula).getTipo().getNotaTutor());
+		return converteNota(
+				this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").getTipo().getNotaTutor());
 	}
-	
+
 	/**
-	 * Metodo que arredonda um double para baixo caso seja <=5 (o valor de desempate) e para cima, caso seja > 5
-	 * @param nota Representa a nota a ser arredondada
+	 * Metodo que arredonda um double para baixo caso seja <=5 (o valor de
+	 * desempate) e para cima, caso seja > 5
+	 * 
+	 * @param nota
+	 *            Representa a nota a ser arredondada
 	 * @return retorna uma String que representa a nota no novo formato
 	 */
 	private String converteNota(double nota) {
 		int valorInteiro = (int) (nota);
-		int valorDecimal = (int) ((nota - valorInteiro)*100);
+		int valorDecimal = (int) ((nota - valorInteiro) * 100);
 		int valorQuebrado = 0;
-		if ((nota - valorInteiro)*100 - valorDecimal <= 0.5) {
+		if ((nota - valorInteiro) * 100 - valorDecimal <= 0.5) {
 			valorQuebrado = (int) Math.floor((nota - valorInteiro) * 100);
-		}else {
+		} else {
 			valorQuebrado = (int) Math.ceil((nota - valorInteiro) * 100);
 		}
 		if (valorQuebrado < 10) {
@@ -322,7 +305,7 @@ public class TutorController {
 			return (int) valorInteiro + "," + valorQuebrado;
 		}
 	}
-	
+
 	/**
 	 * Metodo que atribui ao tutor de matricula especificada, a nota determinada.
 	 * 
@@ -333,9 +316,9 @@ public class TutorController {
 	 * @since Parte 2
 	 */
 	public void avaliar(String matricula, int nota) {
-		this.getTutor(matricula).getTipo().calcularNota(nota);
+		this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").getTipo().calcularNota(nota);
 	}
-	
+
 	/**
 	 * Metodo que verifica qual tutor esta disponivel para ajudar em determinada
 	 * disciplina, em um horario, dia e local especificado.
@@ -345,9 +328,9 @@ public class TutorController {
 	 * @param horario
 	 *            horario requerido.
 	 * @param dia
-	 * 			  dia requisitado.
+	 *            dia requisitado.
 	 * @param local
-	 * 			  local de interesse para a ajuda.
+	 *            local de interesse para a ajuda.
 	 * @return matricula do tutor selecionado para a ajuda.
 	 * @since Parte 2
 	 */
@@ -362,18 +345,19 @@ public class TutorController {
 				if (nota > maiorNota && tutor.temDisponibilidade(dia, horario, local)) {
 					aluno = a;
 					maiorNota = nota;
-				}	
+				}
 			}
 		}
 
 		val.validaObjetoNulo(aluno, "ERRO");
 		return aluno.getMatricula();
 	}
-	
+
 	public int getDinheiro(String email) {
-		val.validaString(email, "Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");
+		val.validaString(email,
+				"Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");
 		this.verificaTutor(email, "Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
-	 	return this.tutores.get(email).getTipo().getDinheiro();
+		return this.tutores.get(email).getTipo().getDinheiro();
 	}
 
 }
