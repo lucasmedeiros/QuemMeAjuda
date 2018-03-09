@@ -2,7 +2,10 @@ package aluno;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import general.Validator;
 
 /**
@@ -19,7 +22,7 @@ import general.Validator;
  */
 public class AlunoController {
 
-	private List<Aluno> alunos;
+	private Map<String, Aluno> alunos;
 	private Validator val;
 
 	/**
@@ -27,7 +30,7 @@ public class AlunoController {
 	 * @since Parte 1
 	 */
 	public AlunoController() {
-		alunos = new ArrayList<Aluno>();
+		alunos = new HashMap<String, Aluno>();
 		val = new Validator();
 	}
 
@@ -52,8 +55,8 @@ public class AlunoController {
 
 		Aluno a = new Aluno(nome, matricula, email, idCurso, telefone);
 
-		if (alunoExiste(matricula) == null)
-			alunos.add(a);
+		if (!alunos.containsKey(matricula))
+			alunos.put(matricula, a);
 		else
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 
@@ -69,11 +72,10 @@ public class AlunoController {
 	 */
 	public String recuperarAluno(String matricula) {
 		val.validaString(matricula, "Erro na consulta de aluno: matricula nao pode estar vazia ou em branco");
-		Aluno a = alunoExiste(matricula);
 
-		val.validaObjetoNulo(a, "Erro na busca por aluno: Aluno nao encontrado");
+		val.validaObjetoNulo(alunos.get(matricula), "Erro na busca por aluno: Aluno nao encontrado");
 
-		return a.toString();
+		return alunos.get(matricula).toString();
 	}
 
 	/**
@@ -93,18 +95,19 @@ public class AlunoController {
 	public Aluno disponivelParaTutor(String matricula) {
 		val.validaString(matricula, "Erro na definicao de papel: matricula nao pode estar vazia ou em branco");
 
-		Aluno a = alunoExiste(matricula);
-		val.validaObjetoNulo(a, "Erro na definicao de papel: Tutor nao encontrado");
+		val.validaObjetoNulo(alunos.get(matricula), "Erro na definicao de papel: Tutor nao encontrado");
 
-		return a;
+		return alunos.get(matricula);
 	}
 
+	
 	/**
 	 * Método para listar todos os alunos cadastrados.
 	 *
 	 * @return representaçao em string dos alunos cadastrados no sistema.
 	 * @since Parte 1
 	 */
+	/**
 	public String listarAlunos() {
 		String alns = "";
 
@@ -131,28 +134,10 @@ public class AlunoController {
 		val.validaString(atributo, "Erro ao consultar por atributo: atributo nao pode ser vazio ou em branco");
 		val.validaString(matricula, "Erro ao consultar por atributo: matricula nao pode ser vazia ou em branco");
 
-		Aluno a = alunoExiste(matricula);
-		val.validaObjetoNulo(a, "Erro na obtencao de informacao de aluno: Aluno nao encontrado");
+		val.validaObjetoNulo(alunos.get(matricula), "Erro na obtencao de informacao de aluno: Aluno nao encontrado");
 
-		return a.getInfo(atributo);
+		return alunos.get(matricula).getInfo(atributo);
 	}
 
-	/**
-	 * Método para verificar se um aluno esta cadastrado no sistema.
-	 * 
-	 * @param matricula
-	 *            matricula do aluno.
-	 * @param msg
-	 *            mensagem de erro.
-	 * @return representaçao em string do aluno, se ele existir no sistema.
-	 * @since Parte 1
-	 */
-	public Aluno alunoExiste(String matricula) {
-		for (Aluno a : alunos) {
-			if (a.getMatricula().equals(matricula))
-				return a;
-		}
-		return null;
-	}
 
 }

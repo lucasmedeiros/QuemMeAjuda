@@ -31,11 +31,11 @@ public class SistemaFacade {
 	public String recuperaAluno(String matricula) {
 		return this.generalController.recuperarAluno(matricula);
 	}
-
+    /**
 	public String listarAlunos() {
 		return this.generalController.listarAlunos();
 	}
-
+     **/
 	public String getInfoAluno(String matricula, String atributo) {
 		return this.generalController.getInfoAluno(matricula, atributo);
 	}

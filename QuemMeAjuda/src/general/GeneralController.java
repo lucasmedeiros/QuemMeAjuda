@@ -23,6 +23,7 @@ public class GeneralController {
 	private AjudaController ajudaController;
 	private Validator val;
 
+
 	private Caixa caixa;
 
 	public GeneralController() {
@@ -41,9 +42,11 @@ public class GeneralController {
 		return this.alunoController.recuperarAluno(matricula);
 	}
 
+	/**
 	public String listarAlunos() {
 		return this.alunoController.listarAlunos();
 	}
+	**/
 
 	public String getInfoAluno(String matricula, String atributo) {
 		return this.alunoController.getInfoAluno(matricula, atributo);
