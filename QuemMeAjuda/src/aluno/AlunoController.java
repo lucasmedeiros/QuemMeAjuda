@@ -2,11 +2,13 @@ package aluno;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import general.Validator;
+import ordenacao.Ordenador;
 
 /**
  * Representação da classe que controla a entidade Aluno.
@@ -107,18 +109,20 @@ public class AlunoController {
 	 * @return representaçao em string dos alunos cadastrados no sistema.
 	 * @since Parte 1
 	 */
-	/**
-	public String listarAlunos() {
+	
+	public String listarAlunos(Ordenador c1) {
 		String alns = "";
+		
+		List<Aluno> alunosOrdenados = new ArrayList<>(alunos.values());
+		
+		Collections.sort(alunosOrdenados ,c1);
 
-		Collections.sort(alunos);
-
-		for (int i = 0; i < this.alunos.size() - 1; i++) {
-			alns += this.alunos.get(i).toString() + ", ";
+		for (int i = 0; i < alunosOrdenados.size() - 1; i++) {
+			alns += alunosOrdenados.get(i).toString() + ", ";
 
 		}
 
-		alns += this.alunos.get(this.alunos.size() - 1).toString();
+		alns += alunosOrdenados.get(alunosOrdenados.size() - 1).toString();
 
 		return alns;
 	}

@@ -26,7 +26,6 @@ public class Aluno implements Comparable<Aluno> {
 	private int cursoId;
 	private int nota;
 	private Tutor tutor;
-
 	private Validator val;
 
 	/**
@@ -228,7 +227,7 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	@Override
 	public int compareTo(Aluno o) {
-		return this.nome.compareTo(o.nome);
+		return Integer.parseInt(this.matricula)- Integer.parseInt(o.matricula);
 	}
 
 	/**

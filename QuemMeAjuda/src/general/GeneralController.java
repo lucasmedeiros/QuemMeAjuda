@@ -3,6 +3,10 @@ package general;
 import ajuda.AjudaController;
 import aluno.Aluno;
 import aluno.AlunoController;
+import ordenacao.Ordenador;
+import ordenacao.OrdenarEmail;
+import ordenacao.OrdenarMatricula;
+import ordenacao.OrdenarNome;
 import tutor.TutorController;
 
 /**
@@ -22,6 +26,7 @@ public class GeneralController {
 	private TutorController tutorController;
 	private AjudaController ajudaController;
 	private Validator val;
+	private Ordenador ordem;
 
 	private Caixa caixa;
 
@@ -31,6 +36,7 @@ public class GeneralController {
 		this.ajudaController = new AjudaController();
 		this.val = new Validator();
 		this.caixa = new Caixa();
+		this.ordem = new OrdenarNome();
 	}
 
 	public void cadastrarAluno(String nome, String matricula, int idCurso, String telefone, String email) {
@@ -40,10 +46,23 @@ public class GeneralController {
 	public String recuperarAluno(String matricula) {
 		return this.alunoController.recuperarAluno(matricula);
 	}
+	
+	public void configurarOrdem(String atributo) {
+		switch (atributo){
+			case "NOME":
+				this.ordem = new OrdenarNome();
+			case "EMAIL":
+				this.ordem = new OrdenarEmail();
+			case "MATRICULA":
+				this.ordem = new OrdenarMatricula();	
+			default:
+				throw new IllegalArgumentException("Ordenacao invalida");
+		}	
+	}
 
-	/**
-	 * public String listarAlunos() { return this.alunoController.listarAlunos(); }
-	 **/
+	public String listarAlunos() { 
+		return this.alunoController.listarAlunos(ordem); }
+	 
 
 	public String getInfoAluno(String matricula, String atributo) {
 		return this.alunoController.getInfoAluno(matricula, atributo);
@@ -59,7 +78,7 @@ public class GeneralController {
 	}
 
 	public String listarTutores() {
-		return this.tutorController.listarTutores();
+		return this.tutorController.listarTutores(ordem);
 	}
 
 	public void cadastrarHorario(String email, String horario, String dia) {

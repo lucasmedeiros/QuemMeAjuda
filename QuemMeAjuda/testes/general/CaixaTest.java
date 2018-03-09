@@ -10,19 +10,19 @@ public class CaixaTest {
 	@Test
 	public void testTotalDinheiroSistema() {
 		c1.doar(1000, 4.6);
-		assertTrue(c1.TotalDinheiroSistema() == 90);
+		assertTrue(c1.TotalDinheiroSistema() == 91);
 	}
 
 	@Test
 	public void testDoarTutor() {
 		c1.doar(1000, 3.5);
-		assertTrue(c1.TotalDinheiroSistema() == 199);
+		assertTrue(c1.TotalDinheiroSistema() == 200);
 	}
 	
 	@Test
 	public void testDoarTop() {
 		c1.doar(1000, 4.7);
-		assertTrue(c1.TotalDinheiroSistema() == 80);
+		assertTrue(c1.TotalDinheiroSistema() == 81);
 	}
 	
 	@Test
@@ -31,10 +31,5 @@ public class CaixaTest {
 		assertTrue(c1.TotalDinheiroSistema() == 660);
 	}
 	
-	@Test
-	public void DoarEasyTest() {
-		c1.doar(500, 4.52);
-		System.out.println(c1.TotalDinheiroSistema());
-	}
 
 }

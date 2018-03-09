@@ -54,7 +54,7 @@ public class AjudaOnlineTest {
 	@Test
 	public void matriculaCorreta() {
 		String mensagem = "Esperando que as matriculas sejam iguais";
-		assertEquals(mensagem, "11111", this.ajuda.getTutor());
+		assertEquals(mensagem, "11111", this.ajuda.getMatriculaTutor());
 	}
 
 }

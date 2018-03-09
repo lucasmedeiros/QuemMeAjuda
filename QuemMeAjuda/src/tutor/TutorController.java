@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import aluno.Aluno;
 import general.Validator;
+import ordenacao.Ordenador;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -124,13 +125,14 @@ public class TutorController {
 	 * @return tutores Uma lista com todos os Tutores registrados.
 	 * @since Parte 1
 	 */
-	public String listarTutores() {
+	public String listarTutores(Ordenador ordenador) {
 		String listaTutores = "";
 
 		List<Aluno> tutoresOrdenados = new ArrayList<>(tutores.values());
+  
+		Collections.sort(tutoresOrdenados,ordenador);
 
-		Collections.sort(tutoresOrdenados);
-
+		
 		for (int i = 0; i < tutoresOrdenados.size() - 1; i++) {
 			listaTutores += tutoresOrdenados.get(i).toString() + ", ";
 

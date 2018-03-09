@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import aluno.Aluno;
+import ordenacao.Ordenador;
+import ordenacao.OrdenarNome;
 import tutor.TutorController;
 
 public class TutorControllerTest {
@@ -27,8 +29,9 @@ public class TutorControllerTest {
 
 	@Test
 	public void listaAlunoTest() {
+		Ordenador ord = new OrdenarNome();
 		String esperado = "117110637 - joao - 270 - 999491615 - joao@silva, 117110640 - mikael - 271 - 99872450 - mikael@amaral";
-		assertEquals(this.tutorController.listarTutores(), esperado);
+		assertEquals(this.tutorController.listarTutores(ord), esperado);
 	}
 
 	// Testes de retornar aluno

@@ -128,7 +128,7 @@ public class AlunoTest {
 
 	@Test
 	public void compareToTest() {
-		assertTrue(al1.compareTo(al3) < 0);
+		assertTrue(al1.compareTo(al2) < 0);
 		assertTrue(al2.compareTo(al3) > 0);
 	}
 

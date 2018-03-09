@@ -52,7 +52,7 @@ public class TutorTest {
 	@Test
 	public void notaCorreta() {
 		String mensagem = "Esperando que a nota padrao esteja correta";
-		assertEquals(mensagem, 4, this.tutor.getNotaTutor());
+		assertTrue(mensagem, 4 == this.tutor.getNotaTutor());
 	}
 
 	@Test
