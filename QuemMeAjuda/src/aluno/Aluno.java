@@ -10,12 +10,10 @@ import tutor.Tutor;
  * aluno, tornar o aluno tutor, alem de varios gets para a maioria dos atributos
  *
  * @authors
- * <ol>
- * <i> Diego Gama </i> 
- * <i> Jessé Souza </i> 
- * <i> Lucas Medeiros </i> 
- * <i> Mikael Amaral </i>
- * </ol>
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
  * @since Parte 1
  */
 
@@ -72,7 +70,8 @@ public class Aluno implements Comparable<Aluno> {
 		val.validaString(matricula, "Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
 		val.validaString(email, "Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
 		val.validaEmail(email, "Erro no cadastro de aluno: Email invalido");
-		val.validaNumeroMenorIgualZero(idCurso, "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+		val.validaNumeroEmIntervalo(idCurso, 1, Integer.MAX_VALUE, "",
+				"Erro no cadastro de aluno: Curso invalido");
 
 		if (telefone == null)
 			throw new NullPointerException("Erro no cadastro de Aluno");
@@ -224,6 +223,7 @@ public class Aluno implements Comparable<Aluno> {
 
 	/**
 	 * Metodo para comparar dois alunos a partir do nome.
+	 * 
 	 * @since Parte 1
 	 */
 	@Override

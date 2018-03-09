@@ -28,33 +28,22 @@ public class Validator {
 		if (str.trim().isEmpty())
 			throw new IllegalArgumentException(msg);
 	}
-
-	/**
-	 * Método que valida um número menor ou igual a zero.
-	 *
-	 * @param num
-	 *            número a ser validado.
-	 * @param msg
-	 *            mensagem a ser exibida caso nao passe na validação.
-	 * @since Parte 1
-	 */
-	public void validaNumeroMenorIgualZero(int num, String msg) {
-		if (num <= 0)
-			throw new IllegalArgumentException(msg);
-	}
 	
 	/**
-	 * Método que valida um numero maior que cinco.
-	 *
-	 * @param num
-	 *            número a ser validado.
-	 * @param msg
-	 *            mensagem a ser exibida caso nao passe na validação.
-	 * @since Parte 2
+	 * Metodo que valida um numero, que precisa estar em determinado intervalo.
+	 * 
+	 * @param num numero a ser validado.
+	 * @param inicioIntervalo inicio do intervalo
+	 * @param finalIntervalo final do intervalo
+	 * @param msgMaior mensagem a ser exibida caso o numero esteja acima do intervalo
+	 * @param msgMenor mensagem a ser exibida caso o numero esteja abaixo do intervalo
 	 */
-	public void validaNumeroMaiorQueCinco(int num, String msg) {
-		if (num > 5)
-			throw new IllegalArgumentException(msg);
+	public void validaNumeroEmIntervalo(int num, int inicioIntervalo, int finalIntervalo, String msgMaior, String msgMenor) {
+		if (num < inicioIntervalo)
+			throw new IllegalArgumentException(msgMenor);
+		
+		if (num > finalIntervalo)
+			throw new IllegalArgumentException(msgMaior);
 	}
 
 	/**
@@ -97,20 +86,5 @@ public class Validator {
 	public void validaEmail(String email, String msg) {
 		if (email.indexOf("@") == -1 || email.charAt(0) == '@' || email.charAt(email.length() - 1) == '@')
 			throw new IllegalArgumentException(msg);
-	}
-	
-	/**
-	 * Metodo responsavel por validar um numero nao nulo.
-	 * 
-	 * @param numero
-	 *            O numero que sera analisado.
-	 * @param msg
-	 *            A mensagem que vai ser lancada se um erro for detectado.
-	 * @since Parte 2
-	 */
-	public void validaNumeroNaoNulo(int numero, String msg) {
-		if(numero < 0) {
-			throw new IllegalArgumentException(msg);
-		}
 	}
 }

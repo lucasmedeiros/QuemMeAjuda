@@ -23,7 +23,6 @@ public class GeneralController {
 	private AjudaController ajudaController;
 	private Validator val;
 
-
 	private Caixa caixa;
 
 	public GeneralController() {
@@ -43,10 +42,8 @@ public class GeneralController {
 	}
 
 	/**
-	public String listarAlunos() {
-		return this.alunoController.listarAlunos();
-	}
-	**/
+	 * public String listarAlunos() { return this.alunoController.listarAlunos(); }
+	 **/
 
 	public String getInfoAluno(String matricula, String atributo) {
 		return this.alunoController.getInfoAluno(matricula, atributo);
@@ -82,7 +79,8 @@ public class GeneralController {
 	}
 
 	public void doar(int doacao, String matriculaTutor) {
-		val.validaNumeroMenorIgualZero(doacao, "Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
+		val.validaNumeroEmIntervalo(doacao, 0, Integer.MAX_VALUE, "",
+				"Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
 		int valor = this.caixa.doar(doacao, tutorController
 				.getTutor(matriculaTutor, "Erro na doacao para tutor: Tutor nao encontrado").getTipo().getNotaTutor());
 		this.tutorController.getTutor(matriculaTutor, "Erro na busca por tutor: Tutor nao encontrado").getTipo()
@@ -126,8 +124,9 @@ public class GeneralController {
 	}
 
 	public void avaliarTutor(int idAjuda, int nota) {
-		val.validaNumeroMaiorQueCinco(nota, "Erro na avaliacao de tutor: nota nao pode ser maior que 5");
-		val.validaNumeroNaoNulo(nota, "Erro na avaliacao de tutor: nota nao pode ser menor que 0");
+		val.validaNumeroEmIntervalo(nota, 0, 5, "Erro na avaliacao de tutor: nota nao pode ser maior que 5",
+				"Erro na avaliacao de tutor: nota nao pode ser menor que 0");
+
 		String matriculaTutor = this.ajudaController.pegarTutor(idAjuda);
 		this.tutorController.avaliar(matriculaTutor, nota);
 	}

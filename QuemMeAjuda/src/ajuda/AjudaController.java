@@ -132,7 +132,6 @@ public class AjudaController {
 		}
 		return ajuda.getMatriculaTutor();
 	}
-	
 
 	/**
 	 * Metodo que verifica se uma ajuda esta cadastrada.
@@ -145,7 +144,8 @@ public class AjudaController {
 	 * @since Parte 2
 	 */
 	private Ajudavel ajudaCadastrada(int idAjuda, String msg) {
-		val.validaNumeroMenorIgualZero(idAjuda, msg + ": id nao pode menor que zero ");
+		val.validaNumeroEmIntervalo(idAjuda, 1, Integer.MAX_VALUE, "",
+				msg + ": id nao pode menor que zero ");
 
 		for (Ajudavel a : ajudas) {
 			if (a.getId() == idAjuda)
