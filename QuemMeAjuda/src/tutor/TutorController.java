@@ -355,6 +355,11 @@ public class TutorController {
 		return aluno.getMatricula();
 	}
 
+	/**
+	 * Metodo que retorna o dinheiro do tutor
+	 * @param email Atributo que representa o email do tutor
+	 * @return Retorna um inteiro que representa o dinheiro do tutor
+	 */
 	public int getDinheiro(String email) {
 		val.validaString(email,
 				"Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");

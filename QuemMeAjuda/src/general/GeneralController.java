@@ -4,9 +4,9 @@ import ajuda.AjudaController;
 import aluno.Aluno;
 import aluno.AlunoController;
 import ordenacao.Ordenador;
-import ordenacao.OrdenarEmail;
-import ordenacao.OrdenarMatricula;
-import ordenacao.OrdenarNome;
+import ordenacao.OrdenaEmail;
+import ordenacao.OrdenaMatricula;
+import ordenacao.OrdenaNome;
 import tutor.TutorController;
 
 /**
@@ -36,7 +36,7 @@ public class GeneralController {
 		this.ajudaController = new AjudaController();
 		this.val = new Validator();
 		this.caixa = new Caixa();
-		this.ordem = new OrdenarNome();
+		this.ordem = new OrdenaNome();
 	}
 
 	public void cadastrarAluno(String nome, String matricula, int idCurso, String telefone, String email) {
@@ -50,11 +50,11 @@ public class GeneralController {
 	public void configurarOrdem(String atributo) {
 		switch (atributo){
 			case "NOME":
-				this.ordem = new OrdenarNome();
+				this.ordem = new OrdenaNome();
 			case "EMAIL":
-				this.ordem = new OrdenarEmail();
+				this.ordem = new OrdenaEmail();
 			case "MATRICULA":
-				this.ordem = new OrdenarMatricula();	
+				this.ordem = new OrdenaMatricula();	
 			default:
 				throw new IllegalArgumentException("Ordenacao invalida");
 		}	
