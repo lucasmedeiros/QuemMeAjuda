@@ -1,5 +1,11 @@
 package ajuda;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,7 +121,7 @@ public class AjudaController {
 
 		return ajuda.getTutor();
 	}
-	
+
 	/**
 	 * Metodo para pegar o tutor requisitado na ajuda.
 	 * 
@@ -133,6 +139,40 @@ public class AjudaController {
 		return ajuda.getMatriculaTutor();
 	}
 
+	public void salvar() {
+		File file = new File("ajudas.txt");
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = new FileOutputStream(file, true);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(ajudas);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+
+	public void carregar() {
+		File file = new File("ajudas.txt");
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Ajudavel> ajudasLidas = (List<Ajudavel>) ois.readObject();
+			for (Ajudavel a: ajudasLidas) {
+				ajudas.add(a);
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void limpar() {
+		// TODO
+	}
+
 	/**
 	 * Metodo que verifica se uma ajuda esta cadastrada.
 	 * 
@@ -144,8 +184,7 @@ public class AjudaController {
 	 * @since Parte 2
 	 */
 	private Ajudavel ajudaCadastrada(int idAjuda, String msg) {
-		val.validaNumeroEmIntervalo(idAjuda, 1, Integer.MAX_VALUE, "",
-				msg + ": id nao pode menor que zero ");
+		val.validaNumeroEmIntervalo(idAjuda, 1, Integer.MAX_VALUE, "", msg + ": id nao pode menor que zero ");
 
 		for (Ajudavel a : ajudas) {
 			if (a.getId() == idAjuda)

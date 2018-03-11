@@ -1,5 +1,7 @@
 package ajuda;
 
+import java.io.Serializable;
+
 import general.Validator;
 
 /**
@@ -13,8 +15,8 @@ import general.Validator;
  * @since Parte 2
  */
 
-public abstract class Ajuda implements Ajudavel {
-	
+public abstract class Ajuda implements Ajudavel, Serializable {
+
 	/**
 	 * Representa id da ajuda.
 	 */
