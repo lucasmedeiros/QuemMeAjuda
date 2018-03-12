@@ -7,6 +7,14 @@ import aluno.Aluno;
 import general.Validator;
 import ordenacao.Ordenador;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -365,6 +373,61 @@ public class TutorController {
 				"Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");
 		this.verificaTutor(email, "Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
 		return this.tutores.get(email).getTipo().getDinheiro();
+	}
+	
+	/**
+	 * Metodo de persistencia que grava os atuais tutores registrados no sistema, em
+	 * um arquivo de texto.
+	 * @throws IOException caso haja algum problema na leitura, ou o arquivo nao for encontrado.
+	 * @since Parte 3
+	 */
+	public void salvar() {
+		File arquivo = new File("tutores.txt");
+		ObjectOutputStream escritor = null;
+		try {
+			escritor = new ObjectOutputStream(new FileOutputStream(arquivo));
+			escritor.writeObject(this.tutores.values());
+			escritor.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo de persistencia que recupera para o sistema os dados de tutores previamente gravados.
+	 * @throws IOException caso haja algum problema na leitura, ou o arquivo nao for encontrado.
+	 * @since Parte 3
+	 */
+	public void carregar() {
+		File arquivo = new File("tutores.txt");
+		ObjectInputStream leitor = null;
+		try {
+			leitor = new ObjectInputStream(new FileInputStream(arquivo));
+			@SuppressWarnings("unchecked")
+			List<Aluno> tutoresLidos = (List<Aluno>) leitor.readObject();
+			for (Aluno tutor : tutoresLidos) {
+				this.tutores.put(tutor.getEmail(), tutor);
+			}
+			leitor.close();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo que limpa todos os dados de tutores gravados previamente.
+	 * @throws FileNotFoundException caso o arquivo a ser limpo nao seja encontrado.
+	 * @since Parte 3
+	 */
+	public void limpar() {
+		File arquivo = new File("tutores.txt");
+		try {
+			PrintWriter escritor = new PrintWriter(arquivo);
+			escritor.print("");
+			escritor.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

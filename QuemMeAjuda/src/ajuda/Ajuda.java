@@ -18,6 +18,11 @@ import general.Validator;
 public abstract class Ajuda implements Ajudavel, Serializable {
 
 	/**
+	 * Id para serguranca de serializacao e desserializacao
+	 */
+	private static final long serialVersionUID = -3258558515518936564L;
+
+	/**
 	 * Representa id da ajuda.
 	 */
 	protected int id;

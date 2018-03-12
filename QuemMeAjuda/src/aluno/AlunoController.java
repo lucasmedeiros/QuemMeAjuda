@@ -1,8 +1,15 @@
 package aluno;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +21,10 @@ import ordenacao.Ordenador;
  * Representação da classe que controla a entidade Aluno.
  *
  * @authors
- * <ol>
- * <i> Diego Gama </i> 
- * <i> Jessé Souza </i> 
- * <i> Lucas Medeiros </i> 
- * <i> Mikael Amaral </i>
- * </ol>
+ *          <ol>
+ *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
+ *          Mikael Amaral </i>
+ *          </ol>
  * @since Parte 1
  */
 public class AlunoController {
@@ -29,6 +34,7 @@ public class AlunoController {
 
 	/**
 	 * Construtor do Controller de Aluno.
+	 * 
 	 * @since Parte 1
 	 */
 	public AlunoController() {
@@ -102,20 +108,19 @@ public class AlunoController {
 		return alunos.get(matricula);
 	}
 
-	
 	/**
 	 * Método para listar todos os alunos cadastrados.
 	 *
 	 * @return representaçao em string dos alunos cadastrados no sistema.
 	 * @since Parte 1
 	 */
-	
+
 	public String listarAlunos(Ordenador c1) {
 		String alns = "";
-		
+
 		List<Aluno> alunosOrdenados = new ArrayList<>(alunos.values());
-		
-		Collections.sort(alunosOrdenados ,c1);
+
+		Collections.sort(alunosOrdenados, c1);
 
 		for (int i = 0; i < alunosOrdenados.size() - 1; i++) {
 			alns += alunosOrdenados.get(i).toString() + ", ";
@@ -129,8 +134,11 @@ public class AlunoController {
 
 	/**
 	 * Metodo que retorna uma informacao especifica do aluno
-	 * @param matricula Representa a matricula do aluno
-	 * @param atributo Representa o nome do atributo a ser retornado
+	 * 
+	 * @param matricula
+	 *            Representa a matricula do aluno
+	 * @param atributo
+	 *            Representa o nome do atributo a ser retornado
 	 * @return Retorna o atributo especifico
 	 * @since Parte 1
 	 */
@@ -143,5 +151,59 @@ public class AlunoController {
 		return alunos.get(matricula).getInfo(atributo);
 	}
 
+	/**
+	 * Metodo de persistencia que grava os atuais alunos registrados no sistema, em
+	 * um arquivo de texto.
+	 * @throws IOException caso haja algum problema na leitura, ou o arquivo nao for encontrado.
+	 * @since Parte 3
+	 */
+	public void salvar() {
+		File arquivo = new File("alunos.txt");
+		ObjectOutputStream escritor = null;
+		try {
+			escritor = new ObjectOutputStream(new FileOutputStream(arquivo));
+			escritor.writeObject(this.alunos.values());
+			escritor.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo de persistencia que recupera para o sistema os dados de alunos previamente gravados.
+	 * @throws IOException caso haja algum problema na leitura, ou o arquivo nao for encontrado.
+	 * @since Parte 3
+	 */
+	public void carregar() {
+		File arquivo = new File("alunos.txt");
+		ObjectInputStream leitor = null;
+		try {
+			leitor = new ObjectInputStream(new FileInputStream(arquivo));
+			@SuppressWarnings("unchecked")
+			List<Aluno> alunosLidos = (List<Aluno>) leitor.readObject();
+			for (Aluno aluno : alunosLidos) {
+				this.alunos.put(aluno.getMatricula(), aluno);
+			}
+			leitor.close();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo que limpa todos os dados de alunos gravados previamente.
+	 * @throws FileNotFoundException caso o arquivo a ser limpo nao seja encontrado.
+	 * @since Parte 3
+	 */
+	public void limpar() {
+		File arquivo = new File("alunos.txt");
+		try {
+			PrintWriter escritor = new PrintWriter(arquivo);
+			escritor.print("");
+			escritor.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

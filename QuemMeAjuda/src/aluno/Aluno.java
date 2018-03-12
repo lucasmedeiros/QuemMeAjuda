@@ -1,5 +1,7 @@
 package aluno;
 
+import java.io.Serializable;
+
 import general.Validator;
 import tutor.Tutor;
 
@@ -17,15 +19,51 @@ import tutor.Tutor;
  * @since Parte 1
  */
 
-public class Aluno implements Comparable<Aluno> {
+public class Aluno implements Comparable<Aluno>, Serializable {
 
+	/**
+	 * Id para serguranca de serializacao e desserializacao
+	 */
+	private static final long serialVersionUID = 4835656225145310381L;
+	
+	/**
+	 * Id para serguranca de serializacao e desserializacao
+	 */
 	private String nome;
+	
+	/**
+	 * Representa a matricula do aluno. Identificador unico.
+	 */
 	private String matricula;
+	
+	/**
+	 * Representa o email de um aluno.
+	 */
 	private String email;
+	
+	/**
+	 * Representa o telefone de um aluno. Atributo opcional.
+	 */
 	private String telefone;
+	
+	/**
+	 * Codigo que representa o curso do aluno.
+	 */
 	private int cursoId;
+	
+	/**
+	 * Representa a nota de avaliacao do aluno quanto as ajudas.
+	 */
 	private int nota;
+	
+	/**
+	 * Representa a tutoria de um aluno.
+	 */
 	private Tutor tutor;
+	
+	/**
+	 * Representa o objeto de validacao das informacoes do aluno.
+	 */
 	private Validator val;
 
 	/**

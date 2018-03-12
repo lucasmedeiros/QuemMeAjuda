@@ -146,7 +146,7 @@ public class AjudaController {
 		try {
 			fos = new FileOutputStream(file, true);
 			oos = new ObjectOutputStream(fos);
-			oos.writeObject(ajudas);
+			oos.writeObject(this.ajudas);
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
@@ -162,7 +162,7 @@ public class AjudaController {
 			@SuppressWarnings("unchecked")
 			List<Ajudavel> ajudasLidas = (List<Ajudavel>) ois.readObject();
 			for (Ajudavel a: ajudasLidas) {
-				ajudas.add(a);
+				this.ajudas.add(a);
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
