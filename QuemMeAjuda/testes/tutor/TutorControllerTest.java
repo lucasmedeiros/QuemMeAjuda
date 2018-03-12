@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import aluno.Aluno;
 import ordenacao.Ordenador;
+import ordenacao.OrdenaEmail;
+import ordenacao.OrdenaMatricula;
 import ordenacao.OrdenaNome;
 import tutor.TutorController;
 
@@ -19,10 +21,12 @@ public class TutorControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		tutorController = new TutorController();
-		Aluno aluno = new Aluno("joao", "117110637", "joao@silva", 270, "999491615");
-		Aluno other = new Aluno("mikael", "117110640", "mikael@amaral", 271, "99872450");
-		this.tutorController.tornaTutor(aluno, "P2", 4);
-		this.tutorController.tornaTutor(other, "Calculo", 3);
+		Aluno a1 = new Aluno("joao", "117110637", "joao@silva", 270, "999491615");
+		Aluno a2 = new Aluno("mikael", "117110640", "mikael@amaral", 271, "99872450");
+		Aluno a3 = new Aluno("kleber", "119312312", "kleber@jorge", 272, "999491616");
+		this.tutorController.tornaTutor(a1, "P2", 4);
+		this.tutorController.tornaTutor(a2, "Calculo", 3);
+		this.tutorController.tornaTutor(a3, "Discreta", 5);
 	}
 
 	// Testes de Listar aluno.
@@ -30,7 +34,8 @@ public class TutorControllerTest {
 	@Test
 	public void listaAlunoTest() {
 		Ordenador ord = new OrdenaNome();
-		String esperado = "117110637 - joao - 270 - 999491615 - joao@silva, 117110640 - mikael - 271 - 99872450 - mikael@amaral";
+		String esperado = "117110637 - joao - 270 - 999491615 - joao@silva, 119312312 - kleber - 272 - 999491616 - kleber@jorge,"
+				+ " 117110640 - mikael - 271 - 99872450 - mikael@amaral";
 		assertEquals(this.tutorController.listarTutores(ord), esperado);
 	}
 
@@ -254,6 +259,35 @@ public class TutorControllerTest {
 	public void consultaLocalTestLocalNulo() {
 		tutorController.cadastraLocal("joao@silva", "UFCG");
 		tutorController.consultaLocal("joao@silva", null);
+	}
+	
+	@Test
+	public void listaTutoresOrdenadosEmailTest() {
+		assertEquals(tutorController.listarTutores(new OrdenaEmail()), "117110637 - joao - 270 - 999491615 - joao@silva, "
+				+ "119312312 - kleber - 272 - 999491616 - kleber@jorge, 117110640 - mikael - 271 - 99872450 - mikael@amaral");
+	}
+	
+	@Test
+	public void listaTutoresOrdenadosEmailIgualTest() {
+		Aluno a4 = new Aluno("kleber", "120312332", "kleber@jorge", 273, "999491717");
+		this.tutorController.tornaTutor(a4, "Final de discreta", 4);
+		assertEquals(tutorController.listarTutores(new OrdenaEmail()), "");
+		// Erro para ser ajeitado.
+	}
+	
+	@Test
+	public void listaTutoresOrdenadoNomeIgualTest() {
+		Aluno a4 = new Aluno("kleber", "120312332", "kleber@jorge", 273, "999491717");
+		this.tutorController.tornaTutor(a4, "Final de discreta", 4);
+		assertEquals(tutorController.listarTutores(new OrdenaNome()), "117110637 - joao - 270 - 999491615 - joao@silva, 119312312 - kleber - 272 - 999491616 - kleber@jorge,"
+				+ " 120312332 - kleber - 273 - 999491717 - kleber@jorge, 117110640 - mikael - 271 - 99872450 - mikael@amaral");
+		// Erro para ser ajeitado.
+	}
+	
+	@Test 
+	public void listaTutoresOrdenadoMatriculaTest() {
+		assertEquals(this.tutorController.listarTutores(new OrdenaMatricula()), "117110637 - joao - 270 - 999491615 - joao@silva,"
+				+ " 117110640 - mikael - 271 - 99872450 - mikael@amaral, 119312312 - kleber - 272 - 999491616 - kleber@jorge");
 	}
 
 }
