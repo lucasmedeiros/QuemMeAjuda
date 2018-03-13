@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import aluno.AlunoController;
+import ordenacao.OrdenaNome;
 
 public class AlunoControllerTest {
 
@@ -107,5 +108,30 @@ public class AlunoControllerTest {
         AlunoController controller = new AlunoController();
         controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
         controller.recuperarAluno("1009");
+    }
+    
+    public void salvarTest() {
+    	AlunoController controller = new AlunoController();
+        controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
+        String lista = controller.listarAlunos(new OrdenaNome());
+        controller.salvar();
+    	assertEquals(controller.listarAlunos(new OrdenaNome()), lista);
+    }
+    
+    public void carregarTest() {
+    	AlunoController controller = new AlunoController();
+        controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
+        controller.salvar();
+        String lista = controller.listarAlunos(new OrdenaNome());
+        controller.carregar();
+        assertEquals(controller.listarAlunos(new OrdenaNome()), lista);
+    }
+    
+    public void limparTest() {
+    	AlunoController controller = new AlunoController();
+        controller.cadastrarAluno("Lucas", "1010", "lucas@gmail.com", 1, "9999-9999");
+        controller.salvar();
+        controller.limpar();
+        
     }
 }

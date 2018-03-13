@@ -289,5 +289,30 @@ public class TutorControllerTest {
 		assertEquals(this.tutorController.listarTutores(new OrdenaMatricula()), "117110637 - joao - 270 - 999491615 - joao@silva,"
 				+ " 117110640 - mikael - 271 - 99872450 - mikael@amaral, 119312312 - kleber - 272 - 999491616 - kleber@jorge");
 	}
+	
+	@Test
+	public void salvarTest() {
+		this.tutorController.salvar();
+		assertEquals(this.tutorController.listarTutores(new OrdenaNome()), "117110637 - joao - 270 - 999491615 - joao@silva, 119312312 - kleber - 272 - 999491616 - kleber@jorge,"
+				+ " 117110640 - mikael - 271 - 99872450 - mikael@amaral");
+	}
+	
+	@Test
+	public void carregarTest() {
+		this.tutorController.salvar();
+		String lista = this.tutorController.listarTutores(new OrdenaMatricula());
+		this.tutorController.carregar();
+		assertEquals(this.tutorController.listarTutores(new OrdenaMatricula()), lista);
+		
+	}
+	
+	@Test 
+	public void limparTest() {
+		this.tutorController.salvar();
+		String lista = this.tutorController.listarTutores(new OrdenaMatricula());
+		this.tutorController.limpar();
+		this.tutorController.carregar();
+		assertFalse(this.tutorController.listarTutores(new OrdenaMatricula()).equals(lista));
+	}
 
 }

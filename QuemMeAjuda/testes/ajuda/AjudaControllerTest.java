@@ -202,4 +202,26 @@ public class AjudaControllerTest {
 		this.controllerAjuda.pedirAjudaOnline("35", "p2");
 		assertEquals("Tutor - 140, horario - 14:00, dia - Quarta, local - LCC3, disciplina - P2", this.controllerAjuda.pegarInfoTutor(1));
 	}
+	
+	@Test
+	public void salvarTest() {
+		this.controllerAjuda.salvar();
+	}
+	
+	@Test
+	public void carregarTest() {
+		AjudaController controle = new AjudaController();
+		controle.pedirAjudaOnline("35", "p2");
+		controle.salvar();
+		String disciplina = controle.getInfoAjuda("disciplina", 1);
+		controle.carregar();
+		assertEquals(controle.getInfoAjuda("disciplina", 1), disciplina);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void limparTest() {
+		this.controllerAjuda.salvar();
+		this.controllerAjuda.limpar();
+		this.controllerAjuda.getInfoAjuda("disciplina", 1);
+	}
 }
