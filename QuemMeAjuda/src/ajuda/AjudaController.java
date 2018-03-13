@@ -2,10 +2,12 @@ package ajuda;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class AjudaController {
 
 	private List<Ajudavel> ajudas;
 	private Validator val;
+	private File file;
 
 	/**
 	 * Construtor de AjudaController.
@@ -35,6 +38,7 @@ public class AjudaController {
 	public AjudaController() {
 		ajudas = new ArrayList<>();
 		val = new Validator();
+		file = new File("ajudas.txt");
 	}
 
 	/**
@@ -139,8 +143,11 @@ public class AjudaController {
 		return ajuda.getMatriculaTutor();
 	}
 
+	/**
+	 * Metodo para gravar dados em ajudas.txt, registrando os cadastros feitos para
+	 * uma proxima inicializaçao do sistema.
+	 */
 	public void salvar() {
-		File file = new File("ajudas.txt");
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 		try {
@@ -152,8 +159,10 @@ public class AjudaController {
 		}
 	}
 
+	/**
+	 * Metodo para carregar os dados de ajuda que ja foram cadastrados em ajuda.txt
+	 */
 	public void carregar() {
-		File file = new File("ajudas.txt");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -161,7 +170,7 @@ public class AjudaController {
 			ois = new ObjectInputStream(fis);
 			@SuppressWarnings("unchecked")
 			List<Ajudavel> ajudasLidas = (List<Ajudavel>) ois.readObject();
-			for (Ajudavel a: ajudasLidas) {
+			for (Ajudavel a : ajudasLidas) {
 				this.ajudas.add(a);
 			}
 		} catch (IOException | ClassNotFoundException e) {
@@ -169,8 +178,19 @@ public class AjudaController {
 		}
 	}
 
+	/**
+	 * Metodo para limpar os dados de ajuda do sistema.
+	 */
 	public void limpar() {
-		// TODO
+		PrintWriter writer = null;
+
+		try {
+			writer = new PrintWriter(file);
+			writer.print("");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

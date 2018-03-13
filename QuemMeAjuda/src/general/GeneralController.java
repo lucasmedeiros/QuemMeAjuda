@@ -165,4 +165,25 @@ public class GeneralController {
 	public int totalDinheiroTutor(String email) {
 		return this.tutorController.getDinheiro(email);
 	}
+
+	public void salvar() {
+		this.alunoController.salvar();
+		this.tutorController.salvar();
+		this.ajudaController.salvar();
+		
+	}
+
+	public void carregar() {
+		this.alunoController.carregar();
+		this.tutorController.carregar();
+		this.ajudaController.carregar();
+		
+	}
+
+	public void limpar() {
+		this.alunoController.limpar();
+		this.tutorController.limpar();
+		this.ajudaController.salvar();
+		
+	}
 }

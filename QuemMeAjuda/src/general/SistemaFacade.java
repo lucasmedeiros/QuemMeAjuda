@@ -107,4 +107,16 @@ public class SistemaFacade {
 	public int totalDinheiroTutor(String email) {
 		return this.generalController.totalDinheiroTutor(email);
 	}
+	
+	public void salvar() {
+		this.generalController.salvar();
+	}
+	
+	public void carregar() {
+		this.generalController.carregar();
+	}
+	
+	public void limpar() {
+		this.generalController.limpar();
+	}
 }
