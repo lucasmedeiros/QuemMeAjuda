@@ -15,7 +15,7 @@ import general.Validator;
  * @since Parte 2
  */
 
-public abstract class Ajuda implements Ajudavel, Serializable {
+public abstract class Ajuda implements Serializable {
 
 	/**
 	 * Id para serguranca de serializacao e desserializacao
@@ -76,12 +76,22 @@ public abstract class Ajuda implements Ajudavel, Serializable {
 	}
 	
 	/**
+	 * Metodo para pegar informaçao da ajuda.
+	 * 
+	 * @param atributo
+	 *            string que define que tipo de informaçao sobre ajuda deve ser
+	 *            retornada.
+	 * @return informaçao sobre ajuda.
+	 * @since Parte 2
+	 */
+	public abstract String getInfo(String atributo);
+	
+	/**
 	 * Metodo para pegar o id da ajuda.
 	 * 
 	 * @return id da ajuda.
 	 * @since Parte 2
 	 */
-	@Override
 	public int getId() {
 		return this.id;
 	}

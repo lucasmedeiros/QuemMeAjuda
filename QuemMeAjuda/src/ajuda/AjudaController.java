@@ -26,7 +26,7 @@ import general.Validator;
 
 public class AjudaController {
 
-	private List<Ajudavel> ajudas;
+	private List<Ajuda> ajudas;
 	private Validator val;
 	private File file;
 
@@ -106,7 +106,7 @@ public class AjudaController {
 	public String getInfoAjuda(String atributo, int idAjuda) {
 		val.validaString(atributo, "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
 
-		Ajudavel a = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar info da ajuda ");
+		Ajuda a = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar info da ajuda ");
 		val.validaObjetoNulo(a, "Erro ao tentar recuperar info da ajuda : id nao encontrado ");
 		return a.getInfo(atributo);
 	}
@@ -120,7 +120,7 @@ public class AjudaController {
 	 * @since Parte 2
 	 */
 	public String pegarInfoTutor(int idAjuda) {
-		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
+		Ajuda ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
 		val.validaObjetoNulo(ajuda, "Erro ao tentar recuperar tutor : id nao encontrado ");
 
 		return ajuda.getTutor();
@@ -135,7 +135,7 @@ public class AjudaController {
 	 * @since Parte 2
 	 */
 	public String pegarTutor(int idAjuda) {
-		Ajudavel ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
+		Ajuda ajuda = ajudaCadastrada(idAjuda, "Erro ao tentar recuperar tutor ");
 		val.validaObjetoNulo(ajuda, "Erro na avaliacao de tutor: id nao encontrado ");
 		if (ajuda.getFoiAvaliada()) {
 			throw new IllegalArgumentException("Erro na avaliacao de tutor: Ajuda ja avaliada");
@@ -169,8 +169,8 @@ public class AjudaController {
 			fis = new FileInputStream(file);
 			ois = new ObjectInputStream(fis);
 			@SuppressWarnings("unchecked")
-			List<Ajudavel> ajudasLidas = (List<Ajudavel>) ois.readObject();
-			for (Ajudavel a : ajudasLidas) {
+			List<Ajuda> ajudasLidas = (List<Ajuda>) ois.readObject();
+			for (Ajuda a : ajudasLidas) {
 				this.ajudas.add(a);
 			}
 		} catch (IOException | ClassNotFoundException e) {
@@ -200,13 +200,13 @@ public class AjudaController {
 	 *            id da ajuda a ser consultada.
 	 * @param msg
 	 *            mensagem de erro.
-	 * @return caso exista, retorna um objeto Ajudavel, senao, retorna null
+	 * @return caso exista, retorna um objeto Ajuda, senao, retorna null
 	 * @since Parte 2
 	 */
-	private Ajudavel ajudaCadastrada(int idAjuda, String msg) {
+	private Ajuda ajudaCadastrada(int idAjuda, String msg) {
 		val.validaNumeroEmIntervalo(idAjuda, 1, Integer.MAX_VALUE, "", msg + ": id nao pode menor que zero ");
 
-		for (Ajudavel a : ajudas) {
+		for (Ajuda a : ajudas) {
 			if (a.getId() == idAjuda)
 				return a;
 		}
