@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import general.Validator;
+import general.Validador;
 
 import java.util.Map;
 
@@ -33,7 +33,7 @@ public class Tutor {
 	private Map<String, String> horario;
 	private Map<String, Integer> disciplinas;
 
-	private Validator val;
+	private Validador val;
 
 	/**
 	 * Constroi um objeto Tutor.
@@ -46,7 +46,7 @@ public class Tutor {
 	 * @since Parte 1
 	 */
 	public Tutor(String disciplina, int proficiencia) {
-		this.val = new Validator();
+		this.val = new Validador();
 		ehValido(disciplina, proficiencia);
 
 		this.locais = new HashSet<String>();

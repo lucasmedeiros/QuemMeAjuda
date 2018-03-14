@@ -10,7 +10,7 @@ package general;
  *          </ol>
  * @since Parte 1
  */
-public class Validator {
+public class Validador {
 
 	/**
 	 * Método para fazer validação de uma string.

@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import general.Validator;
+import general.Validador;
 
 /**
  * Representação da classe que controla a entidade Ajuda.
@@ -27,7 +27,7 @@ import general.Validator;
 public class AjudaController {
 
 	private List<Ajuda> ajudas;
-	private Validator val;
+	private Validador val;
 	private File file;
 
 	/**
@@ -37,7 +37,7 @@ public class AjudaController {
 	 */
 	public AjudaController() {
 		ajudas = new ArrayList<>();
-		val = new Validator();
+		val = new Validador();
 		file = new File("ajudas.txt");
 	}
 

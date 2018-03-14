@@ -2,7 +2,7 @@ package aluno;
 
 import java.io.Serializable;
 
-import general.Validator;
+import general.Validador;
 import tutor.Tutor;
 
 /**
@@ -64,7 +64,7 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	/**
 	 * Representa o objeto de validacao das informacoes do aluno.
 	 */
-	private Validator val;
+	private Validador val;
 
 	/**
 	 * Construtor da classe Aluno
@@ -82,7 +82,7 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	 * @since Parte 1
 	 */
 	public Aluno(String nome, String matricula, String email, int cursoId, String telefone) {
-		this.val = new Validator();
+		this.val = new Validador();
 		ehLegal(nome, matricula, email, telefone, cursoId);
 		this.matricula = matricula;
 		this.email = email;

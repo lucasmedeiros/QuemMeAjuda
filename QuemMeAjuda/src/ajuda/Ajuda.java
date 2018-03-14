@@ -2,7 +2,7 @@ package ajuda;
 
 import java.io.Serializable;
 
-import general.Validator;
+import general.Validador;
 
 /**
  * Representação abstrata de uma ajuda.
@@ -41,7 +41,7 @@ public abstract class Ajuda implements Serializable {
 	 * Representa o validador utilizado.
 	 * @since Parte 2
 	 */
-	protected Validator val = new Validator();
+	protected Validador val = new Validador();
 	
 	/**
 	 * Representa se a ajuda ja foi ou nao avaliada

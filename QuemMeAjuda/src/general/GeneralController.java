@@ -25,7 +25,7 @@ public class GeneralController {
 	private AlunoController alunoController;
 	private TutorController tutorController;
 	private AjudaController ajudaController;
-	private Validator val;
+	private Validador val;
 	private Ordenador ordem;
 
 	private Caixa caixa;
@@ -34,7 +34,7 @@ public class GeneralController {
 		this.alunoController = new AlunoController();
 		this.tutorController = new TutorController();
 		this.ajudaController = new AjudaController();
-		this.val = new Validator();
+		this.val = new Validador();
 		this.caixa = new Caixa();
 		this.ordem = new OrdenaNome();
 	}

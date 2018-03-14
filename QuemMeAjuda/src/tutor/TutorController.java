@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
-import general.Validator;
+import general.Validador;
 import ordenacao.Ordenador;
 
 import java.io.File;
@@ -39,7 +39,7 @@ public class TutorController {
 	/**
 	 * Representa o validador do programa.
 	 */
-	private Validator val;
+	private Validador val;
 
 	/**
 	 * Representa uma lista de tutores.
@@ -53,7 +53,7 @@ public class TutorController {
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<>();
-		this.val = new Validator();
+		this.val = new Validador();
 	}
 
 	/**

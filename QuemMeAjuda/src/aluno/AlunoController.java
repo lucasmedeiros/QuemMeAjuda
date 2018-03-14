@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import general.Validator;
+import general.Validador;
 import ordenacao.Ordenador;
 
 /**
@@ -30,7 +30,7 @@ import ordenacao.Ordenador;
 public class AlunoController {
 
 	private Map<String, Aluno> alunos;
-	private Validator val;
+	private Validador val;
 
 	/**
 	 * Construtor do Controller de Aluno.
@@ -39,7 +39,7 @@ public class AlunoController {
 	 */
 	public AlunoController() {
 		alunos = new HashMap<String, Aluno>();
-		val = new Validator();
+		val = new Validador();
 	}
 
 	/**
