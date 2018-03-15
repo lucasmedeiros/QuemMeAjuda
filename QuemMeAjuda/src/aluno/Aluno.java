@@ -265,7 +265,7 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	 */
 	@Override
 	public int compareTo(Aluno o) {
-		return Integer.parseInt(this.matricula)- Integer.parseInt(o.matricula);
+		return Integer.parseInt(this.matricula) - Integer.parseInt(o.matricula);
 	}
 
 	/**
@@ -297,4 +297,6 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 			throw new IllegalArgumentException("Erro ao consultar........");
 		}
 	}
+
+
 }

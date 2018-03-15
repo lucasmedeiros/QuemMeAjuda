@@ -66,7 +66,7 @@ public class TutorController {
 	 * @since Parte 1
 	 */
 	private void verificaTutor(String email, String msg) {
-		if (!this.tutores.containsKey(email)) {
+		if (getTutorPorEmail(email) == null) {
 			throw new IllegalArgumentException(msg);
 		}
 	}
@@ -84,7 +84,10 @@ public class TutorController {
 	 */
 	public String recuperaTutor(String matricula) {
 		val.validaString(matricula, "Matricula nao pode ser vazia ou nula.");
-		return this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").toString();
+		if(!tutores.containsKey(matricula)) {
+			throw new NoSuchElementException("Erro na busca por tutor: Tutor nao encontrado");
+		}
+		return tutores.get(matricula).toString();
 	}
 
 	/**
@@ -104,7 +107,7 @@ public class TutorController {
 
 		if (aluno.getTipo() == null) {
 			aluno.tornarTutor(disciplina, proficiencia);
-			this.tutores.put(aluno.getEmail(), aluno);
+			this.tutores.put(aluno.getMatricula(), aluno);
 		} else {
 			aluno.getTipo().adicionaDisciplina(disciplina, proficiencia);
 		}
@@ -117,14 +120,29 @@ public class TutorController {
 	 * @return retorna o aluno relacionado a matricula
 	 * @since Parte 1
 	 */
-	public Aluno getTutor(String matricula, String msgErro) {
+	public void temTutor(String matricula, String msgErro) {
+		if (!tutores.containsKey(matricula)) {
+			throw new NoSuchElementException(msgErro);
+		}
+	}
+	
+	/**
+	 * 	Metodo que retorna a String matricula correspondente ao objeto que possui o email fornecido
+	 * @param email Representa o email do tutor
+	 * @return Retorna uma String que representa a matricula do tutor, ou null caso nao possua tutor com tal email
+	 */
+	public Aluno getTutorPorEmail(String email) {
 		for (Aluno aluno : this.tutores.values()) {
-			if (aluno.getMatricula().equals(matricula)) {
+			if (aluno.getEmail().equals(email)) {
 				return aluno;
 			}
 		}
-
-		throw new NoSuchElementException(msgErro);
+		return null;
+	}
+	
+	public Aluno getTutor(String matricula,String msg) {
+		temTutor(matricula,msg);
+		return tutores.get(matricula);
 	}
 
 	/**
@@ -134,12 +152,17 @@ public class TutorController {
 	 * @since Parte 1
 	 */
 	public String listarTutores(Ordenador ordenador) {
+		
 		String listaTutores = "";
 
 		List<Aluno> tutoresOrdenados = new ArrayList<>(tutores.values());
-  
-		Collections.sort(tutoresOrdenados,ordenador);
 
+		
+		if(ordenador == null) {
+			Collections.sort(tutoresOrdenados);
+		}else {
+			Collections.sort(tutoresOrdenados,ordenador);
+		}
 		
 		for (int i = 0; i < tutoresOrdenados.size() - 1; i++) {
 			listaTutores += tutoresOrdenados.get(i).toString() + ", ";
@@ -169,7 +192,7 @@ public class TutorController {
 		val.validaString(horario, "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
 		val.validaString(dia, "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
 		this.verificaTutor(email, "Erro no cadastrar horario: tutor nao cadastrado");
-		this.tutores.get(email).getTipo().adicionarHorario(dia, horario);
+		getTutorPorEmail(email).getTipo().adicionarHorario(dia, horario);
 	}
 
 	/**
@@ -188,7 +211,7 @@ public class TutorController {
 		val.validaEmail(email, "Necessario que o email tenha arroba.");
 		val.validaString(local, "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
 		this.verificaTutor(email, "Erro no cadastrar local de atendimento: tutor nao cadastrado");
-		this.tutores.get(email).getTipo().adicionarLocal(local);
+		getTutorPorEmail(email).getTipo().adicionarLocal(local);
 	}
 
 	/**
@@ -206,12 +229,13 @@ public class TutorController {
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 
-		if (!this.tutores.containsKey(email))
+		if (getTutorPorEmail(email) == null) {
 			return false;
+		}
 		val.validaString(email, "Erro ao consultar horario de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Erro ao consultar horario de atendimento: email precisa ter arroba.");
 		val.validaString(horario, "Erro ao consultar horario de atendimento: horario nao pode ser vazio ou em branco");
-		return this.tutores.get(email).getTipo().consultarHorario(dia, horario);
+		return getTutorPorEmail(email).getTipo().consultarHorario(dia, horario);
 	}
 
 	/**
@@ -227,12 +251,12 @@ public class TutorController {
 	 * @since Parte 1
 	 */
 	public boolean consultaLocal(String email, String local) {
-		if (!this.tutores.containsKey(email))
+		if (getTutorPorEmail(email) == null)
 			return false;
 		val.validaString(email, "Erro no consultar local de atendimento: email nao pode ser vazio ou em branco");
 		val.validaEmail(email, "Necessario que o email tenha arroba.");
 		val.validaString(local, "Erro no consultar local de atendimento: local nao pode ser vazio ou em branco");
-		return this.tutores.get(email).getTipo().consultarLocal(local);
+		return getTutorPorEmail(email).getTipo().consultarLocal(local);
 	}
 
 	/**
@@ -275,7 +299,8 @@ public class TutorController {
 	 * @since Parte 2
 	 */
 	public String pegarNivelTutor(String matricula) {
-		return this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").getTipo().getNivel();
+		temTutor(matricula,"Erro na busca por tutor: Tutor nao encontrado");
+		return this.tutores.get(matricula).getTipo().getNivel();
 	}
 
 	/**
@@ -288,8 +313,8 @@ public class TutorController {
 	 * @since Parte 2
 	 */
 	public String pegarNota(String matricula) {
-		return converteNota(
-				this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").getTipo().getNotaTutor());
+		temTutor(matricula,"Erro na busca por tutor: Tutor nao encontrado");
+		return converteNota(tutores.get(matricula).getTipo().getNotaTutor());
 	}
 
 	/**
@@ -326,7 +351,8 @@ public class TutorController {
 	 * @since Parte 2
 	 */
 	public void avaliar(String matricula, int nota) {
-		this.getTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado").getTipo().calcularNota(nota);
+		temTutor(matricula, "Erro na busca por tutor: Tutor nao encontrado");
+		this.tutores.get(matricula).getTipo().calcularNota(nota);
 	}
 
 	/**
@@ -372,7 +398,7 @@ public class TutorController {
 		val.validaString(email,
 				"Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");
 		this.verificaTutor(email, "Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
-		return this.tutores.get(email).getTipo().getDinheiro();
+		return getTutorPorEmail(email).getTipo().getDinheiro();
 	}
 	
 	/**

@@ -22,8 +22,10 @@ public class OrdenaEmail implements Ordenador, Comparator<Aluno>{
 	public int compare(Aluno a1, Aluno a2) {
 		if (a1.getEmail().compareTo(a2.getEmail()) == 0) {
 			return a1.compareTo(a2);
-		}
-		return a1.getEmail().compareTo(a2.getEmail());
+		}else {
+			return a1.getEmail().compareTo(a2.getEmail());
 	}
 
+	}
+	
 }

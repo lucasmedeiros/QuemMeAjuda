@@ -21,8 +21,9 @@ public class OrdenaNome implements Comparator<Aluno>, Ordenador{
 	public int compare(Aluno a1, Aluno a2) {
 		if (a1.getNome().compareTo(a2.getNome()) == 0) {
 			return a1.compareTo(a2);
+		}else {
+			return a1.getNome().compareTo(a2.getNome());
 		}
-		return a1.getNome().compareTo(a2.getNome());
 	}
 
 

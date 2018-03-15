@@ -5,7 +5,6 @@ import aluno.Aluno;
 import aluno.AlunoController;
 import ordenacao.Ordenador;
 import ordenacao.OrdenaEmail;
-import ordenacao.OrdenaMatricula;
 import ordenacao.OrdenaNome;
 import tutor.TutorController;
 
@@ -54,16 +53,17 @@ public class GeneralController {
 			case "EMAIL":
 				this.ordem = new OrdenaEmail();
 			case "MATRICULA":
-				this.ordem = new OrdenaMatricula();	
+				this.ordem = null;	
 			default:
 				throw new IllegalArgumentException("Ordenacao invalida");
 		}	
 	}
 
 	public String listarAlunos() { 
-		return this.alunoController.listarAlunos(ordem); }
+		Ordenador ordem = new OrdenaNome();
+		return this.alunoController.listarAlunos(ordem); 
+		}
 	 
-
 	public String getInfoAluno(String matricula, String atributo) {
 		return this.alunoController.getInfoAluno(matricula, atributo);
 	}
@@ -78,7 +78,7 @@ public class GeneralController {
 	}
 
 	public String listarTutores() {
-		return this.tutorController.listarTutores(ordem);
+		return this.tutorController.listarTutores(this.ordem);
 	}
 
 	public void cadastrarHorario(String email, String horario, String dia) {
@@ -100,8 +100,7 @@ public class GeneralController {
 	public void doar(int doacao, String matriculaTutor) {
 		val.validaNumeroEmIntervalo(doacao, 0, Integer.MAX_VALUE, "",
 				"Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
-		int valor = this.caixa.doar(doacao, tutorController
-				.getTutor(matriculaTutor, "Erro na doacao para tutor: Tutor nao encontrado").getTipo().getNotaTutor());
+		int valor = this.caixa.doar(doacao, tutorController.getTutor(matriculaTutor, "Erro na doacao para tutor: Tutor nao encontrado").getTipo().getNotaTutor());
 		this.tutorController.getTutor(matriculaTutor, "Erro na busca por tutor: Tutor nao encontrado").getTipo()
 				.adicionarDinheiro(valor);
 	}

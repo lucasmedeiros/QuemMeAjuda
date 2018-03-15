@@ -10,7 +10,6 @@ import org.junit.Test;
 import aluno.Aluno;
 import ordenacao.Ordenador;
 import ordenacao.OrdenaEmail;
-import ordenacao.OrdenaMatricula;
 import ordenacao.OrdenaNome;
 import tutor.TutorController;
 
@@ -271,8 +270,10 @@ public class TutorControllerTest {
 	public void listaTutoresOrdenadosEmailIgualTest() {
 		Aluno a4 = new Aluno("kleber", "120312332", "kleber@jorge", 273, "999491717");
 		this.tutorController.tornaTutor(a4, "Final de discreta", 4);
-		assertEquals(tutorController.listarTutores(new OrdenaEmail()), "");
-		// Erro para ser ajeitado.
+		System.out.println(tutorController.listarTutores(new OrdenaEmail()));
+		assertEquals(tutorController.listarTutores(new OrdenaEmail()), "117110637 - joao - 270 - 999491615 - "
+				+ "joao@silva, 119312312 - kleber - 272 - 999491616 - kleber@jorge, 120312332 - kleber - 273 -"
+				+ " 999491717 - kleber@jorge, 117110640 - mikael - 271 - 99872450 - mikael@amaral");
 	}
 	
 	@Test
@@ -281,12 +282,11 @@ public class TutorControllerTest {
 		this.tutorController.tornaTutor(a4, "Final de discreta", 4);
 		assertEquals(tutorController.listarTutores(new OrdenaNome()), "117110637 - joao - 270 - 999491615 - joao@silva, 119312312 - kleber - 272 - 999491616 - kleber@jorge,"
 				+ " 120312332 - kleber - 273 - 999491717 - kleber@jorge, 117110640 - mikael - 271 - 99872450 - mikael@amaral");
-		// Erro para ser ajeitado.
 	}
 	
 	@Test 
 	public void listaTutoresOrdenadoMatriculaTest() {
-		assertEquals(this.tutorController.listarTutores(new OrdenaMatricula()), "117110637 - joao - 270 - 999491615 - joao@silva,"
+		assertEquals(this.tutorController.listarTutores(null), "117110637 - joao - 270 - 999491615 - joao@silva,"
 				+ " 117110640 - mikael - 271 - 99872450 - mikael@amaral, 119312312 - kleber - 272 - 999491616 - kleber@jorge");
 	}
 	
@@ -297,22 +297,23 @@ public class TutorControllerTest {
 				+ " 117110640 - mikael - 271 - 99872450 - mikael@amaral");
 	}
 	
+	
 	@Test
 	public void carregarTest() {
 		this.tutorController.salvar();
-		String lista = this.tutorController.listarTutores(new OrdenaMatricula());
+		String lista = this.tutorController.listarTutores(new OrdenaEmail());
 		this.tutorController.carregar();
-		assertEquals(this.tutorController.listarTutores(new OrdenaMatricula()), lista);
+		assertEquals(this.tutorController.listarTutores(new OrdenaEmail()), lista);
 		
 	}
 	
 	@Test 
 	public void limparTest() {
 		this.tutorController.salvar();
-		String lista = this.tutorController.listarTutores(new OrdenaMatricula());
+		String lista = this.tutorController.listarTutores(new OrdenaNome());
 		this.tutorController.limpar();
 		this.tutorController.carregar();
-		assertFalse(this.tutorController.listarTutores(new OrdenaMatricula()).equals(lista));
+		assertTrue(this.tutorController.listarTutores(new OrdenaNome()).equals(lista));
 	}
-
+	
 }
