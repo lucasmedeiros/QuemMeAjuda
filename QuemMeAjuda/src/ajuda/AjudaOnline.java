@@ -14,6 +14,11 @@ package ajuda;
 public class AjudaOnline extends Ajuda {
 
 	/**
+	 * Id para serguranca de serializacao e desserializacao
+	 */
+	private static final long serialVersionUID = 8253720340600769746L;
+
+	/**
 	 * Construtor de AjudaOnline.
 	 * 
 	 * @param matriculaTutor

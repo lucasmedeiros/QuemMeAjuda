@@ -14,6 +14,11 @@ package ajuda;
 public class AjudaPresencial extends Ajuda {
 
 	/**
+	 * Id para serguranca de serializacao e desserializacao
+	 */
+	private static final long serialVersionUID = -7512160153448892114L;
+
+	/**
 	 * Representa o horario da ajuda.
 	 */
 	private String horario;
