@@ -16,7 +16,7 @@ import general.Validador;
 /**
  * Representação da classe que controla a entidade Ajuda.
  *
- * @authors
+ * @author
  *          <ol>
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
  *          Mikael Amaral </i>
@@ -79,7 +79,7 @@ public class AjudaController {
 	 *            horario da ajuda presencial.
 	 * @param dia
 	 *            dia da ajuda presencial.
-	 * @param local
+	 * @param localInteresse
 	 *            local da ajuda presencial.
 	 * @since Parte 2
 	 */

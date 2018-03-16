@@ -91,13 +91,6 @@ public class AlunoController {
 	 * 
 	 * @param matricula
 	 *            matricula do aluno.
-	 * @param disciplina
-	 *            disciplina que sera ministrada na tutoria.
-	 * @param proficiencia
-	 *            valor de conhecimento que o proprio tutor atribui a ele mesmo na
-	 *            disciplina.
-	 * @param tutorController
-	 *            controller de Tutor, que eh obtido da Facade.
 	 * @since Parte 1
 	 */
 	public Aluno disponivelParaTutor(String matricula) {

@@ -257,7 +257,7 @@ public class Tutor {
 	 * 
 	 * @param dia
 	 *            dia da semana especifico.
-	 * @param hroario
+	 * @param horario
 	 *            horario para o dia especifico.
 	 * @param local
 	 *            local de interesse especifico.

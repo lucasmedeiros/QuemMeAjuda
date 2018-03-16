@@ -30,7 +30,7 @@ import java.util.List;
  * @authors
  *          <ol>
  *          <i> Diego Gama </i> <i> Jessé Souza </i> <i> Lucas Medeiros </i> <i>
- *          Mikael Amaral </i>
+ *          Mikael Amaral 
  *          </ol>
  * @since Parte 1
  */
@@ -117,7 +117,6 @@ public class TutorController {
 	 * 
 	 * @param matricula
 	 *            A matricula do tutor em questao.
-	 * @return retorna o aluno relacionado a matricula
 	 * @since Parte 1
 	 */
 	public void temTutor(String matricula, String msgErro) {
@@ -179,8 +178,6 @@ public class TutorController {
 	 * 
 	 * @param email
 	 *            O email do tutor
-	 * @param local
-	 *            O local de encontro com o tutor.
 	 * @param dia
 	 *            O dia disponivel do tutor.
 	 * @since Parte 1
@@ -265,8 +262,6 @@ public class TutorController {
 	 * 
 	 * @param disciplina
 	 *            nome da disciplina.
-	 * @param msg
-	 *            mensagem de erro.
 	 * @return matricula do tutor selecionado para a ajuda.
 	 * @since Parte 2
 	 */
