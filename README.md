@@ -11,4 +11,5 @@ Equipe:
 - Mikael Amaral
 ______________________________________________________________________________________________________________
 Mais informações:
-- Relatório de desenvolvimento do projeto <https://docs.google.com/document/d/1s4WGCQm8R5xGxbRqsIm9IdxV2Cx1a0S48ZoCwA-Yxso/edit>
+- Relatório de desenvolvimento do projeto: <https://docs.google.com/document/d/1s4WGCQm8R5xGxbRqsIm9IdxV2Cx1a0S48ZoCwA-Yxso/edit>
+- Diagrama de classe (também encontrado na pasta classDiagram e no relatório): <https://raw.githubusercontent.com/LukeHxH/projeto-p2/master/QuemMeAjuda/classDiagram/diagrama.png?token=AQIA6O8kliexWr4qJDxnpqZ2M4ko43Bpks5atElnwA%3D%3D>
